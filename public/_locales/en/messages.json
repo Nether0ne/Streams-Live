@@ -1,0 +1,215 @@
+{
+  "extName": {
+    "message": "Streams Now"
+  },
+  "extDescription": {
+    "message": "Streams Now description"
+  },
+  "extAuthor": {
+    "message": "By nether"
+  },
+  "repository": {
+    "message": "GitHub"
+  },
+  "releases": {
+    "message": "Releases"
+  },
+  "actionSuccess": {
+    "message": "$action$ completed successfully",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "actionFailed": {
+    "message": "$action$ failed",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidFile": {
+    "message": "The provided file is invalid"
+  },
+  "liveStreams": {
+    "message": "Live channels"
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "about": {
+    "message": "About"
+  },
+  "generalSettings": {
+    "message": "General settings"
+  },
+  "fontSize": {
+    "message": "Font Size"
+  },
+  "smallestFontSize": {
+    "message": "Smallest"
+  },
+  "smallFontSize": {
+    "message": "Small"
+  },
+  "mediumFontSize": {
+    "message": "Medium"
+  },
+  "largeFontSize": {
+    "message": "Large"
+  },
+  "largestFontSize": {
+    "message": "Largest"
+  },
+  "theme": {
+    "message": "Theme"
+  },
+  "lightTheme": {
+    "message": "Light"
+  },
+  "darkTheme": {
+    "message": "Dark"
+  },
+  "badge": {
+    "message": "Display badge on browser icon"
+  },
+  "twitch": {
+    "message": "Twitch"
+  },
+  "youtube": {
+    "message": "YouTube"
+  },
+  "goodgame": {
+    "message": "GoodGame"
+  },
+  "profileSettings": {
+    "message": "Profiles settings"
+  },
+  "addProfile": {
+    "message": "Connect profile"
+  },
+  "refreshProfile": {
+    "message": "Refresh profile"
+  },
+  "platformProfile": {
+    "message": "$platform$ profile",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "logout": {
+    "message": "Logout"
+  },
+  "platformProfileUpdated": {
+    "message": "$username$ $platform$ profile updated",
+    "placeholders": {
+      "username": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformProfileUpdateFailed": {
+    "message": "Could not update $platform$ profile. Try again later.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "notificationsSettings": {
+    "message": "Notifications settings"
+  },
+  "notificationsEnabled": {
+    "message": "Enable notifications"
+  },
+  "notificationsPlatform": {
+    "message": "$platform$ notifications",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "enabled": {
+    "message": "Enabled"
+  },
+  "disabled": {
+    "message": "Disabled"
+  },
+  "exportAndImportSettings": {
+    "message": "Export and import settings"
+  },
+  "exportSetting": {
+    "message": "Export settings"
+  },
+  "exportSettingDescription": {
+    "message": "Export your settings to a recovery file"
+  },
+  "importSetting": {
+    "message": "Import settings"
+  },
+  "importSettingDescription": {
+    "message": "Apply your exported settings here"
+  },
+  "resetSetting": {
+    "message": "Reset application"
+  },
+  "resetSettingDescription": {
+    "message": "Reset all settings to default"
+  },
+  "noStreams": {
+    "message": "No live streamers at the moment"
+  },
+  "noFilteredStreams": {
+    "message": "No live streamers matching your search"
+  },
+  "search": {
+    "message": "Search"
+  },
+  "viewersSortField": {
+    "message": "Viewers"
+  },
+  "uptimeSortField": {
+    "message": "Uptime"
+  },
+  "nameSortField": {
+    "message": "Name"
+  },
+  "noneGroupBy": {
+    "message": "None"
+  },
+  "categoryGroupBy": {
+    "message": "Category"
+  },
+  "platformGroupBy": {
+    "message": "Platform"
+  },
+  "refreshStreams": {
+    "message": "Refresh"
+  },
+  "live": {
+    "message": "Live"
+  },
+  "rerun": {
+    "message": "Rerun"
+  },
+  "openStream": {
+    "message": "Open stream"
+  },
+  "openOnlyStream": {
+    "message": "Open stream in popout"
+  },
+  "openOnlyChat": {
+    "message": "Open chat in popout"
+  },
+  "openVideos": {
+    "message": "Open videos page"
+  }
+}

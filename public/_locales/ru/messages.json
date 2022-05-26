@@ -1,0 +1,136 @@
+{
+  "extName": {
+    "message": "Streams Now"
+  },
+  "extDescription": {
+    "message": "Streams Now описание"
+  },
+  "extAuthor": {
+    "message": "Автор nether"
+  },
+  "releases": {
+    "message": "Обновления"
+  },
+  "liveStreams": {
+    "message": "Каналы в эфире"
+  },
+  "settings": {
+    "message": "Настройки"
+  },
+  "about": {
+    "message": "О приложении"
+  },
+  "generalSettings": {
+    "message": "Общие настройки"
+  },
+  "fontSize": {
+    "message": "Размер шрифта"
+  },
+  "fontSizeSmallest": {
+    "message": "Минимальный"
+  },
+  "fontSizeSmall": {
+    "message": "Маленький"
+  },
+  "fontSizeNormal": {
+    "message": "Средний"
+  },
+  "fontSizeLarge": {
+    "message": "Большой"
+  },
+  "fontSizeLargest": {
+    "message": "Максимальный"
+  },
+  "theme": {
+    "message": "Тема"
+  },
+  "themeLight": {
+    "message": "Светлая"
+  },
+  "themeDark": {
+    "message": "Темная"
+  },
+  "profileSettings": {
+    "message": "Настройки профиля"
+  },
+  "addProfile": {
+    "message": "Добавить профиль"
+  },
+  "refreshProfile": {
+    "message": "Обновить профиль"
+  },
+  "twitchProfile": {
+    "message": "Twitch профиль"
+  },
+  "YoutubeProfile": {
+    "message": "Youtube профиль"
+  },
+  "goodgameProfile": {
+    "message": "GoodGame профиль"
+  },
+  "twitchProfileUpdated": {
+    "message": "$username$ Twitch профиль обновлен",
+    "placeholders": {
+      "username": {
+        "content": "$1"
+      }
+    }
+  },
+  "notificationsSettings": {
+    "message": "Настройки уведомлений"
+  },
+  "notificationsEnabled": {
+    "message": "Получать уведомления"
+  },
+  "notificationsTwitch": {
+    "message": "Уведомления Twitch"
+  },
+  "notificationsYoutube": {
+    "message": "Уведомления Youtube"
+  },
+  "notificationsGoodgame": {
+    "message": "Уведомления GoodGame"
+  },
+  "enabled": {
+    "message": "Включено"
+  },
+  "disabled": {
+    "message": "Выключено"
+  },
+  "exportAndImportSettings": {
+    "message": "Экспорт и импорт настроек"
+  },
+  "exportSettings": {
+    "message": "Экспорт настроек"
+  },
+  "importSettings": {
+    "message": "Импорт настроек"
+  },
+  "noStreams": {
+    "message": "Нет каналов онлайн"
+  },
+  "search": {
+    "message": "Поиск"
+  },
+  "refreshStreams": {
+    "message": "Обновить"
+  },
+  "live": {
+    "message": "Онлайн"
+  },
+  "rerun": {
+    "message": "Повтор"
+  },
+  "openStream": {
+    "message": "Открыть стрим"
+  },
+  "openOnlyStream": {
+    "message": "Открыть только стрим"
+  },
+  "openOnlyChat": {
+    "message": "Открыть только чат"
+  },
+  "openVideos": {
+    "message": "Открыть страницу видео"
+  }
+}
