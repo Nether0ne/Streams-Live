@@ -1,7 +1,6 @@
-import { useModal } from "@/browser/common/hooks";
 import { PropsOf } from "@emotion/react";
 import { Box } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
 import AboutModal from "../../modals/About";
 import Sidebar from "../Sidebar";
 
@@ -37,7 +36,8 @@ const styles = {
 };
 
 const MainLayout: FC<PropsOf<any>> = ({ children }) => {
-  const { open, toggleModal } = useModal();
+  const [open, setOpen] = useState(false);
+  const toggleModal = () => setOpen(!open);
 
   return (
     <Box sx={styles.wrapper}>

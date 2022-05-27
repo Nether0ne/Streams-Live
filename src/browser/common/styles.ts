@@ -15,8 +15,8 @@ export function getBaseFontSize(value: FontSize) {
   return 14;
 }
 
-export const getTheme = (mode: ThemeSetting, fontSize: FontSize): Theme => {
-  return createTheme({
+export const getTheme = (mode: ThemeSetting, fontSize: FontSize): Theme =>
+  createTheme({
     palette: {
       mode,
       ...(mode === "light"
@@ -68,4 +68,3 @@ export const getTheme = (mode: ThemeSetting, fontSize: FontSize): Theme => {
       },
     },
   });
-};

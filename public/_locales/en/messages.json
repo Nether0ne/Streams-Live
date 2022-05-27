@@ -164,6 +164,18 @@
   "resetSettingDescription": {
     "message": "Reset all settings to default"
   },
+  "resetWarning": {
+    "message": "Your settings are about to be reset"
+  },
+  "resetWarningDescription": {
+    "message": "This will reset all settings to default. Are you sure you want to continue?"
+  },
+  "resetAbort": {
+    "message": "Keep settings"
+  },
+  "resetConfirm": {
+    "message": "Reset settings"
+  },
   "noStreams": {
     "message": "No live streamers at the moment"
   },
@@ -173,13 +185,13 @@
   "search": {
     "message": "Search"
   },
-  "viewersSortField": {
+  "viewersCountSortField": {
     "message": "Viewers"
   },
-  "uptimeSortField": {
+  "startedAtSortField": {
     "message": "Uptime"
   },
-  "nameSortField": {
+  "userNameSortField": {
     "message": "Name"
   },
   "noneGroupBy": {

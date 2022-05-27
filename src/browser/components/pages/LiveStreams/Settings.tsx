@@ -85,6 +85,9 @@ const selectProps: StandardTextFieldProps = {
   },
 };
 
+const groupByOptions: GroupBy[] = Object.values(GroupBy);
+const sortFieldOptions: SortField[] = Object.values(SortField);
+
 const LiveStreamsSettings: FC<LiveStreamsSettingsProps> = ({
   isLoading,
   sortField,
@@ -100,40 +103,39 @@ const LiveStreamsSettings: FC<LiveStreamsSettingsProps> = ({
     setSortDirection(sortDirection === SortDirection.ASC ? SortDirection.DESC : SortDirection.ASC);
   const changeGroupBy = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setGroupBy(e.target.value as GroupBy);
-    console.log(e.target);
   };
 
   return (
-    <Box>
-      {isLoading ? (
-        <div />
-      ) : (
-        <Box sx={styles.wrapper}>
-          <Box sx={styles.left}>
-            <TextField {...selectProps} value={groupBy} onChange={changeGroupBy}>
-              <MenuItem value={"none"}>{t("noneGroupBy")}</MenuItem>
-              <MenuItem value={"platform"}>{t("platformGroupBy")}</MenuItem>
-              <MenuItem value={"category"}>{t("categoryGroupBy")}</MenuItem>
-            </TextField>
-          </Box>
-          <Box sx={styles.right}>
-            <IconButton sx={styles.iconButton}>
-              <SortIcon
-                sx={{
-                  ...styles.icon,
-                  ...(sortDirection == "asc" ? styles.iconAsc : undefined),
-                }}
-                onClick={changeSortDirection}
-              ></SortIcon>
-            </IconButton>
-            <TextField {...selectProps} value={sortField} onChange={changeSortField}>
-              <MenuItem value={"viewersCount"}>{t("viewersSortField")}</MenuItem>
-              <MenuItem value={"startedAt"}>{t("uptimeSortField")}</MenuItem>
-              <MenuItem value={"userName"}>{t("nameSortField")}</MenuItem>
-            </TextField>
-          </Box>
-        </Box>
-      )}
+    <Box sx={styles.wrapper}>
+      <Box sx={styles.left}>
+        <TextField {...selectProps} value={groupBy} onChange={changeGroupBy}>
+          {groupByOptions.map((option) => (
+            <MenuItem key={option} value={option}>
+              {t(`${option}GroupBy`)}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Box>
+
+      <Box sx={styles.right}>
+        <IconButton sx={styles.iconButton}>
+          <SortIcon
+            sx={{
+              ...styles.icon,
+              ...(sortDirection == "asc" ? styles.iconAsc : undefined),
+            }}
+            onClick={changeSortDirection}
+          ></SortIcon>
+        </IconButton>
+
+        <TextField {...selectProps} value={sortField} onChange={changeSortField}>
+          {sortFieldOptions.map((option) => (
+            <MenuItem key={option} value={option}>
+              {t(`${option}SortField`)}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Box>
     </Box>
   );
 };

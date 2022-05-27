@@ -2,9 +2,9 @@ import { useProfile } from "@/browser/common/hooks/profile";
 import { Platform } from "@/common/types/general";
 import { Box } from "@mui/material";
 import { FC } from "react";
-import Loading from "../../layout/Loading/Loading";
 import AddProfile from "./options/profiles/AddProfile";
 import ProfileSettings from "./options/profiles/Profile";
+import ProfileLoading from "./options/profiles/ProfileLoading";
 
 const styles = {
   wrapper: {
@@ -36,7 +36,7 @@ const ProfilesSettings: FC = () => {
   return (
     <Box sx={styles.wrapper}>
       {isLoading ? (
-        <Loading />
+        <ProfileLoading />
       ) : (
         profilesToRender.map((platform) =>
           platform ? <ProfileSettings {...{ platform }} /> : null

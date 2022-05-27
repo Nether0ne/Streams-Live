@@ -1,10 +1,12 @@
-import { Box, capitalize, Typography, FormGroup, Switch } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 import { t } from "@/common/helpers";
 import useSettings from "@/browser/common/hooks/settings";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness6Icon from "@mui/icons-material/Brightness6";
 import SettingWrapper from "../Wrapper";
+import { Theme } from "@/common/types/settings";
+import SettingLoading from "../SettingLoading";
 
 const styles = {
   textWrapper: {
@@ -22,16 +24,20 @@ const ThemeSettings: FC = () => {
   const handleClick = () =>
     store.set({
       ...settings,
-      general: { ...general, theme },
+      general: { ...general, theme: theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT },
     });
 
   return (
     <SettingWrapper id="theme" onClick={handleClick}>
-      {theme === "light" ? <Brightness4Icon /> : <Brightness6Icon />}
-      <Box sx={styles.textWrapper}>
-        <Typography variant="body2">{t("theme")}</Typography>
-        <Typography color="text.secondary">{t(`${theme}Theme`)}</Typography>
-      </Box>
+      {theme === Theme.LIGHT ? <Brightness4Icon /> : <Brightness6Icon />}
+      {store.isLoading ? (
+        <SettingLoading />
+      ) : (
+        <Box sx={styles.textWrapper}>
+          <Typography variant="body2">{t("theme")}</Typography>
+          <Typography color="text.secondary">{t(`${theme}Theme`)}</Typography>
+        </Box>
+      )}
     </SettingWrapper>
   );
 };

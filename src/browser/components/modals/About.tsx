@@ -1,6 +1,5 @@
-import { useModal } from "@/browser/common/hooks";
 import { t } from "@/common/helpers";
-import { Box, Fade, Modal, Typography, IconButton, Link, Backdrop } from "@mui/material";
+import { Box, Fade, Modal, Typography, IconButton, Link, Portal, Backdrop } from "@mui/material";
 import { FC, useMemo } from "react";
 import AppleIcon from "@mui/icons-material/Apple";
 import CloseIcon from "@mui/icons-material/Close";
@@ -41,6 +40,10 @@ const styles = {
     px: 2,
     pb: 2,
   },
+  header: {
+    textAlign: "right",
+    m: ".25rem",
+  },
   footer: {
     box: {
       display: "flex",
@@ -58,54 +61,55 @@ const styles = {
   },
 };
 
+const footerItems = [
+  { href: "https://github.com/Nether0ne/Streams-Live", label: t("repository") },
+  { href: "https://github.com/Nether0ne/Streams-Live/releases", label: t("releases") },
+];
+
 const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
   return useMemo(() => {
     return (
-      <Modal open={open} onClose={hide} closeAfterTransition sx={styles.backdrop}>
-        <Fade in={open}>
-          <Box sx={styles.wrapper}>
-            <Box sx={styles.background}>
-              <Box sx={styles.content}>
-                <Box textAlign={"right"} m={1}>
-                  <IconButton onClick={hide}>
-                    <CloseIcon />
-                  </IconButton>
-                </Box>
-                <Box sx={styles.info}>
-                  <AppleIcon sx={{ fontSize: 76 }} />
+      <Portal>
+        <Modal
+          open={open}
+          onClose={hide}
+          closeAfterTransition
+          sx={styles.backdrop}
+          // TODO: fix backdrop behavior
+          // BackdropComponent={Backdrop}
+        >
+          <Fade in={open}>
+            <Box id="wrapper" sx={styles.wrapper}>
+              <Box sx={styles.background}>
+                <Box sx={(styles.background, styles.content)}>
+                  <Box sx={styles.header}>
+                    <IconButton onClick={hide}>
+                      <CloseIcon />
+                    </IconButton>
+                  </Box>
+                  <Box sx={styles.info}>
+                    <AppleIcon sx={{ fontSize: 76 }} />
 
-                  <Typography>{t("extName")}</Typography>
-                  <Typography>{t("extAuthor")}</Typography>
+                    <Typography>{t("extName")}</Typography>
+                    <Typography>{t("extAuthor")}</Typography>
+                    <Typography py={3}>{t("extDescription")}</Typography>
 
-                  <Typography py={3}>{t("extDescription")}</Typography>
-
-                  <Box sx={styles.footer.box}>
-                    <Link
-                      href="https://github.com/Nether0ne/Streams-Now"
-                      target="_blank"
-                      color={"text.secondary"}
-                    >
-                      <Typography sx={styles.footer.typography}>
-                        <LinkIcon sx={styles.footer.icon} /> {t("repository")}
-                      </Typography>
-                    </Link>
-
-                    <Link
-                      href="https://github.com/Nether0ne/Streams-Now/releases"
-                      target="_blank"
-                      color={"text.secondary"}
-                    >
-                      <Typography sx={styles.footer.typography}>
-                        <LinkIcon sx={styles.footer.icon} /> {t("releases")}
-                      </Typography>
-                    </Link>
+                    <Box sx={styles.footer.box}>
+                      {footerItems.map(({ href, label }) => (
+                        <Link href={href} target="_blank" color={"text.secondary"}>
+                          <Typography sx={styles.footer.typography}>
+                            <LinkIcon sx={styles.footer.icon} /> {label}
+                          </Typography>
+                        </Link>
+                      ))}
+                    </Box>
                   </Box>
                 </Box>
               </Box>
             </Box>
-          </Box>
-        </Fade>
-      </Modal>
+          </Fade>
+        </Modal>
+      </Portal>
     );
   }, [open]);
 };

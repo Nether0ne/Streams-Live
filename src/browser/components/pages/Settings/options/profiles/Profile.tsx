@@ -8,6 +8,10 @@ import { Platform } from "@/common/types/general";
 import { Profile } from "@/common/types/profile";
 import { capitalize, sendRuntimeMessage, t } from "@/common/helpers";
 import SettingWrapper from "../Wrapper";
+import ProfileLoading from "./ProfileLoading";
+import TwitchIcon from "@/browser/components/icons/Twitch";
+import GoodgameIcon from "@/browser/components/icons/Goodgame";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 const styles = {
   wrapper: {
@@ -18,6 +22,14 @@ const styles = {
     padding: "1rem .5rem",
   } as CSSProperties,
   infoWrapper: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignSelf: "left",
+    alignItems: "center",
+    gap: 1,
+  },
+  actionsWrapper: {
     display: "flex",
     flexDirection: "row",
     alignSelf: "right",
@@ -30,15 +42,20 @@ const styles = {
   noToken: {},
 };
 
+const platformToIcon = {
+  [Platform.TWITCH]: <TwitchIcon />,
+  [Platform.YOUTUBE]: <YouTubeIcon />,
+  [Platform.GOODGAME]: <GoodgameIcon />,
+};
+
 interface ProfileProps {
   platform: Platform;
 }
 
 const ProfileSettings: FC<ProfileProps> = ({ platform }) => {
+  const { setSnackbar } = useContext(SnackbarContext);
   const [profile, store] = useProfile(platform);
   const { accessToken, name, avatar } = profile;
-
-  const { setSnackbar } = useContext(SnackbarContext);
 
   const updateProfile = async () => {
     const profile: Profile = await sendRuntimeMessage(`updateProfile`);
@@ -68,18 +85,29 @@ const ProfileSettings: FC<ProfileProps> = ({ platform }) => {
     });
   };
 
+  if (store.isLoading) {
+    return (
+      <SettingWrapper id={`${platform}Profile`} customStyles={styles.wrapper} clickable={false}>
+        <ProfileLoading />
+      </SettingWrapper>
+    );
+  }
+
   return (
     <SettingWrapper id={`${platform}Profile`} customStyles={styles.wrapper} clickable={false}>
-      <Typography>{t("platformProfile", t(platform))}</Typography>
+      {platformToIcon[platform]}
+
       <Box sx={styles.infoWrapper}>
-        <Typography noWrap sx={styles.name}>
-          {name}
-        </Typography>
         {avatar !== null ? (
           <Avatar alt={name as string} src={avatar} />
         ) : (
           <Avatar>{name ? capitalize(name[0]) : "U"}</Avatar>
         )}
+        <Typography noWrap sx={styles.name}>
+          {name}
+        </Typography>
+      </Box>
+      <Box sx={styles.actionsWrapper}>
         {/* TODO: if no access token -> apply noToken style and update token on refresh */}
         <Tooltip title={<Typography>{t("refreshProfile")}</Typography>} placement="top">
           <Box>

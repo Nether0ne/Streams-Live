@@ -10,6 +10,7 @@ import { useStreamSettings } from "../common/hooks";
 import { Platform } from "@/common/types/general";
 import useSettings from "../common/hooks/settings";
 import { useProfile } from "../common/hooks/profile";
+import { SortField } from "@/common/types/settings";
 
 const styles = {
   wrapper: {
@@ -55,7 +56,7 @@ const LiveStreams: FC = () => {
 
   useEffect(() => {
     let arg = sortDirection === "asc" ? 1 : -1;
-    if (sortField == "startedAt") {
+    if (sortField == SortField.STARTED_AT) {
       arg = sortDirection === "asc" ? -1 : 1;
     }
 

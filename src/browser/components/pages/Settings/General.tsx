@@ -1,4 +1,3 @@
-import useSettings from "@/browser/common/hooks/settings";
 import { t } from "@/common/helpers";
 import { Box, Typography, Divider } from "@mui/material";
 import { FC } from "react";
@@ -7,7 +6,6 @@ import ThemeSettings from "./options/general/Theme";
 
 import LabelIcon from "@mui/icons-material/Label";
 import SwitchSettings from "./options/Switch";
-import Loading from "../../layout/Loading/Loading";
 
 const styles = {
   wrapper: {
@@ -47,12 +45,6 @@ const styles = {
 };
 
 const GeneralSettings: FC = () => {
-  const [, { isLoading }] = useSettings();
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
     <Box sx={styles.wrapper}>
       <Divider sx={styles.divider}>

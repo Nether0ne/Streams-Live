@@ -1,11 +1,12 @@
-import { Box, Typography, Menu, MenuItem, ListItemIcon, Select, TextField } from "@mui/material";
+import { Box, Typography, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import { FC, useState } from "react";
-import { FontSize, Theme } from "@/common/types/settings";
-import { capitalize, t } from "@/common/helpers";
+import { FontSize } from "@/common/types/settings";
+import { t } from "@/common/helpers";
 import useSettings from "@/browser/common/hooks/settings";
 import Check from "@mui/icons-material/Check";
 import TextFieldsIcon from "@mui/icons-material/TextFields";
 import SettingWrapper from "../Wrapper";
+import SettingLoading from "../SettingLoading";
 
 const styles = {
   textWrapper: {
@@ -48,35 +49,39 @@ const FontSizeSetting: FC = () => {
   return (
     <SettingWrapper id="fontSize" onClick={handleClick}>
       <TextFieldsIcon />
-      <Box sx={styles.textWrapper}>
-        <Typography variant="body2">{t("fontSize")}</Typography>
-        <Typography color="text.secondary">{t(`${fontSize}fontSize`)}</Typography>
-      </Box>
+      {store.isLoading ? (
+        <SettingLoading />
+      ) : (
+        <Box sx={styles.textWrapper}>
+          <Typography variant="body2">{t("fontSize")}</Typography>
+          <Typography color="text.secondary">{t(`${fontSize}fontSize`)}</Typography>
 
-      <Menu
-        open={showFontSelect}
-        onClose={() => setShowFontSelect(false)}
-        anchorEl={fontMenuAnchorEl}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-      >
-        {fontSizeOptions.map((option) => (
-          <MenuItem
-            selected={option.value === fontSize}
-            onClick={(_e) => handleMenuClick(option.value, "fontSize")}
+          <Menu
+            open={showFontSelect}
+            onClose={() => setShowFontSelect(false)}
+            anchorEl={fontMenuAnchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
           >
-            {option.label}
+            {fontSizeOptions.map((option) => (
+              <MenuItem
+                selected={option.value === fontSize}
+                onClick={(_e) => handleMenuClick(option.value, "fontSize")}
+              >
+                {option.label}
 
-            {option.value === fontSize && (
-              <ListItemIcon sx={styles.menuItemWrapper}>
-                <Check sx={styles.menuItemIcon} />
-              </ListItemIcon>
-            )}
-          </MenuItem>
-        ))}
-      </Menu>
+                {option.value === fontSize && (
+                  <ListItemIcon sx={styles.menuItemWrapper}>
+                    <Check sx={styles.menuItemIcon} />
+                  </ListItemIcon>
+                )}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
+      )}
     </SettingWrapper>
   );
 };

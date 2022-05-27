@@ -39,11 +39,7 @@ const additionalSwitches = [
 ];
 
 const NotificationsSettings: FC = () => {
-  const [{ notifications }, { isLoading }] = useSettings();
-
-  if (isLoading) {
-    return <Loading />;
-  }
+  const [{ notifications }] = useSettings();
 
   return (
     <Box sx={styles.wrapper}>

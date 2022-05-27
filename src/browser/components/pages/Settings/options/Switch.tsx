@@ -2,18 +2,26 @@ import useSettings from "@/browser/common/hooks/settings";
 import { t } from "@/common/helpers";
 import { Box, Typography, FormGroup, Switch } from "@mui/material";
 import { get, set } from "lodash-es";
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import SettingWrapper from "./Wrapper";
+import SettingLoading from "./SettingLoading";
 
 const styles = {
   wrapper: {
+    display: "flex",
+    flexDirection: "row",
     justifyContent: "space-between",
-  },
+  } as CSSProperties,
   left: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     gap: "1rem",
+  },
+  contentWrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+    minWidth: "23rem",
   },
   textWrapper: {
     display: "flex",
@@ -46,17 +54,23 @@ const SwitchSettings: FC<SwitchProps> = ({ id, icon, label, secondaryText, setti
     <SettingWrapper id={id} customStyles={styles.wrapper} onClick={handleThemeDivClick}>
       <Box sx={styles.left}>
         {icon}
-        <Box sx={styles.textWrapper}>
-          <Typography variant="body2">{label}</Typography>
-          {secondaryText && (
-            <Typography color="text.secondary">{t(state ? "enabled" : "disabled")}</Typography>
-          )}
-        </Box>
-      </Box>
+        {store.isLoading ? (
+          <SettingLoading withSwitch {...{ secondaryText }} />
+        ) : (
+          <Box sx={styles.contentWrapper}>
+            <Box sx={styles.textWrapper}>
+              <Typography variant="body2">{label}</Typography>
+              {secondaryText && (
+                <Typography color="text.secondary">{t(state ? "enabled" : "disabled")}</Typography>
+              )}
+            </Box>
 
-      <FormGroup>
-        <Switch checked={state} />
-      </FormGroup>
+            <FormGroup>
+              <Switch checked={state} />
+            </FormGroup>
+          </Box>
+        )}
+      </Box>
     </SettingWrapper>
   );
 };

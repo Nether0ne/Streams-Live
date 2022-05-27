@@ -9,7 +9,7 @@ import Snackbar from "../components/Snackbar";
 import { SnackbarProvider } from "../common/context/Snackbar";
 
 const Wrapper = tw.div`
-  height: 500;
+  height: 500px;
 `;
 
 const Popup: FC = () => {
