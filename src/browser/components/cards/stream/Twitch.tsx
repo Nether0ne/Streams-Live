@@ -5,6 +5,7 @@ import Uptime from "./Details/Uptime";
 import Image from "../../Image";
 import Viewers from "./Details/Viewers";
 import StreamContextMenu from "../../pages/LiveStreams/ContextMenu";
+import PlatformIcon from "../../PlatformIcon";
 
 interface TwitchStreamProps {
   stream: Stream;
@@ -60,10 +61,15 @@ const styles = {
       overflow: "hidden",
       width: "100%",
     },
-    nameAndViewers: { display: "flex", justifyContent: "space-between" },
+    heading: { display: "flex", justifyContent: "space-between" },
+    nameAndIcon: { display: "flex", alignItems: "center", flexDirection: "row" },
     name: {
       fontWeight: 600,
       maxWidth: "14rem",
+    },
+    icon: {
+      mr: ".5rem",
+      fontSize: "1rem",
     },
   },
 };
@@ -88,22 +94,30 @@ const TwitchStream: FC<TwitchStreamProps> = ({ stream }) => {
               alt={userName}
               style={styles.thumbnail.image}
             />
+
             <Uptime startedAt={startedAt} styles={styles.thumbnail.uptime} />
           </Box>
         </Box>
+
         <Box sx={styles.info.wrapper}>
-          <Box sx={styles.info.nameAndViewers}>
-            <Typography noWrap variant={"body2"} sx={styles.info.name}>
-              {userName}
-            </Typography>
+          <Box sx={styles.info.heading}>
+            <Box sx={styles.info.nameAndIcon}>
+              <PlatformIcon platform={platform} sx={styles.info.icon} />
+
+              <Typography noWrap variant={"body2"} sx={styles.info.name}>
+                {userName}
+              </Typography>
+            </Box>
 
             <Viewers type={type} viewersCount={viewersCount} />
           </Box>
+
           <Tooltip title={<Typography>{title}</Typography>} enterDelay={1000} followCursor arrow>
             <Typography noWrap color="text.secondary">
               {title}
             </Typography>
           </Tooltip>
+
           <Typography noWrap color="text.secondary">
             {gameName}
           </Typography>

@@ -3,18 +3,20 @@ import { Platform } from "@/common/types/general";
 import TwitchIcon from "./icons/Twitch";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import GoodgameIcon from "./icons/Goodgame";
+import { SxProps } from "@mui/material";
 
 interface PlatformIconProps {
   platform: Platform;
+  sx?: SxProps;
 }
 
-const PlatformIcon: FC<PlatformIconProps> = ({ platform }) => {
+const PlatformIcon: FC<PlatformIconProps> = ({ platform, sx }) => {
   return platform === Platform.TWITCH ? (
-    <TwitchIcon />
+    <TwitchIcon {...{ sx }} />
   ) : platform === Platform.YOUTUBE ? (
-    <YouTubeIcon />
+    <YouTubeIcon {...{ sx }} />
   ) : platform === Platform.GOODGAME ? (
-    <GoodgameIcon />
+    <GoodgameIcon {...{ sx }} />
   ) : null;
 };
 
