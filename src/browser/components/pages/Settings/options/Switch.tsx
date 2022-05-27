@@ -52,11 +52,11 @@ const SwitchSettings: FC<SwitchProps> = ({ id, icon, label, secondaryText, setti
 
   return (
     <SettingWrapper id={id} customStyles={styles.wrapper} onClick={handleThemeDivClick}>
-      <Box sx={styles.left}>
-        {icon}
-        {store.isLoading ? (
-          <SettingLoading withSwitch {...{ secondaryText }} />
-        ) : (
+      {store.isLoading ? (
+        <SettingLoading withSwitch {...{ secondaryText, icon }} />
+      ) : (
+        <Box sx={styles.left}>
+          {icon}
           <Box sx={styles.contentWrapper}>
             <Box sx={styles.textWrapper}>
               <Typography variant="body2">{label}</Typography>
@@ -69,8 +69,8 @@ const SwitchSettings: FC<SwitchProps> = ({ id, icon, label, secondaryText, setti
               <Switch checked={state} />
             </FormGroup>
           </Box>
-        )}
-      </Box>
+        </Box>
+      )}
     </SettingWrapper>
   );
 };

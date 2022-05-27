@@ -9,9 +9,7 @@ import { Profile } from "@/common/types/profile";
 import { capitalize, sendRuntimeMessage, t } from "@/common/helpers";
 import SettingWrapper from "../Wrapper";
 import ProfileLoading from "./ProfileLoading";
-import TwitchIcon from "@/browser/components/icons/Twitch";
-import GoodgameIcon from "@/browser/components/icons/Goodgame";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import PlatformIcon from "@/browser/components/PlatformIcon";
 
 const styles = {
   wrapper: {
@@ -40,12 +38,6 @@ const styles = {
   button: { fontSize: "1.25rem" },
   // TODO: no token style
   noToken: {},
-};
-
-const platformToIcon = {
-  [Platform.TWITCH]: <TwitchIcon />,
-  [Platform.YOUTUBE]: <YouTubeIcon />,
-  [Platform.GOODGAME]: <GoodgameIcon />,
 };
 
 interface ProfileProps {
@@ -95,7 +87,7 @@ const ProfileSettings: FC<ProfileProps> = ({ platform }) => {
 
   return (
     <SettingWrapper id={`${platform}Profile`} customStyles={styles.wrapper} clickable={false}>
-      {platformToIcon[platform]}
+      <PlatformIcon {...{ platform }} />
 
       <Box sx={styles.infoWrapper}>
         {avatar !== null ? (

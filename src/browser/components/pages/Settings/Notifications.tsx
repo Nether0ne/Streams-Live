@@ -4,8 +4,8 @@ import { FC } from "react";
 import SwitchSettings from "./options/Switch";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import useSettings from "@/browser/common/hooks/settings";
-import { Platform } from "@/common/types/general";
-import Loading from "../../layout/Loading/Loading";
+import { useAllSetProfiles } from "@/browser/common/hooks/profile";
+import PlatformIcon from "../../PlatformIcon";
 
 const styles = {
   wrapper: {
@@ -14,32 +14,9 @@ const styles = {
   },
 };
 
-const additionalSwitches = [
-  {
-    id: "notificationsTwitch",
-    label: t("notificationsPlatform", t(Platform.TWITCH)),
-    icon: <div>T</div>,
-    secondaryText: true,
-    setting: "notifications.twitch",
-  },
-  {
-    id: "notificationsYoutube",
-    label: t("notificationsPlatform", t(Platform.YOUTUBE)),
-    icon: <div>YT</div>,
-    secondaryText: true,
-    setting: "notifications.youtube",
-  },
-  {
-    id: "notificationsGoodgame",
-    label: t("notificationsPlatform", t(Platform.GOODGAME)),
-    icon: <div>GG</div>,
-    secondaryText: true,
-    setting: "notifications.goodgame",
-  },
-];
-
 const NotificationsSettings: FC = () => {
   const [{ notifications }] = useSettings();
+  const setProfiles = useAllSetProfiles();
 
   return (
     <Box sx={styles.wrapper}>
@@ -54,8 +31,16 @@ const NotificationsSettings: FC = () => {
       />
 
       <Collapse in={notifications.enabled}>
-        {additionalSwitches.map((item) => (
-          <SwitchSettings {...item} />
+        {setProfiles.map(({ profile }) => (
+          <SwitchSettings
+            {...{
+              id: `notifications${profile.platform}`,
+              label: t("notificationsPlatform", t(profile.platform)),
+              icon: <PlatformIcon platform={profile.platform} />,
+              secondaryText: true,
+              setting: `notifications.${profile.platform}`,
+            }}
+          />
         ))}
       </Collapse>
     </Box>

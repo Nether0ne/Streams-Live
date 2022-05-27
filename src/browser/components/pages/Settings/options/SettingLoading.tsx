@@ -8,41 +8,59 @@ const styles = {
   secondary: {
     width: "2.5rem",
   },
+  icon: {
+    marginRight: "1rem",
+  },
   textWrapper: {
     display: "flex",
     flexDirection: "column",
     gap: ".25rem",
+    width: "100%",
   },
   switch: {
     wrapper: {
       display: "flex",
-      flexDirection: "row",
       justifyContent: "space-between",
-      minWidth: "23rem",
+      alignItems: "center",
+      width: "100%",
+      ".MuiSvgIcon-root": {
+        marginRight: "1rem",
+      },
     },
     left: {
       display: "flex",
       flexDirection: "row",
+      alignSelf: "left",
       alignItems: "center",
       gap: "1rem",
+    },
+    right: {
+      mr: ".5rem",
     },
   },
 };
 
 interface SettingLoadingProps {
+  icon?: JSX.Element;
   secondaryText?: boolean;
   withSwitch?: boolean;
 }
 
-const SettingLoading: FC<SettingLoadingProps> = ({ secondaryText = true, withSwitch = false }) => {
+const SettingLoading: FC<SettingLoadingProps> = ({
+  secondaryText = true,
+  withSwitch = false,
+  icon,
+}) => {
   return withSwitch ? (
-    <Box sx={{ ...styles.switch.wrapper }}>
+    <Box sx={styles.switch.wrapper}>
+      {icon}
+
       <Box sx={styles.textWrapper}>
         <Skeleton sx={styles.main} />
         {secondaryText && <Skeleton sx={styles.secondary} />}
       </Box>
 
-      <Skeleton>
+      <Skeleton sx={styles.switch.right}>
         <Switch />
       </Skeleton>
     </Box>

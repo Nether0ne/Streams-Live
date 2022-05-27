@@ -3,7 +3,6 @@ import browser, { Storage } from "webextension-polyfill";
 
 import { defaultSettings, Settings } from "../types/settings";
 import { LiveStreams, Profile } from "../types/profile";
-import { Stream } from "../types/stream";
 import { Platform } from "../types/general";
 import { defaultProfileState } from "../helpers";
 

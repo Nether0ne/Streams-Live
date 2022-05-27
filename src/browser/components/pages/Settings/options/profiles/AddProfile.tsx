@@ -1,5 +1,5 @@
 import LoginLink from "@/browser/components/LoginLink";
-import { Box, Typography, Tooltip, IconButton, Menu, MenuItem } from "@mui/material";
+import { Typography, Menu, MenuItem } from "@mui/material";
 import SettingWrapper from "../Wrapper";
 import AddIcon from "@mui/icons-material/Add";
 import { FC, useState } from "react";
@@ -8,11 +8,8 @@ import { t } from "@/common/helpers";
 
 const styles = {
   wrapper: {
-    justifyContent: "space-between",
+    justifyContent: "start",
     px: 1,
-  },
-  icon: {
-    fontSize: "1.25rem",
   },
 };
 
@@ -31,13 +28,9 @@ const AddProfile: FC<AddProfileProps> = ({ options }) => {
 
   return (
     <SettingWrapper id="addProfile" customStyles={styles.wrapper} onClick={handleClick}>
-      <Typography>{t(`addProfile`)}</Typography>
+      <AddIcon />
 
-      <Tooltip title={<Typography>{t("addProfile")}</Typography>} placement="left">
-        <IconButton>
-          <AddIcon sx={styles.icon} />
-        </IconButton>
-      </Tooltip>
+      <Typography>{t(`addProfile`)}</Typography>
 
       <Menu
         open={showProfileSelect}

@@ -1,4 +1,4 @@
-import { useProfile } from "@/browser/common/hooks/profile";
+import { useAllSetProfiles } from "@/browser/common/hooks/profile";
 import { Platform } from "@/common/types/general";
 import { Box } from "@mui/material";
 import { FC } from "react";
@@ -16,31 +16,22 @@ const styles = {
   },
 };
 
-const availablePlatforms: Platform[] = [Platform.TWITCH, Platform.YOUTUBE, Platform.GOODGAME];
+const availablePlatforms = Object.values(Platform);
 
 const ProfilesSettings: FC = () => {
-  const [twitchProfile, twitchStore] = useProfile(Platform.TWITCH);
-  const [youtubeProfile, youtubeStore] = useProfile(Platform.YOUTUBE);
-  const [goodgameProfile, goodgameStore] = useProfile(Platform.GOODGAME);
-
-  const isLoading = twitchStore.isLoading && youtubeStore.isLoading && goodgameStore.isLoading;
-
+  const profiles = useAllSetProfiles();
+  const isLoading = profiles.every(({ store }) => store.isLoading === true);
   const profilesToRender: Array<Platform | null> = [];
-
-  if (twitchProfile.name) profilesToRender.push(Platform.TWITCH);
-  if (youtubeProfile.name) profilesToRender.push(Platform.YOUTUBE);
-  if (goodgameProfile.name) profilesToRender.push(Platform.GOODGAME);
-
-  const profilesToAdd = availablePlatforms.filter((i) => profilesToRender.indexOf(i) == -1);
+  const profilesToAdd = availablePlatforms.filter(
+    (i) => profiles.map(({ profile }) => profile.platform).indexOf(i) == -1
+  );
 
   return (
     <Box sx={styles.wrapper}>
       {isLoading ? (
         <ProfileLoading />
       ) : (
-        profilesToRender.map((platform) =>
-          platform ? <ProfileSettings {...{ platform }} /> : null
-        )
+        profiles.map(({ profile }) => <ProfileSettings platform={profile.platform} />)
       )}
 
       {availablePlatforms.length > profilesToRender.length && (
