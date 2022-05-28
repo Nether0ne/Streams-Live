@@ -19,7 +19,7 @@ const NotificationsSettings: FC = () => {
   const setProfiles = useAllSetProfiles();
 
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="notifications" sx={styles.wrapper}>
       <SwitchSettings
         {...{
           id: "notifications",

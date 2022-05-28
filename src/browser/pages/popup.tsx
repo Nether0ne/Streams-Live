@@ -9,7 +9,8 @@ import Snackbar from "../components/Snackbar";
 import { SnackbarProvider } from "../common/context/Snackbar";
 
 const Wrapper = tw.div`
-  height: 500px;
+  height: 550px;
+  width: 450px;
 `;
 
 const Popup: FC = () => {
@@ -18,7 +19,7 @@ const Popup: FC = () => {
       <SnackbarProvider>
         <MainLayout>
           <Routes>
-            <Route index element={<Navigate to="Streams" />} />
+            <Route index element={<Navigate to="streams" />} />
             <Route path="streams">
               <Route index element={<Streams />} />
               <Route path="streams" element={<Streams />} />

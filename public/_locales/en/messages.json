@@ -1,9 +1,9 @@
 {
   "extName": {
-    "message": "Streams Now"
+    "message": "Streams Live"
   },
   "extDescription": {
-    "message": "Streams Now description"
+    "message": "Streams Live helps tracking your favorite streamers across different platforms"
   },
   "extAuthor": {
     "message": "By nether"
@@ -39,8 +39,23 @@
   "settings": {
     "message": "Settings"
   },
+  "more": {
+    "message": "More"
+  },
   "about": {
     "message": "About"
+  },
+  "donate": {
+    "message": "Donate"
+  },
+  "donateDescription": {
+    "message": "Streams Live is free and open source. If you like it, please consider donating to keep it running."
+  },
+  "paypal": {
+    "message": "PayPal"
+  },
+  "coinbase": {
+    "message": "Coinbase"
   },
   "generalSettings": {
     "message": "General settings"
@@ -181,6 +196,12 @@
   },
   "noFilteredStreams": {
     "message": "No live streamers matching your search"
+  },
+  "noProfilesSet": {
+    "message": "Looks like you haven't linked any profiles yet"
+  },
+  "goToProfilesSettings": {
+    "message": "Link a profile"
   },
   "search": {
     "message": "Search"

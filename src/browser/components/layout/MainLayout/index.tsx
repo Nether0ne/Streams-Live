@@ -2,6 +2,7 @@ import { PropsOf } from "@emotion/react";
 import { Box } from "@mui/material";
 import { FC, useState } from "react";
 import AboutModal from "../../modals/About";
+import DonateModal from "../../modals/Donate";
 import Sidebar from "../Sidebar";
 
 const styles = {
@@ -11,7 +12,7 @@ const styles = {
   },
   main: {
     overflowY: "scroll",
-    height: 500,
+    height: 550,
     width: 450,
 
     "::-webkit-scrollbar": {
@@ -36,14 +37,17 @@ const styles = {
 };
 
 const MainLayout: FC<PropsOf<any>> = ({ children }) => {
-  const [open, setOpen] = useState(false);
-  const toggleModal = () => setOpen(!open);
+  const [aboutModalOpen, setAboutModalOpen] = useState(false);
+  const [donateModalOpen, setDonateModalOpen] = useState(false);
+  const aboutModalToggler = () => setAboutModalOpen(!aboutModalOpen);
+  const donateModalToggler = () => setDonateModalOpen(!donateModalOpen);
 
   return (
     <Box sx={styles.wrapper}>
-      <Sidebar modalToggler={toggleModal} />
+      <Sidebar {...{ aboutModalToggler, donateModalToggler }} />
       <Box sx={styles.main}>{children}</Box>
-      <AboutModal open={open} hide={toggleModal} />
+      <AboutModal open={aboutModalOpen} hide={aboutModalToggler} />
+      <DonateModal open={donateModalOpen} hide={donateModalToggler} />
     </Box>
   );
 };

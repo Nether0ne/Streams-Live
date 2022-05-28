@@ -13,7 +13,7 @@ const styles = {
     position: "sticky",
     alignSelf: "center",
     top: 0,
-    zIndex: 2000,
+    zIndex: 1,
     paddingTop: ".5rem",
     bgcolor: "background.default",
   },

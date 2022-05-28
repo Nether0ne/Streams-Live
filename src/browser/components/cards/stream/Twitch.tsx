@@ -67,6 +67,9 @@ const styles = {
       fontWeight: 600,
       maxWidth: "14rem",
     },
+    game: {
+      color: "#266798",
+    },
     icon: {
       mr: ".5rem",
       fontSize: "1rem",
@@ -118,9 +121,18 @@ const TwitchStream: FC<TwitchStreamProps> = ({ stream }) => {
             </Typography>
           </Tooltip>
 
-          <Typography noWrap color="text.secondary">
-            {gameName}
-          </Typography>
+          {gameName && (
+            <Tooltip
+              title={<Typography>{gameName}</Typography>}
+              enterDelay={1000}
+              followCursor
+              arrow
+            >
+              <Typography noWrap sx={styles.info.game}>
+                {gameName}
+              </Typography>
+            </Tooltip>
+          )}
         </Box>
       </Link>
     </Box>

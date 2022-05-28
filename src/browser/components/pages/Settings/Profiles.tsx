@@ -20,14 +20,15 @@ const availablePlatforms = Object.values(Platform);
 
 const ProfilesSettings: FC = () => {
   const profiles = useAllSetProfiles();
-  const isLoading = profiles.every(({ store }) => store.isLoading === true);
+  const isLoading =
+    profiles.length > 0 ? profiles.every(({ store }) => store.isLoading === true) : false;
   const profilesToRender: Array<Platform | null> = [];
   const profilesToAdd = availablePlatforms.filter(
     (i) => profiles.map(({ profile }) => profile.platform).indexOf(i) == -1
   );
 
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="profiles" sx={styles.wrapper}>
       {isLoading ? (
         <ProfileLoading />
       ) : (

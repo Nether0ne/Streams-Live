@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
 import StreamsHeader from "../components/pages/Streams/Header";
-import { Platform } from "@/common/types/general";
-import { useProfile } from "../common/hooks/profile";
+import { useAllSetProfiles } from "../common/hooks/profile";
 import { StreamSettingsProvider } from "../common/context/StreamsSettings";
 import StreamsList from "../components/pages/Streams/StreamsList";
+import Welcome from "../components/pages/Streams/Welcome";
+import useSettings from "../common/hooks/settings";
+import Loading from "../components/layout/Loading/Loading";
 
 const styles = {
   wrapper: {
@@ -14,17 +16,21 @@ const styles = {
 };
 
 const Streams: FC = () => {
-  const [twitch, twitchStore] = useProfile(Platform.TWITCH);
-
-  if (!twitch.accessToken && !twitch.name && !twitchStore.isLoading) {
-    return <div>Please login</div>;
-  }
+  const [, { isLoading }] = useSettings();
+  const profiles = useAllSetProfiles();
+  console.log("rerender");
   return (
     <StreamSettingsProvider>
-      <Box sx={styles.wrapper}>
-        <StreamsHeader />
-        <StreamsList />
-      </Box>
+      {isLoading ? (
+        <Loading />
+      ) : profiles.length > 0 ? (
+        <Box sx={styles.wrapper}>
+          <StreamsHeader />
+          <StreamsList />
+        </Box>
+      ) : (
+        <Welcome />
+      )}
     </StreamSettingsProvider>
   );
 };

@@ -46,7 +46,7 @@ const styles = {
 
 const GeneralSettings: FC = () => {
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="general" sx={styles.wrapper}>
       <Divider sx={styles.divider}>
         <Typography sx={styles.dividerText}>{t("generalSettings")}</Typography>
       </Divider>

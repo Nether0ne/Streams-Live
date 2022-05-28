@@ -6,7 +6,7 @@ import ResetSetting from "./options/extra/Reset";
 
 const ExtraSettings: FC = () => {
   return (
-    <Box>
+    <Box id="extra">
       <ExportSetting />
       <ImportSetting />
       <ResetSetting />

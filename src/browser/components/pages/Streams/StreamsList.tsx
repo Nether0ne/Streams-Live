@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
 import { t } from "@/common/helpers";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import TwitchStream from "../../cards/stream/Twitch";
 import Loading from "../../layout/Loading/Loading";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
@@ -24,6 +24,7 @@ const styles = {
 const StreamsList: FC = () => {
   const { streamsWithSettings, isLoading, settingsIsLoading, streamSettings } =
     useContext(StreamSettingsContext);
+  const { search } = streamSettings;
 
   return (
     <Box sx={styles.wrapper}>
@@ -32,7 +33,11 @@ const StreamsList: FC = () => {
       ) : streamsWithSettings.length > 0 ? (
         streamsWithSettings.map((stream) => <TwitchStream stream={stream} />)
       ) : (
-        <Box sx={styles.empty}>{t("noStreams")}</Box>
+        <Box sx={styles.empty}>
+          <Typography variant="body2">
+            {search === undefined ? t("noStreams") : t("noFilteredStreams")}
+          </Typography>
+        </Box>
       )}
     </Box>
   );

@@ -1,6 +1,8 @@
 import TwitchIcon from "@/browser/components/icons/Twitch";
 import { Avatar, Box, IconButton, Skeleton } from "@mui/material";
+import { CSSProperties } from "@mui/styled-engine";
 import { FC } from "react";
+import SettingWrapper from "../Wrapper";
 
 const styles = {
   wrapper: {
@@ -9,10 +11,7 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  icon: {
-    marginRight: "1rem",
-  },
+  } as CSSProperties,
   infoWrapper: {
     width: "100%",
     display: "flex",
@@ -35,8 +34,8 @@ const styles = {
 
 const ProfileLoading: FC = () => {
   return (
-    <Box sx={styles.wrapper}>
-      <TwitchIcon sx={styles.icon} />
+    <SettingWrapper id={"loadingProfile"} customStyles={styles.wrapper} clickable={false}>
+      <TwitchIcon />
 
       <Box sx={styles.infoWrapper}>
         <Skeleton variant="circular">
@@ -53,7 +52,7 @@ const ProfileLoading: FC = () => {
           <IconButton sx={styles.button} />
         </Skeleton>
       </Box>
-    </Box>
+    </SettingWrapper>
   );
 };
 

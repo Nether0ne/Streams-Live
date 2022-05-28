@@ -20,7 +20,7 @@ const ResetSetting: FC = () => {
   const hideDialog = () => setOpenDialog(false);
 
   return (
-    <SettingWrapper id="import" onClick={openDialog}>
+    <SettingWrapper id="reset" onClick={openDialog}>
       <ReportProblemIcon />
       <Box sx={styles.textWrapper}>
         <Typography variant="body2">{t("resetSetting")}</Typography>

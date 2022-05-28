@@ -47,7 +47,7 @@ const ExportSetting: FC = () => {
   };
 
   return (
-    <SettingWrapper id="import" onClick={handleClick}>
+    <SettingWrapper id="export" onClick={handleClick}>
       <DownloadIcon />
       <Box sx={styles.textWrapper}>
         <Typography variant="body2">{t("exportSetting")}</Typography>

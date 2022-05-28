@@ -1,11 +1,10 @@
 import { t } from "@/common/helpers";
 import { Box, Fade, Modal, Typography, IconButton, Link, Portal, Backdrop } from "@mui/material";
 import { FC } from "react";
-import AppleIcon from "@mui/icons-material/Apple";
 import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
 
-interface AboutModalProps {
+interface DonateModalProps {
   open: boolean;
   hide: () => void;
 }
@@ -20,6 +19,8 @@ const styles = {
     alignItems: "center",
     flexGrow: 1,
     height: "100%",
+    maxWidth: "20rem",
+    m: "0 auto",
   },
   background: {
     backgroundColor: "background.default",
@@ -29,8 +30,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
-    width: "18rem",
-    m: "0 auto",
   },
   info: {
     display: "flex",
@@ -39,10 +38,14 @@ const styles = {
     alignItems: "center",
     px: 2,
     pb: 2,
+    mt: "1rem",
   },
   header: {
-    textAlign: "right",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     m: ".25rem",
+    ml: "1rem",
   },
   closeIcon: {
     fontSize: "1rem",
@@ -52,6 +55,7 @@ const styles = {
       display: "flex",
       flexDirection: "row",
       gap: 2,
+      mt: "1rem",
     },
     typography: {
       display: "flex",
@@ -64,12 +68,12 @@ const styles = {
   },
 };
 
-const footerItems = [
-  { href: "https://github.com/Nether0ne/Streams-Live", label: t("repository") },
-  { href: "https://github.com/Nether0ne/Streams-Live/releases", label: t("releases") },
+const links = [
+  { href: "https://github.com/Nether0ne/Streams-Live", label: t("paypal") },
+  { href: "https://github.com/Nether0ne/Streams-Live/releases", label: t("coinbase") },
 ];
 
-const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
+const DonateModal: FC<DonateModalProps> = ({ open, hide }) => {
   return (
     <Portal>
       <Modal
@@ -86,21 +90,17 @@ const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
             <Box sx={styles.background}>
               <Box sx={styles.content}>
                 <Box sx={styles.header}>
+                  <Typography variant="body2">{t("donate")}</Typography>
+
                   <IconButton onClick={hide}>
                     <CloseIcon sx={styles.closeIcon} />
                   </IconButton>
                 </Box>
                 <Box sx={styles.info}>
-                  <AppleIcon sx={{ fontSize: 76 }} />
-
-                  <Typography variant="body2">{t("extName")}</Typography>
-                  <Typography variant="body2">{t("extAuthor")}</Typography>
-                  <Typography py={3} textAlign={"center"}>
-                    {t("extDescription")}
-                  </Typography>
+                  <Typography>{t("donateDescription")}</Typography>
 
                   <Box sx={styles.footer.box}>
-                    {footerItems.map(({ href, label }) => (
+                    {links.map(({ href, label }) => (
                       <Link href={href} target="_blank" color={"text.secondary"}>
                         <Typography sx={styles.footer.typography}>
                           <LinkIcon sx={styles.footer.icon} /> {label}
@@ -118,4 +118,4 @@ const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
   );
 };
 
-export default AboutModal;
+export default DonateModal;
