@@ -77,7 +77,7 @@ const DonateModal: FC<DonateModalProps> = ({ open, hide }) => {
   return (
     <Portal>
       <Modal
-        id="aboutModal"
+        id="donateModal"
         open={open}
         onClose={hide}
         closeAfterTransition

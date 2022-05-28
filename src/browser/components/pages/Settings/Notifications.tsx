@@ -22,7 +22,7 @@ const NotificationsSettings: FC = () => {
     <Box id="notifications" sx={styles.wrapper}>
       <SwitchSettings
         {...{
-          id: "notifications",
+          id: "notificationsEnabled",
           label: t("notificationsEnabled"),
           icon: <NotificationsIcon />,
           secondaryText: true,

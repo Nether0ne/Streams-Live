@@ -1,16 +1,15 @@
 import { FC } from "react";
-import { Box, Divider, Typography, Button } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { t } from "@/common/helpers";
-import Loading from "../components/layout/Loading/Loading";
 import GeneralSettings from "../components/pages/Settings/General";
 import ProfilesSettings from "../components/pages/Settings/Profiles";
 import NotificationsSettings from "../components/pages/Settings/Notifications";
-import useSettings from "../common/hooks/settings";
 import ExtraSettings from "../components/pages/Settings/Extra";
 
 const Settings: FC = () => {
   return (
     <Box
+      id="settings"
       sx={{
         display: "flex",
         flexDirection: "column",

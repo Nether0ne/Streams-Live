@@ -89,7 +89,7 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
   ];
 
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="sidebar" sx={styles.wrapper}>
       {/* TODO: replace url with chrome store url */}
       <MuiLink href={"https://twitch.tv"} target="_blank">
         <Tooltip title={<Typography>{t("extName")}</Typography>} placement="right">
@@ -100,15 +100,17 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
         </Tooltip>
       </MuiLink>
 
-      <Link to="streams">
-        <Tooltip title={<Typography>{t("streams")}</Typography>} placement="right">
-          <IconButton>
-            <LiveTvIcon sx={styles.icon.secondary} />
-          </IconButton>
-        </Tooltip>
-      </Link>
+      <Box id="streams">
+        <Link to="streams">
+          <Tooltip title={<Typography>{t("streams")}</Typography>} placement="right">
+            <IconButton>
+              <LiveTvIcon sx={styles.icon.secondary} />
+            </IconButton>
+          </Tooltip>
+        </Link>
+      </Box>
 
-      <Box sx={styles.bottomWrapper}>
+      <Box id="settings" sx={styles.bottomWrapper}>
         <Link to="settings">
           <Tooltip title={<Typography>{t("settings")}</Typography>} placement="right">
             <IconButton>
@@ -117,7 +119,7 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
           </Tooltip>
         </Link>
 
-        <Box>
+        <Box id="more">
           <Tooltip title={<Typography>{t("more")}</Typography>} placement="right">
             <IconButton onClick={() => setMoreMenuOpen(true)}>
               <MoreVertIcon sx={styles.icon.secondary} />

@@ -55,7 +55,7 @@ const GroupBy: FC = () => {
   return settingsIsLoading ? (
     <Skeleton sx={styles.loader} />
   ) : (
-    <TextField {...selectProps} value={groupBy} onChange={changeGroupBy}>
+    <TextField id="groupBy" {...selectProps} value={groupBy} onChange={changeGroupBy}>
       {groupByOptions.map((option) => (
         <MenuItem key={option} value={option}>
           {t(`${option}GroupBy`)}

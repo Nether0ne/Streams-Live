@@ -50,7 +50,7 @@ const SortField: FC = () => {
   return settingsIsLoading ? (
     <Skeleton sx={styles.loader} />
   ) : (
-    <TextField {...selectProps} value={sortField} onChange={changeSortField}>
+    <TextField id="sortField" {...selectProps} value={sortField} onChange={changeSortField}>
       {sortFieldOptions.map((option) => (
         <MenuItem key={option} value={option}>
           {t(`${option}SortField`)}

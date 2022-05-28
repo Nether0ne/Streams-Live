@@ -36,7 +36,7 @@ const styles = {
 
 const StreamsSettings: FC = () => {
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="streamsSettings" sx={styles.wrapper}>
       <Box sx={styles.left}>
         <GroupBy />
       </Box>

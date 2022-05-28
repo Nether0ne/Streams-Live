@@ -30,7 +30,7 @@ const SortDirection: FC = () => {
   return settingsIsLoading ? (
     <Skeleton variant="circular" sx={styles.loading} />
   ) : (
-    <IconButton sx={styles.iconButton} onClick={changeSortDirection}>
+    <IconButton id="sortDirection" sx={styles.iconButton} onClick={changeSortDirection}>
       <SortIcon
         sx={{
           ...styles.icon,

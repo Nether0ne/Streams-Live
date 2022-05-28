@@ -27,7 +27,7 @@ const StreamsList: FC = () => {
   const { search } = streamSettings;
 
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="streamsList" sx={styles.wrapper}>
       {isLoading || settingsIsLoading ? (
         <Loading customSx={styles.loading} />
       ) : streamsWithSettings.length > 0 ? (

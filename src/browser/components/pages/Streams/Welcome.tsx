@@ -17,7 +17,7 @@ const styles = {
 
 const Welcome: FC = () => {
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="welcome" sx={styles.wrapper}>
       <Typography variant="body2">{t("noProfilesSet")}</Typography>
 
       <NavLink to="/settings#profiles">

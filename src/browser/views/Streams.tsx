@@ -18,13 +18,13 @@ const styles = {
 const Streams: FC = () => {
   const [, { isLoading }] = useSettings();
   const profiles = useAllSetProfiles();
-  console.log("rerender");
+
   return (
     <StreamSettingsProvider>
       {isLoading ? (
         <Loading />
       ) : profiles.length > 0 ? (
-        <Box sx={styles.wrapper}>
+        <Box id="streams" sx={styles.wrapper}>
           <StreamsHeader />
           <StreamsList />
         </Box>

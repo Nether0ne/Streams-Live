@@ -52,6 +52,7 @@ const StreamContextMenu: FC<StreamContextMenuProps> = ({ id, platform }) => {
 
   return (
     <Menu
+      id={`${id}ContextMenu`}
       open={showMenu !== false}
       anchorReference="anchorPosition"
       anchorPosition={showMenu !== false ? { top: y, left: x } : undefined}

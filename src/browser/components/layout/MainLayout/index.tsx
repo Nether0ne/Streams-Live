@@ -43,9 +43,11 @@ const MainLayout: FC<PropsOf<any>> = ({ children }) => {
   const donateModalToggler = () => setDonateModalOpen(!donateModalOpen);
 
   return (
-    <Box sx={styles.wrapper}>
+    <Box id="layout" sx={styles.wrapper}>
       <Sidebar {...{ aboutModalToggler, donateModalToggler }} />
-      <Box sx={styles.main}>{children}</Box>
+      <Box id="content" sx={styles.main}>
+        {children}
+      </Box>
       <AboutModal open={aboutModalOpen} hide={aboutModalToggler} />
       <DonateModal open={donateModalOpen} hide={donateModalToggler} />
     </Box>
