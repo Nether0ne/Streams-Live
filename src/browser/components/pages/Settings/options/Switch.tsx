@@ -17,11 +17,12 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     gap: "1rem",
+    width: "100%",
   },
   contentWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    minWidth: "23rem",
+    width: "100%",
   },
   textWrapper: {
     display: "flex",

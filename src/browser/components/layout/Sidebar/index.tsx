@@ -46,8 +46,8 @@ const Sidebar: FC<SidebarProps> = ({ modalToggler }) => {
         }}
       >
         <Box>
-          <NavLink to="liveStreams">
-            <Tooltip title={<Typography>{t("liveStreams")}</Typography>} placement="right">
+          <NavLink to="Streams">
+            <Tooltip title={<Typography>{t("streams")}</Typography>} placement="right">
               <IconButton>
                 <LiveTvIcon sx={styles.icon.secondary} />
               </IconButton>
@@ -60,7 +60,7 @@ const Sidebar: FC<SidebarProps> = ({ modalToggler }) => {
         <Box sx={styles.item}>
           <NavLink to="">
             <Tooltip title={<Typography>{t("refreshProfile")}</Typography>} placement="right">
-              <IconButton onClick={() => sendRuntimeMessage("updateLiveStreams")}>
+              <IconButton onClick={() => sendRuntimeMessage("updateStreams")}>
                 <RestartAltOutlinedIcon sx={styles.icon.secondary} />
               </IconButton>
             </Tooltip>

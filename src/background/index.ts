@@ -1,22 +1,22 @@
 import browser from "webextension-polyfill";
-import { settlePromises, t } from "@/common/helpers";
+import { settlePromises } from "@/common/helpers";
 import { Store, stores, StoreState } from "@/common/store";
 import * as Twitch from "@/api/twitch";
 import { Dictionary, Platform } from "@/common/types/general";
 import { Stream } from "@/common/types/stream";
-import { LiveStreams, Profile, TwitchProfile } from "@/common/types/profile";
+import { Profile } from "@/common/types/profile";
 import { Settings } from "@/common/types/settings";
 import { get } from "lodash-es";
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   updateProfile,
-  updateLiveStreams,
+  updateStreams,
   backup,
   restore,
   reset,
 };
 
-browser.alarms.create("updateLiveStream", { periodInMinutes: 1 });
+browser.alarms.create("updateStreams", { periodInMinutes: 1 });
 
 async function updateProfile(): Promise<Profile | null> {
   const user = await Twitch.getCurrentUser();
@@ -37,22 +37,22 @@ async function updateProfile(): Promise<Profile | null> {
   return null;
 }
 
-async function updateLiveStreams(sendNotifications: boolean = true, forceUpdate: boolean = false) {
+async function updateStreams(sendNotifications: boolean = true, forceUpdate: boolean = false) {
   // To determine streams which needed notifications
   console.log("update at " + new Date().toLocaleTimeString());
-  const liveStreams = await stores.liveStreams.get();
+  const streams = await stores.streams.get();
 
-  const updatedLiveStreams: Stream[] = [];
+  const updatedStreams: Stream[] = [];
 
   if (forceUpdate) {
-    await stores.liveStreams.set({ data: [], isLoading: true });
+    await stores.streams.set({ data: [], isLoading: true });
   }
 
-  const streams = await Twitch.getLiveStreamers();
+  const fetchedStreams = await Twitch.getStreams();
 
-  if (streams) {
-    for (const stream of streams) {
-      updatedLiveStreams.push({
+  if (fetchedStreams) {
+    for (const stream of fetchedStreams) {
+      updatedStreams.push({
         userName: stream.user_name,
         gameName: stream.game_name,
         title: stream.title,
@@ -65,9 +65,9 @@ async function updateLiveStreams(sendNotifications: boolean = true, forceUpdate:
     }
   }
 
-  await stores.liveStreams.set({ data: updatedLiveStreams, isLoading: false });
+  await stores.streams.set({ data: updatedStreams, isLoading: false });
 
-  const streamsCount = updatedLiveStreams.length;
+  const streamsCount = updatedStreams.length;
 
   // Sets active streams amount as text on badge
   if (streamsCount > 0) {
@@ -84,15 +84,12 @@ async function refreshActionBadge(): Promise<void> {
   // Todo: authorized if any account connection exists
   const authorized = true;
 
-  const [liveStreams, settings] = await Promise.all([
-    stores.liveStreams.get(),
-    stores.settings.get(),
-  ]);
+  const [streams, settings] = await Promise.all([stores.streams.get(), stores.settings.get()]);
 
   let text = "";
 
-  if (settings.general.badge && liveStreams.data.length > 0) {
-    text = `${liveStreams.data.length}`;
+  if (settings.general.badge && streams.data.length > 0) {
+    text = `${streams.data.length}`;
   }
 
   const getIconPath = (size: number) =>
@@ -130,8 +127,8 @@ browser.runtime.onMessage.addListener((message) => {
 // browser.alarms.create("test", { periodInMinutes: 0.05 });
 
 browser.alarms.onAlarm.addListener(async (alarm) => {
-  if (alarm.name === "updateLiveStream") {
-    updateLiveStreams();
+  if (alarm.name === "updateStreams") {
+    updateStreams();
   }
 });
 
@@ -139,8 +136,8 @@ browser.alarms.onAlarm.addListener(async (alarm) => {
 //   refresh(false, true);
 // });
 
-stores.liveStreams.onChange(async () => {
-  if ((await stores.liveStreams.get()).isLoading === false) {
+stores.streams.onChange(async () => {
+  if ((await stores.streams.get()).isLoading === false) {
     refreshActionBadge();
   }
 });

@@ -54,7 +54,7 @@ export async function getCurrentUser(): Promise<TwitchProfile> {
   return (await request("users")).data[0];
 }
 
-export async function getLiveStreamers(after?: string): Promise<any[]> {
+export async function getStreams(after?: string): Promise<any[]> {
   const userId = (await stores.twitchProfile.get()).id;
   if (!userId) {
     console.log("no user sry");

@@ -4,7 +4,7 @@ import { FC } from "react";
 import Uptime from "./Details/Uptime";
 import Image from "../../Image";
 import Viewers from "./Details/Viewers";
-import StreamContextMenu from "../../pages/LiveStreams/ContextMenu";
+import StreamContextMenu from "../../pages/Streams/ContextMenu";
 import PlatformIcon from "../../PlatformIcon";
 
 interface TwitchStreamProps {

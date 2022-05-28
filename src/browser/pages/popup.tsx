@@ -4,7 +4,7 @@ import tw from "@emotion/styled";
 import MainLayout from "../components/layout/MainLayout";
 import Test1 from "../views/test1";
 import Settings from "../views/Settings";
-import LiveStreams from "../views/LiveStreams";
+import Streams from "../views/Streams";
 import Snackbar from "../components/Snackbar";
 import { SnackbarProvider } from "../common/context/Snackbar";
 
@@ -18,10 +18,10 @@ const Popup: FC = () => {
       <SnackbarProvider>
         <MainLayout>
           <Routes>
-            <Route index element={<Navigate to="liveStreams" />} />
-            <Route path="liveStreams">
-              <Route index element={<LiveStreams />} />
-              <Route path="liveStreams" element={<LiveStreams />} />
+            <Route index element={<Navigate to="Streams" />} />
+            <Route path="streams">
+              <Route index element={<Streams />} />
+              <Route path="streams" element={<Streams />} />
             </Route>
             <Route path="test1">
               <Route index element={<Test1 />} />

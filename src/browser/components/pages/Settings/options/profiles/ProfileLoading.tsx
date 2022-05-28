@@ -4,10 +4,11 @@ import { FC } from "react";
 
 const styles = {
   wrapper: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
     width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   icon: {
     marginRight: "1rem",

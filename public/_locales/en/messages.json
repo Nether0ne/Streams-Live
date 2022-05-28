@@ -33,7 +33,7 @@
   "invalidFile": {
     "message": "The provided file is invalid"
   },
-  "liveStreams": {
+  "streams": {
     "message": "Live channels"
   },
   "settings": {

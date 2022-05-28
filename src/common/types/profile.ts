@@ -1,7 +1,7 @@
 import { Platform } from "./general";
 import { Stream } from "./stream";
 
-export interface LiveStreams {
+export interface Streams {
   data: Stream[];
   isLoading: boolean;
 }

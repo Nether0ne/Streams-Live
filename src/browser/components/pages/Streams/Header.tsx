@@ -1,23 +1,11 @@
 import { sendRuntimeMessage } from "@/common/helpers";
 import { Box, Tooltip, Typography } from "@mui/material";
-import { FC, ChangeEvent } from "react";
+import { FC, ChangeEvent, useContext } from "react";
 import Search from "../../Search";
 import UpdateButton from "../../UpdateButton";
 import { t } from "@/common/helpers";
-import { SortDirection, SortField, GroupBy } from "@/common/types/settings";
-import LiveStreamsSettings from "./Settings";
-
-interface MainHeaderProps {
-  search: string;
-  setSearch: (value: string) => void;
-  streamSettingsIsLoading: boolean;
-  sortField: SortField;
-  setSortField: (value: SortField) => void;
-  sortDirection: SortDirection;
-  setSortDirection: (value: SortDirection) => void;
-  groupBy: GroupBy;
-  setGroupBy: (value: GroupBy) => void;
-}
+import StreamsSettings from "./Settings";
+import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 
 const styles = {
   wrapper: {
@@ -60,19 +48,13 @@ const searchFieldProps = {
   },
 };
 
-const LiveStreamsHeader: FC<MainHeaderProps> = ({
-  search,
-  setSearch,
-  streamSettingsIsLoading,
-  sortField,
-  setSortField,
-  sortDirection,
-  setSortDirection,
-  groupBy,
-  setGroupBy,
-}) => {
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value);
-  const handleUpdateClick = () => sendRuntimeMessage("updateLiveStreams", false, true);
+const StreamsHeader: FC = () => {
+  const { streamSettings, setStreamsSettings } = useContext(StreamSettingsContext);
+  const { search } = streamSettings;
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setStreamsSettings({ search: e.target.value });
+  const handleUpdateClick = () => sendRuntimeMessage("updateStreams", false, true);
 
   return (
     <Box sx={styles.wrapper}>
@@ -85,19 +67,9 @@ const LiveStreamsHeader: FC<MainHeaderProps> = ({
           </Box>
         </Tooltip>
       </Box>
-      <LiveStreamsSettings
-        {...{
-          isLoading: streamSettingsIsLoading,
-          sortField,
-          sortDirection,
-          groupBy,
-          setSortField,
-          setSortDirection,
-          setGroupBy,
-        }}
-      />
+      <StreamsSettings />
     </Box>
   );
 };
 
-export default LiveStreamsHeader;
+export default StreamsHeader;

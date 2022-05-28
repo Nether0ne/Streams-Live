@@ -2,7 +2,7 @@ import { defaultsDeep } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
 import { defaultSettings, Settings } from "../types/settings";
-import { LiveStreams, Profile } from "../types/profile";
+import { Streams, Profile } from "../types/profile";
 import { Platform } from "../types/general";
 import { defaultProfileState } from "../helpers";
 
@@ -187,7 +187,7 @@ export const stores = {
       },
     ],
   }),
-  liveStreams: new Store<LiveStreams>("local", "liveStreams", {
+  streams: new Store<Streams>("local", "streams", {
     defaultValue: {
       data: [],
       isLoading: true,
