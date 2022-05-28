@@ -1,7 +1,6 @@
 import { stores } from "@/common/store";
 import { GroupBy, SortField, SortDirection } from "@/common/types/settings";
 import { useEffect, useState } from "react";
-import { Stream } from "@/common/types/stream";
 import useSettings from "./settings";
 import { useStore } from "./store";
 import { orderBy } from "lodash-es";
@@ -34,19 +33,17 @@ export function useStreamsWithSettings() {
       sort = sortDirection === SortDirection.ASC ? SortDirection.DESC : SortDirection.ASC;
     }
 
-    setFilteredStreams(orderBy(data, [sortField], [sort]));
-  }, [data, sortDirection, sortField, groupBy]);
-
-  useEffect(() => {
     setFilteredStreams(
-      data.filter(
-        (stream: Stream) =>
-          stream.title.toLowerCase().includes(search.toLowerCase()) ||
-          stream.userName.toLowerCase().includes(search.toLowerCase()) ||
-          stream.gameName?.toLowerCase().includes(search.toLowerCase())
-      )
+      orderBy(data, [sortField], [sort]).filter((stream) => {
+        if (search !== undefined) {
+          return (stream.title.toLowerCase().includes(search.toLowerCase()) ||
+            stream.userName.toLowerCase().includes(search.toLowerCase()) ||
+            stream.gameName?.toLowerCase().includes(search.toLowerCase())) as boolean;
+        }
+        return true;
+      })
     );
-  }, [search, data]);
+  }, [data, search, groupBy, sortField, sortDirection]);
 
   const setStreamsSettings = (params: {
     search?: string;
