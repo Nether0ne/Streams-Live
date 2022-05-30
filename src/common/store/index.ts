@@ -163,18 +163,18 @@ export const stores = {
       },
     ],
   }),
-  youtubeProfile: new Store<Profile>("local", "youtubeProfile", {
-    defaultValue: defaultProfileState(Platform.YOUTUBE),
-    migrations: [
-      (value) => {
-        const store = new Store("sync", "profiles", {
-          defaultValue: value,
-        });
+  // youtubeProfile: new Store<Profile>("local", "youtubeProfile", {
+  //   defaultValue: defaultProfileState(Platform.YOUTUBE),
+  //   migrations: [
+  //     (value) => {
+  //       const store = new Store("sync", "profiles", {
+  //         defaultValue: value,
+  //       });
 
-        return store.get();
-      },
-    ],
-  }),
+  //       return store.get();
+  //     },
+  //   ],
+  // }),
   goodgameProfile: new Store<Profile>("local", "goodgameProfile", {
     defaultValue: defaultProfileState(Platform.GOODGAME),
     migrations: [

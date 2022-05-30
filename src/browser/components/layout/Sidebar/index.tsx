@@ -13,10 +13,11 @@ import { t } from "@/common/helpers";
 import { Link } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
-import AppleIcon from "@mui/icons-material/Apple";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import InfoIcon from "@mui/icons-material/Info";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import StreamsLive from "../../icons/StreamsLive";
+import { useAllSetProfiles } from "@/browser/common/hooks/profile";
 
 interface SidebarProps {
   aboutModalToggler: () => void;
@@ -42,9 +43,16 @@ const styles = {
     gap: 2,
   },
   icon: {
-    main: { fontSize: "1.125rem" },
-    secondary: { fontSize: "1.125rem" },
+    sidebar: { fontSize: "1.25rem" },
     menu: { fontSize: "1rem" },
+  },
+  appIcon: {
+    set: {
+      color: "primary.main",
+    },
+    unset: {
+      color: "#a9a9a9",
+    },
   },
   menu: {
     py: 0,
@@ -68,6 +76,7 @@ const menuProps = {
 
 const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) => {
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
+  const profiles = useAllSetProfiles();
 
   const moreItems = [
     {
@@ -95,16 +104,21 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
         <Tooltip title={<Typography>{t("extName")}</Typography>} placement="right">
           <IconButton>
             {/* TODO: apply exstension icon */}
-            <AppleIcon sx={styles.icon.main} />
+            <StreamsLive
+              sx={{
+                ...styles.icon.sidebar,
+                ...(profiles.length > 0 ? styles.appIcon.set : styles.appIcon.unset),
+              }}
+            />
           </IconButton>
         </Tooltip>
       </MuiLink>
 
-      <Box id="streams">
+      <Box alignSelf="center" id="streams">
         <Link to="streams">
           <Tooltip title={<Typography>{t("streams")}</Typography>} placement="right">
             <IconButton>
-              <LiveTvIcon sx={styles.icon.secondary} />
+              <LiveTvIcon sx={styles.icon.sidebar} />
             </IconButton>
           </Tooltip>
         </Link>
@@ -114,7 +128,7 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
         <Link to="settings">
           <Tooltip title={<Typography>{t("settings")}</Typography>} placement="right">
             <IconButton>
-              <SettingsOutlinedIcon sx={styles.icon.secondary} />
+              <SettingsOutlinedIcon sx={styles.icon.sidebar} />
             </IconButton>
           </Tooltip>
         </Link>
@@ -122,7 +136,7 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
         <Box id="more">
           <Tooltip title={<Typography>{t("more")}</Typography>} placement="right">
             <IconButton onClick={() => setMoreMenuOpen(true)}>
-              <MoreVertIcon sx={styles.icon.secondary} />
+              <MoreVertIcon sx={styles.icon.sidebar} />
             </IconButton>
           </Tooltip>
 

@@ -69,7 +69,6 @@ const styles = {
 };
 
 const links = [
-  { href: "https://github.com/Nether0ne/Streams-Live", label: t("paypal") },
   { href: "https://github.com/Nether0ne/Streams-Live/releases", label: t("coinbase") },
 ];
 

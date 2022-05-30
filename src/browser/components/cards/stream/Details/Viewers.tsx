@@ -6,7 +6,7 @@ import RestoreIcon from "@mui/icons-material/Restore";
 
 interface ViewersProps {
   readonly type: "live" | "rerun" | null;
-  readonly viewersCount: number;
+  readonly count: number;
 }
 
 const styles = {
@@ -24,14 +24,14 @@ const styles = {
   online: { color: "#e64c4c" },
 };
 
-const Viewers: FC<ViewersProps> = ({ viewersCount, type }) => {
+const Viewers: FC<ViewersProps> = ({ count, type }) => {
   if (type == "rerun") {
     return (
       <Box sx={styles.wrapper}>
         <Tooltip title={<Typography>{t("rerun")}</Typography>} placement="left">
           <Box sx={styles.wrapper}>
             <Typography variant={"body2"}>
-              {digitWithSpaces(viewersCount)}
+              {digitWithSpaces(count)}
               <RestoreIcon sx={styles.icon} />
             </Typography>
           </Box>
@@ -44,7 +44,7 @@ const Viewers: FC<ViewersProps> = ({ viewersCount, type }) => {
     <Box sx={styles.wrapper}>
       <Tooltip title={<Typography>{t("live")}</Typography>} placement="left">
         <Box sx={{ ...styles.wrapper, ...styles.online }}>
-          <Typography variant={"body2"}>{digitWithSpaces(viewersCount)}</Typography>
+          <Typography variant={"body2"}>{digitWithSpaces(count)}</Typography>
           <PeopleIcon sx={styles.icon} />
         </Box>
       </Tooltip>

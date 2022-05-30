@@ -1,9 +1,9 @@
 import { FC, useContext } from "react";
 import { t } from "@/common/helpers";
 import { Box, Typography } from "@mui/material";
-import TwitchStream from "../../cards/stream/Twitch";
 import Loading from "../../layout/Loading/Loading";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
+import StreamsGroup from "./StreamsGroup";
 
 const styles = {
   wrapper: {
@@ -22,7 +22,7 @@ const styles = {
   },
 };
 const StreamsList: FC = () => {
-  const { streamsWithSettings, isLoading, settingsIsLoading, streamSettings } =
+  const { streamGroups, isLoading, settingsIsLoading, streamSettings } =
     useContext(StreamSettingsContext);
   const { search } = streamSettings;
 
@@ -30,8 +30,12 @@ const StreamsList: FC = () => {
     <Box id="streamsList" sx={styles.wrapper}>
       {isLoading || settingsIsLoading ? (
         <Loading customSx={styles.loading} />
-      ) : streamsWithSettings.length > 0 ? (
-        streamsWithSettings.map((stream) => <TwitchStream stream={stream} />)
+      ) : streamGroups ? (
+        Object.keys(streamGroups)
+          .map((key) => {
+            return { key, value: streamGroups[key] };
+          })
+          .map(({ key, value }) => <StreamsGroup {...{ key, group: value }} />)
       ) : (
         <Box sx={styles.empty}>
           <Typography variant="body2">

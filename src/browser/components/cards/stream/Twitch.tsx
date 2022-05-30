@@ -7,7 +7,7 @@ import Viewers from "./Details/Viewers";
 import StreamContextMenu from "../../pages/Streams/ContextMenu";
 import PlatformIcon from "../../PlatformIcon";
 
-interface TwitchStreamProps {
+interface StreamCardProps {
   stream: Stream;
 }
 
@@ -77,24 +77,18 @@ const styles = {
   },
 };
 
-const TwitchStream: FC<TwitchStreamProps> = ({ stream }) => {
-  const { userName, viewersCount, title, gameName, thumbnailUrl, startedAt, type, platform } =
-    stream;
+const StreamCard: FC<StreamCardProps> = ({ stream }) => {
+  const { user, userLogin, viewers, title, game, thumbnail, startedAt, type, platform } = stream;
 
   return (
     <Box>
-      <StreamContextMenu id={userName} platform={platform} />
-      <Link
-        id={userName}
-        href={`https://twitch.tv/${userName}`}
-        target="_blank"
-        sx={styles.wrapper}
-      >
+      <StreamContextMenu id={user} platform={platform} />
+      <Link id={user} href={`https://twitch.tv/${userLogin}`} target="_blank" sx={styles.wrapper}>
         <Box sx={styles.thumbnail.inner}>
           <Box sx={styles.thumbnail.wrapper}>
             <Image
-              src={thumbnailUrl.replace("{width}", "96").replace("{height}", "54")}
-              alt={userName}
+              src={thumbnail.replace("{width}", "96").replace("{height}", "54")}
+              alt={user}
               style={styles.thumbnail.image}
             />
 
@@ -108,28 +102,33 @@ const TwitchStream: FC<TwitchStreamProps> = ({ stream }) => {
               <PlatformIcon platform={platform} sx={styles.info.icon} />
 
               <Typography noWrap variant={"body2"} sx={styles.info.name}>
-                {userName}
+                {user}
               </Typography>
             </Box>
 
-            <Viewers type={type} viewersCount={viewersCount} />
+            <Viewers type={type} count={viewers} />
           </Box>
 
-          <Tooltip title={<Typography>{title}</Typography>} enterDelay={1000} followCursor arrow>
+          <Tooltip
+            title={<Typography>{title}</Typography>}
+            enterNextDelay={1000}
+            followCursor
+            arrow
+          >
             <Typography noWrap color="text.secondary">
               {title}
             </Typography>
           </Tooltip>
 
-          {gameName && (
+          {game && (
             <Tooltip
-              title={<Typography>{gameName}</Typography>}
-              enterDelay={1000}
+              title={<Typography>{game}</Typography>}
+              enterNextDelay={1000}
               followCursor
               arrow
             >
               <Typography noWrap sx={styles.info.game}>
-                {gameName}
+                {game}
               </Typography>
             </Tooltip>
           )}
@@ -139,4 +138,4 @@ const TwitchStream: FC<TwitchStreamProps> = ({ stream }) => {
   );
 };
 
-export default TwitchStream;
+export default StreamCard;

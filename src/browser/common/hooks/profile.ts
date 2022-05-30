@@ -9,13 +9,13 @@ export function useProfile(platform: Platform) {
 
 export function useAllSetProfiles() {
   const [twitch, twitchStore] = useProfile(Platform.TWITCH);
-  const [youtube, youtubeStore] = useProfile(Platform.YOUTUBE);
+  // const [youtube, youtubeStore] = useProfile(Platform.YOUTUBE);
   const [goodgame, goodgameStore] = useProfile(Platform.GOODGAME);
 
   const allSetProfiles = [];
 
   if (twitch.name) allSetProfiles.push({ profile: twitch, store: twitchStore });
-  if (youtube.name) allSetProfiles.push({ profile: youtube, store: youtubeStore });
+  // if (youtube.name) allSetProfiles.push({ profile: youtube, store: youtubeStore });
   if (goodgame.name) allSetProfiles.push({ profile: goodgame, store: goodgameStore });
 
   return allSetProfiles;

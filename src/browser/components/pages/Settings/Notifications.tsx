@@ -3,6 +3,7 @@ import { Box, Collapse } from "@mui/material";
 import { FC } from "react";
 import SwitchSettings from "./options/Switch";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import SwitchLeftIcon from "@mui/icons-material/SwitchLeft";
 import useSettings from "@/browser/common/hooks/settings";
 import { useAllSetProfiles } from "@/browser/common/hooks/profile";
 import PlatformIcon from "../../PlatformIcon";
@@ -31,6 +32,15 @@ const NotificationsSettings: FC = () => {
       />
 
       <Collapse in={notifications.enabled}>
+        <SwitchSettings
+          {...{
+            id: "notificationsCategory",
+            label: t("notificationsCategory"),
+            icon: <SwitchLeftIcon />,
+            secondaryText: true,
+            setting: "notifications.category",
+          }}
+        />
         {setProfiles.map(({ profile }) => (
           <SwitchSettings
             {...{

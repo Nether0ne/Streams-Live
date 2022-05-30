@@ -3,7 +3,7 @@
     "message": "Streams Live"
   },
   "extDescription": {
-    "message": "Streams Live helps tracking your favorite streamers across different platforms"
+    "message": "Streams Live helps tracking your favorite streamers across different platforms!"
   },
   "extAuthor": {
     "message": "By nether"
@@ -50,9 +50,6 @@
   },
   "donateDescription": {
     "message": "Streams Live is free and open source. If you like it, please consider donating to keep it running."
-  },
-  "paypal": {
-    "message": "PayPal"
   },
   "coinbase": {
     "message": "Coinbase"
@@ -144,6 +141,9 @@
   "notificationsEnabled": {
     "message": "Enable notifications"
   },
+  "notificationsCategory": {
+    "message": "Enable category change notifications"
+  },
   "notificationsPlatform": {
     "message": "$platform$ notifications",
     "placeholders": {
@@ -177,7 +177,7 @@
     "message": "Reset application"
   },
   "resetSettingDescription": {
-    "message": "Reset all settings to default"
+    "message": "Reset all settings to default and logout from all profiles"
   },
   "resetWarning": {
     "message": "Your settings are about to be reset"
@@ -206,19 +206,19 @@
   "search": {
     "message": "Search"
   },
-  "viewersCountSortField": {
+  "viewersSortField": {
     "message": "Viewers"
   },
   "startedAtSortField": {
     "message": "Uptime"
   },
-  "userNameSortField": {
+  "userSortField": {
     "message": "Name"
   },
   "noneGroupBy": {
     "message": "None"
   },
-  "categoryGroupBy": {
+  "gameGroupBy": {
     "message": "Category"
   },
   "platformGroupBy": {
@@ -244,5 +244,70 @@
   },
   "openVideos": {
     "message": "Open videos page"
+  },
+  "streamerOnline": {
+    "message": "$streamer$ is now live on $platform$!",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "streamerNewCategory": {
+    "message": "$streamer$ changed category",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      }
+    }
+  },
+  "streamerNewCategoryMessage": {
+    "message": "$category1$ ➡️ $category2$",
+    "placeholders": {
+      "category1": {
+        "content": "$1"
+      },
+      "category2": {
+        "content": "$2"
+      }
+    }
+  },
+  "profileSet": {
+    "message": "Profile set"
+  },
+  "profileSetMessage": {
+    "message": "Your $platform$ profile has been linked",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetContext": {
+    "message": "Your live followed streamers from $platform$ should appear in the extension now!",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailed": {
+    "message": "Could not link your $platform$ profile",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailedMessage": {
+    "message": "There was an error setting your $platform$ profile. Please try again later.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
   }
 }

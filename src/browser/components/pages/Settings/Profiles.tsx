@@ -22,7 +22,6 @@ const ProfilesSettings: FC = () => {
   const profiles = useAllSetProfiles();
   const isLoading =
     profiles.length > 0 ? profiles.every(({ store }) => store.isLoading === true) : false;
-  const profilesToRender: Array<Platform | null> = [];
   const profilesToAdd = availablePlatforms.filter(
     (i) => profiles.map(({ profile }) => profile.platform).indexOf(i) == -1
   );
@@ -35,9 +34,7 @@ const ProfilesSettings: FC = () => {
         profiles.map(({ profile }) => <ProfileSettings platform={profile.platform} />)
       )}
 
-      {availablePlatforms.length > profilesToRender.length && (
-        <AddProfile options={profilesToAdd} />
-      )}
+      {availablePlatforms.length > 0 && <AddProfile options={profilesToAdd} />}
     </Box>
   );
 };

@@ -1,57 +1,103 @@
 {
   "extName": {
-    "message": "Streams Now"
+    "message": "Streams Live"
   },
   "extDescription": {
-    "message": "Streams Now описание"
+    "message": "Streams Live отслеживает ваших любимых стримеров с разных платформ!"
   },
   "extAuthor": {
     "message": "Автор nether"
   },
-  "releases": {
-    "message": "Обновления"
+  "repository": {
+    "message": "GitHub"
   },
-  "liveStreams": {
-    "message": "Каналы в эфире"
+  "releases": {
+    "message": "Релизы"
+  },
+  "actionSuccess": {
+    "message": "$action$ выполнено успешно!",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "actionFailed": {
+    "message": "$action$ не было выполнено",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidFile": {
+    "message": "Указанный файл не является допустимым файлом для загрузки!"
+  },
+  "streams": {
+    "message": "Каналы онлайн"
   },
   "settings": {
     "message": "Настройки"
   },
+  "more": {
+    "message": "Больше"
+  },
   "about": {
-    "message": "О приложении"
+    "message": "Про приложение"
+  },
+  "donate": {
+    "message": "Поддержать"
+  },
+  "donateDescription": {
+    "message": "Streams Live - приложение с открытым исходным кодом. Если оно вам понравилось - поддержите автора, чтобы проект не был заброшен."
+  },
+  "coinbase": {
+    "message": "Coinbase"
   },
   "generalSettings": {
-    "message": "Общие настройки"
+    "message": "Главные настройки"
   },
   "fontSize": {
     "message": "Размер шрифта"
   },
-  "fontSizeSmallest": {
-    "message": "Минимальный"
+  "smallestFontSize": {
+    "message": "Самый маленький"
   },
-  "fontSizeSmall": {
+  "smallFontSize": {
     "message": "Маленький"
   },
-  "fontSizeNormal": {
-    "message": "Средний"
+  "mediumFontSize": {
+    "message": "Нормальный"
   },
-  "fontSizeLarge": {
+  "largeFontSize": {
     "message": "Большой"
   },
-  "fontSizeLargest": {
-    "message": "Максимальный"
+  "largestFontSize": {
+    "message": "Наибольший"
   },
   "theme": {
     "message": "Тема"
   },
-  "themeLight": {
+  "lightTheme": {
     "message": "Светлая"
   },
-  "themeDark": {
+  "darkTheme": {
     "message": "Темная"
   },
+  "badge": {
+    "message": "Показывать значок на иконке в браузере"
+  },
+  "twitch": {
+    "message": "Twitch"
+  },
+  "youtube": {
+    "message": "YouTube"
+  },
+  "goodgame": {
+    "message": "GoodGame"
+  },
   "profileSettings": {
-    "message": "Настройки профиля"
+    "message": "Настройки профилей"
   },
   "addProfile": {
     "message": "Добавить профиль"
@@ -59,19 +105,32 @@
   "refreshProfile": {
     "message": "Обновить профиль"
   },
-  "twitchProfile": {
-    "message": "Twitch профиль"
+  "platformProfile": {
+    "message": "$platform$ профиль",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
   },
-  "YoutubeProfile": {
-    "message": "Youtube профиль"
+  "logout": {
+    "message": "Выйти"
   },
-  "goodgameProfile": {
-    "message": "GoodGame профиль"
-  },
-  "twitchProfileUpdated": {
-    "message": "$username$ Twitch профиль обновлен",
+  "platformProfileUpdated": {
+    "message": "$username$ $platform$ профиль обновлен",
     "placeholders": {
       "username": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformProfileUpdateFailed": {
+    "message": "Ошибка при обновлении профиля $platform$. Попробуйте позже.",
+    "placeholders": {
+      "platform": {
         "content": "$1"
       }
     }
@@ -80,16 +139,18 @@
     "message": "Настройки уведомлений"
   },
   "notificationsEnabled": {
-    "message": "Получать уведомления"
+    "message": "Включить уведомления"
   },
-  "notificationsTwitch": {
-    "message": "Уведомления Twitch"
+  "notificationsCategory": {
+    "message": "Включить уведомления о смене категории"
   },
-  "notificationsYoutube": {
-    "message": "Уведомления Youtube"
-  },
-  "notificationsGoodgame": {
-    "message": "Уведомления GoodGame"
+  "notificationsPlatform": {
+    "message": "$platform$ уведомления",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
   },
   "enabled": {
     "message": "Включено"
@@ -100,23 +161,74 @@
   "exportAndImportSettings": {
     "message": "Экспорт и импорт настроек"
   },
-  "exportSettings": {
+  "exportSetting": {
     "message": "Экспорт настроек"
   },
-  "importSettings": {
+  "exportSettingDescription": {
+    "message": "Экспортируете свои настройки в файл"
+  },
+  "importSetting": {
     "message": "Импорт настроек"
   },
+  "importSettingDescription": {
+    "message": "Примените ваши экспортированные настройки здесь"
+  },
+  "resetSetting": {
+    "message": "Сброс настроек приложения"
+  },
+  "resetSettingDescription": {
+    "message": "Сбрасывает все настройки до настроек по-умолчанию, выходит из всех профилей"
+  },
+  "resetWarning": {
+    "message": "Ваши настройки вот-вот будут сброшены"
+  },
+  "resetWarningDescription": {
+    "message": "Это действие сбросит настройки до базовых. Продолжить?"
+  },
+  "resetAbort": {
+    "message": "Оставить настройки"
+  },
+  "resetConfirm": {
+    "message": "Сбросить настройки"
+  },
   "noStreams": {
-    "message": "Нет каналов онлайн"
+    "message": "Нет стримеров в сети"
+  },
+  "noFilteredStreams": {
+    "message": "Нет стримеров подходящих критерию поиска"
+  },
+  "noProfilesSet": {
+    "message": "Похоже вы еще не добавили ни одного профиля"
+  },
+  "goToProfilesSettings": {
+    "message": "Добавить профиль"
   },
   "search": {
     "message": "Поиск"
+  },
+  "viewersSortField": {
+    "message": "Зрители"
+  },
+  "startedAtSortField": {
+    "message": "Время"
+  },
+  "userSortField": {
+    "message": "Имя"
+  },
+  "noneGroupBy": {
+    "message": "Отсутствует"
+  },
+  "gameGroupBy": {
+    "message": "Категория"
+  },
+  "platformGroupBy": {
+    "message": "Платформа"
   },
   "refreshStreams": {
     "message": "Обновить"
   },
   "live": {
-    "message": "Онлайн"
+    "message": "В сети"
   },
   "rerun": {
     "message": "Повтор"
@@ -132,5 +244,70 @@
   },
   "openVideos": {
     "message": "Открыть страницу видео"
+  },
+  "streamerOnline": {
+    "message": "$streamer$ онлайн на $platform$!",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "streamerNewCategory": {
+    "message": "$streamer$ поменял категорию",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      }
+    }
+  },
+  "streamerNewCategoryMessage": {
+    "message": "$category1$ ➡️ $category2$",
+    "placeholders": {
+      "category1": {
+        "content": "$1"
+      },
+      "category2": {
+        "content": "$2"
+      }
+    }
+  },
+  "profileSet": {
+    "message": "Профиль добавлен"
+  },
+  "profileSetMessage": {
+    "message": "Ваш $platform$ профиль был добавлен",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetContext": {
+    "message": "Ваши онлайн зафоловленные стримеры с $platform$ должны появиться в расширении!",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailed": {
+    "message": "Не получилось добавить $platform$ профиль",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailedMessage": {
+    "message": "Произошла ошибка при добавлении $platform$ профиля. Пожалуйста, попробуйте позже.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
   }
 }

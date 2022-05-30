@@ -50,7 +50,7 @@ const ProfileSettings: FC<ProfileProps> = ({ platform }) => {
   const { accessToken, name, avatar } = profile;
 
   const updateProfile = async () => {
-    const profile: Profile = await sendRuntimeMessage(`updateProfile`);
+    const profile: Profile = await sendRuntimeMessage(`updateProfile`, platform);
 
     if (profile && profile.name) {
       setSnackbar({
@@ -67,12 +67,12 @@ const ProfileSettings: FC<ProfileProps> = ({ platform }) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
     store.set({
-      id: null,
-      accessToken: null,
-      name: null,
-      avatar: null,
+      id: undefined,
+      accessToken: undefined,
+      name: undefined,
+      avatar: undefined,
       platform,
     });
   };

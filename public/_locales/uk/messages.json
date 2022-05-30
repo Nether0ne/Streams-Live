@@ -1,0 +1,313 @@
+{
+  "extName": {
+    "message": "Streams Live"
+  },
+  "extDescription": {
+    "message": "Streams Live відстежує ваших улюблених стримерів з різних платформ!"
+  },
+  "extAuthor": {
+    "message": "Автор nether"
+  },
+  "repository": {
+    "message": "GitHub"
+  },
+  "releases": {
+    "message": "Релізи"
+  },
+  "actionSuccess": {
+    "message": "$action$ успішно виконано!",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "actionFailed": {
+    "message": "$action$ не було виконано",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidFile": {
+    "message": "Вказаний файл не являється допустимим файлом для завантаження!"
+  },
+  "streams": {
+    "message": "Канали онлайн"
+  },
+  "settings": {
+    "message": "Налаштування"
+  },
+  "more": {
+    "message": "Більше"
+  },
+  "about": {
+    "message": "Про застосунок"
+  },
+  "donate": {
+    "message": "Підтримка"
+  },
+  "donateDescription": {
+    "message": "Streams Live - застосунок з відкритим вихідним кодом. Якщо він вам подобається - підтримайте автора, щоб проект продовжував жити."
+  },
+  "coinbase": {
+    "message": "Coinbase"
+  },
+  "generalSettings": {
+    "message": "Головні налаштування"
+  },
+  "fontSize": {
+    "message": "Розмір шрифту"
+  },
+  "smallestFontSize": {
+    "message": "Найменший"
+  },
+  "smallFontSize": {
+    "message": "Маленький"
+  },
+  "mediumFontSize": {
+    "message": "Нормальний"
+  },
+  "largeFontSize": {
+    "message": "Великий"
+  },
+  "largestFontSize": {
+    "message": "Найбільший"
+  },
+  "theme": {
+    "message": "Тема"
+  },
+  "lightTheme": {
+    "message": "Світла"
+  },
+  "darkTheme": {
+    "message": "Темна"
+  },
+  "badge": {
+    "message": "Відображати значок на іконці в браузері"
+  },
+  "twitch": {
+    "message": "Twitch"
+  },
+  "youtube": {
+    "message": "YouTube"
+  },
+  "goodgame": {
+    "message": "GoodGame"
+  },
+  "profileSettings": {
+    "message": "Налаштування профілей"
+  },
+  "addProfile": {
+    "message": "Додати профіль"
+  },
+  "refreshProfile": {
+    "message": "Оновити профіль"
+  },
+  "platformProfile": {
+    "message": "$platform$ профіль",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "logout": {
+    "message": "Вийти"
+  },
+  "platformProfileUpdated": {
+    "message": "$username$ $platform$ профіль оновлено",
+    "placeholders": {
+      "username": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformProfileUpdateFailed": {
+    "message": "Помилка при оновленні профіля $platform$. Спробуйте пізніше.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "notificationsSettings": {
+    "message": "Налаштування повідомлень"
+  },
+  "notificationsEnabled": {
+    "message": "Увімкнути повідомлення"
+  },
+  "notificationsCategory": {
+    "message": "Увімкнути повідомлення о зміні категорії"
+  },
+  "notificationsPlatform": {
+    "message": "$platform$ повідомлення",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "enabled": {
+    "message": "Увімкнено"
+  },
+  "disabled": {
+    "message": "Вимкнено"
+  },
+  "exportAndImportSettings": {
+    "message": "Експорт та імпорт налаштувань"
+  },
+  "exportSetting": {
+    "message": "Експорт налаштувань"
+  },
+  "exportSettingDescription": {
+    "message": "Експортуйте свої налаштування у файл"
+  },
+  "importSetting": {
+    "message": "Імпорт налаштувань"
+  },
+  "importSettingDescription": {
+    "message": "Застосуйте ваші експортовані налаштування тут"
+  },
+  "resetSetting": {
+    "message": "Скинути налаштування застосунку"
+  },
+  "resetSettingDescription": {
+    "message": "Скидує налаштування до заводських, виходить із авторизованих профілей"
+  },
+  "resetWarning": {
+    "message": "Ваші налаштування ось-ось будуть скинуті"
+  },
+  "resetWarningDescription": {
+    "message": "Ця дія скинє налаштування до заводських. Продовжити?"
+  },
+  "resetAbort": {
+    "message": "Залишити налаштування"
+  },
+  "resetConfirm": {
+    "message": "Скинути налаштування"
+  },
+  "noStreams": {
+    "message": "Немає стримерів онлайн"
+  },
+  "noFilteredStreams": {
+    "message": "Немає стримерів підходящих до критеріїв пошуку"
+  },
+  "noProfilesSet": {
+    "message": "Здається ви ще не додали жодного профілю"
+  },
+  "goToProfilesSettings": {
+    "message": "Додати профіль"
+  },
+  "search": {
+    "message": "Пошук"
+  },
+  "viewersSortField": {
+    "message": "Глядачі"
+  },
+  "startedAtSortField": {
+    "message": "Час"
+  },
+  "userSortField": {
+    "message": "Ім'я"
+  },
+  "noneGroupBy": {
+    "message": "Відсутнє"
+  },
+  "gameGroupBy": {
+    "message": "По категорії"
+  },
+  "platformGroupBy": {
+    "message": "По платформі"
+  },
+  "refreshStreams": {
+    "message": "Оновити"
+  },
+  "live": {
+    "message": "Онлайн"
+  },
+  "rerun": {
+    "message": "Повтор"
+  },
+  "openStream": {
+    "message": "Відкрити стрим"
+  },
+  "openOnlyStream": {
+    "message": "Відкрити тільки стрим"
+  },
+  "openOnlyChat": {
+    "message": "Відкрити тільки чат"
+  },
+  "openVideos": {
+    "message": "Відкрити сторінку видео"
+  },
+  "streamerOnline": {
+    "message": "$streamer$ онлайн на $platform$!",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "streamerNewCategory": {
+    "message": "$streamer$ змінив категорію",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      }
+    }
+  },
+  "streamerNewCategoryMessage": {
+    "message": "$category1$ ➡️ $category2$",
+    "placeholders": {
+      "category1": {
+        "content": "$1"
+      },
+      "category2": {
+        "content": "$2"
+      }
+    }
+  },
+  "profileSet": {
+    "message": "Профіль добавлено"
+  },
+  "profileSetMessage": {
+    "message": "Ваш $platform$ профіль було додано",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetContext": {
+    "message": "Ваші зафоловлені стримери з $platform$, котрі онлайн, повинні з'явитися в застосунку!",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailed": {
+    "message": "Не вдалося додати $platform$ профіль",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailedMessage": {
+    "message": "Трапилась помилка при налаштуванні $platform$ профіля. Будь ласка, сппробуйте пізніше.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  }
+}

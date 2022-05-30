@@ -1,5 +1,6 @@
+import { castArray } from "lodash-es";
 import browser from "webextension-polyfill";
-import { Platform } from "./types/general";
+import { Dictionary, Platform } from "./types/general";
 import { Profile } from "./types/profile";
 
 export const t = browser.i18n.getMessage;
@@ -8,17 +9,13 @@ export function sendRuntimeMessage<T extends unknown[], V>(type: string, ...args
   return browser.runtime.sendMessage({ type, args });
 }
 
-export function settlePromises<T, V>(values: Iterable<T>, iteratee: (value: T) => Promise<V>) {
-  return Promise.allSettled(Array.from(values, iteratee));
-}
-
 export function defaultProfileState(platform: Platform): Profile {
   return {
-    id: null,
-    accessToken: null,
-    name: null,
+    id: undefined,
+    accessToken: undefined,
+    name: undefined,
     platform,
-    avatar: null,
+    avatar: undefined,
   };
 }
 
@@ -26,8 +23,8 @@ export function getLinkForPlatform(platform: Platform, route?: string): string {
   switch (platform) {
     case "twitch":
       return `https://www.twitch.tv/${route}`;
-    case "youtube":
-      return `https://www.youtube.com/${route}`;
+    // case "youtube":
+    //   return `https://www.youtube.com/${route}`;
     case "goodgame":
       return `https://goodgame.ru/${route}`;
     default:
@@ -60,4 +57,20 @@ export function digitWithSpaces(digit: number) {
 
 export function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function objectToUrlParams(obj: Dictionary<any> = {}): URLSearchParams {
+  const searchParams = new URLSearchParams();
+
+  for (const [name, value] of Object.entries(obj ?? {})) {
+    for (const v of castArray(value)) {
+      if (typeof v === "undefined") {
+        continue;
+      }
+
+      searchParams.append(name, v.toString());
+    }
+  }
+
+  return searchParams;
 }

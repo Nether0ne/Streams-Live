@@ -54,7 +54,7 @@ const StreamsHeader: FC = () => {
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
     setStreamsSettings({ search: e.target.value });
-  const handleUpdateClick = () => sendRuntimeMessage("updateStreams", false, true);
+  const handleUpdateClick = () => sendRuntimeMessage("updateStreams", true);
 
   return (
     <Box id="streamsHeader" sx={styles.wrapper}>

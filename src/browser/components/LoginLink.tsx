@@ -8,19 +8,38 @@ interface LoginLinkProps {
   style?: object;
 }
 
-const loginUrl = {
-  twitch: "https://id.twitch.tv/oauth2/authorize",
-  youtube: "https://accounts.google.com/o/oauth2/v2/auth",
-  goodgame: "https://api.goodgame.ru/oauth2/authorize",
+const platformToData = {
+  [Platform.TWITCH]: {
+    href: "https://id.twitch.tv/oauth2/authorize",
+    client: process.env.TWITCH_CLIENT_ID,
+    redirect: process.env.TWITCH_REDIRECT_URI,
+    scopes: ["user:read:follows"],
+  },
+  // [Platform.YOUTUBE]: {
+  //   href: "https://accounts.google.com/o/oauth2/v2/auth",
+  //   client: process.env.YOUTUBE_CLIENT_ID,
+  //   redirect: process.env.YOUTUBE_REDIRECT_URI,
+  //   scopes: [
+  //     "https://www.googleapis.com/auth/youtube.readonly",
+  //     "https://www.googleapis.com/auth/userinfo.profile",
+  //   ],
+  // },
+  [Platform.GOODGAME]: {
+    href: "https://api.goodgame.ru/oauth2/authorize",
+    client: "", //process.env.GOODGAME_CLIENT_ID,
+    redirect: "", //process.env.GOODGAME_REDIRECT_URI,
+    scopes: ["user:read:follows"],
+  },
 };
 
 const getLoginLink = (platform: Platform) => {
-  const url = new URL(loginUrl[platform]);
+  const linkData = platformToData[platform];
+  const url = new URL(linkData.href);
 
-  url.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
-  url.searchParams.set("redirect_uri", process.env.TWITCH_REDIRECT_URI as string);
+  url.searchParams.set("client_id", linkData.client as string);
+  url.searchParams.set("redirect_uri", linkData.redirect as string);
   url.searchParams.set("response_type", "token");
-  url.searchParams.set("scope", "user:read:follows");
+  url.searchParams.set("scope", linkData.scopes.map((scope) => `${scope}`).join(" "));
 
   return url.href;
 };

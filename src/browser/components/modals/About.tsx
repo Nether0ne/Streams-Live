@@ -1,9 +1,9 @@
 import { t } from "@/common/helpers";
 import { Box, Fade, Modal, Typography, IconButton, Link, Portal, Backdrop } from "@mui/material";
 import { FC } from "react";
-import AppleIcon from "@mui/icons-material/Apple";
 import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
+import StreamsLive from "../icons/StreamsLive";
 
 interface AboutModalProps {
   open: boolean;
@@ -91,7 +91,7 @@ const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
                   </IconButton>
                 </Box>
                 <Box sx={styles.info}>
-                  <AppleIcon sx={{ fontSize: 76 }} />
+                  <StreamsLive sx={{ fontSize: 76 }} />
 
                   <Typography variant="body2">{t("extName")}</Typography>
                   <Typography variant="body2">{t("extAuthor")}</Typography>

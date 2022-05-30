@@ -1,4 +1,4 @@
-import { t } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "@/common/helpers";
 import { Box, Typography, Divider } from "@mui/material";
 import { FC } from "react";
 import FontSizeSetting from "./options/general/FontSize";
@@ -45,6 +45,8 @@ const styles = {
 };
 
 const GeneralSettings: FC = () => {
+  const onBadgeChange = async () => await sendRuntimeMessage("updateBadge");
+
   return (
     <Box id="general" sx={styles.wrapper}>
       <Divider sx={styles.divider}>
@@ -60,6 +62,7 @@ const GeneralSettings: FC = () => {
           icon: <LabelIcon />,
           secondaryText: true,
           setting: "general.badge",
+          onClick: onBadgeChange,
         }}
       />
     </Box>

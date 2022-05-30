@@ -1,6 +1,7 @@
 import { FC, createContext } from "react";
 import { defaultSettings, StreamSettings } from "@/common/types/settings";
 import { Stream } from "@/common/types/stream";
+import { Dictionary } from "lodash";
 import { useStreamsWithSettings } from "../hooks/streams";
 
 interface StreamSettingsProps {
@@ -8,7 +9,7 @@ interface StreamSettingsProps {
 }
 
 export const StreamSettingsContext = createContext({
-  streamsWithSettings: Array<Stream>(),
+  streamGroups: {} as Dictionary<Stream[]>,
   setStreamsSettings: (_params: {
     search?: string;
     groupBy?: StreamSettings["groupBy"];
@@ -21,11 +22,11 @@ export const StreamSettingsContext = createContext({
 });
 
 export const StreamSettingsProvider: FC<StreamSettingsProps> = ({ children }) => {
-  const { streamsWithSettings, setStreamsSettings, isLoading, streamSettings, settingsIsLoading } =
+  const { streamGroups, setStreamsSettings, isLoading, streamSettings, settingsIsLoading } =
     useStreamsWithSettings();
 
   const contextValue = {
-    streamsWithSettings,
+    streamGroups,
     setStreamsSettings,
     isLoading,
     streamSettings,

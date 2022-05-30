@@ -21,10 +21,6 @@ const spinAnimation = keyframes`
 const UpdateButton: FC<UpdateButtonProps> = ({ sx = {}, onClick }) => {
   const [spin, setSpin] = useState(false);
 
-  if (spin) {
-    sx.animation = `${spinAnimation} 1s ease`;
-  }
-
   return (
     <IconButton
       disabled={spin}
@@ -33,7 +29,7 @@ const UpdateButton: FC<UpdateButtonProps> = ({ sx = {}, onClick }) => {
         onClick();
       }}
       onAnimationEnd={() => {
-        spin ? setSpin(false) : "";
+        setSpin(false);
       }}
       sx={{ ...sx, animation: spin ? `${spinAnimation} 1s ease` : undefined }}
     >

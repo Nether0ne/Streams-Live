@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import tw from "@emotion/styled";
 import MainLayout from "../components/layout/MainLayout";
-import Test1 from "../views/test1";
 import Settings from "../views/Settings";
 import Streams from "../views/Streams";
 import Snackbar from "../components/Snackbar";
@@ -23,10 +22,6 @@ const Popup: FC = () => {
             <Route path="streams">
               <Route index element={<Streams />} />
               <Route path="streams" element={<Streams />} />
-            </Route>
-            <Route path="test1">
-              <Route index element={<Test1 />} />
-              <Route path="test1" element={<Test1 />} />
             </Route>
             <Route path="settings">
               <Route index element={<Settings />} />

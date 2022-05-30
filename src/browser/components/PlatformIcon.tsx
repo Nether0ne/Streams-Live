@@ -13,9 +13,9 @@ interface PlatformIconProps {
 const PlatformIcon: FC<PlatformIconProps> = ({ platform, sx }) => {
   return platform === Platform.TWITCH ? (
     <TwitchIcon {...{ sx }} />
-  ) : platform === Platform.YOUTUBE ? (
-    <YouTubeIcon {...{ sx }} />
-  ) : platform === Platform.GOODGAME ? (
+  ) : // ) : platform === Platform.YOUTUBE ? (
+  //   <YouTubeIcon {...{ sx }} />
+  platform === Platform.GOODGAME ? (
     <GoodgameIcon {...{ sx }} />
   ) : null;
 };

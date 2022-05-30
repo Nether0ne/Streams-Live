@@ -1,9 +1,6 @@
 import { SnackbarContext } from "@/browser/common/context/Snackbar";
-import { useProfile } from "@/browser/common/hooks/profile";
-import useSettings from "@/browser/common/hooks/settings";
+import { useAllSetProfiles } from "@/browser/common/hooks/profile";
 import { defaultProfileState, t } from "@/common/helpers";
-import { Platform } from "@/common/types/general";
-import { defaultSettings } from "@/common/types/settings";
 import {
   Fade,
   Typography,
@@ -44,16 +41,13 @@ interface FactoryResetModalProps {
 const FactoryResetModal: FC<FactoryResetModalProps> = ({ open, hide }) => {
   return useMemo(() => {
     const { setSnackbar } = useContext(SnackbarContext);
-    const [, settingsStore] = useSettings();
-    const [, twitchStore] = useProfile(Platform.TWITCH);
-    const [, youtubeStore] = useProfile(Platform.YOUTUBE);
-    const [, goodgameStore] = useProfile(Platform.GOODGAME);
+    const profiles = useAllSetProfiles();
 
     const handleConfirm = () => {
-      settingsStore.set(defaultSettings);
-      twitchStore.set(defaultProfileState(Platform.TWITCH));
-      youtubeStore.set(defaultProfileState(Platform.YOUTUBE));
-      goodgameStore.set(defaultProfileState(Platform.GOODGAME));
+      for (const p of profiles) {
+        const { profile, store } = p;
+        store.set(defaultProfileState(profile.platform));
+      }
 
       setSnackbar({
         open: true,

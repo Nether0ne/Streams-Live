@@ -37,9 +37,17 @@ interface SwitchProps {
   readonly label: string;
   readonly secondaryText?: boolean;
   readonly setting: string;
+  readonly onClick?: () => void;
 }
 
-const SwitchSettings: FC<SwitchProps> = ({ id, icon, label, secondaryText, setting }) => {
+const SwitchSettings: FC<SwitchProps> = ({
+  id,
+  icon,
+  label,
+  secondaryText,
+  setting,
+  onClick = () => {},
+}) => {
   const [settings, store] = useSettings();
   const state = get(settings, setting);
 
@@ -49,6 +57,8 @@ const SwitchSettings: FC<SwitchProps> = ({ id, icon, label, secondaryText, setti
     store.set({
       ...settings,
     });
+
+    onClick();
   };
 
   return (

@@ -11,15 +11,15 @@ export enum SortDirection {
 }
 
 export enum SortField {
-  VIEWERS = "viewersCount",
-  NAME = "userName",
+  VIEWERS = "viewers",
+  NAME = "user",
   STARTED_AT = "startedAt",
 }
 
 export enum GroupBy {
   NONE = "none",
   PLATFORM = "platform",
-  CATEGORY = "category",
+  CATEGORY = "game",
 }
 
 export enum Theme {
@@ -35,6 +35,7 @@ export interface GeneralSettings {
 
 export interface NotificationSettings {
   enabled: boolean;
+  category: boolean;
   twitch: boolean;
   youtube: boolean;
   goodgame: boolean;
@@ -60,6 +61,7 @@ export const defaultSettings: Settings = {
   },
   notifications: {
     enabled: true,
+    category: false,
     twitch: true,
     youtube: true,
     goodgame: true,
