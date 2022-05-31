@@ -6,6 +6,8 @@ import Image from "../../Image";
 import Viewers from "./Details/Viewers";
 import StreamContextMenu from "../../pages/Streams/ContextMenu";
 import PlatformIcon from "../../PlatformIcon";
+import { getLinkForPlatform } from "@/common/helpers";
+import { LinkType } from "@/common/types/general";
 
 interface StreamCardProps {
   stream: Stream;
@@ -83,7 +85,12 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
   return (
     <Box>
       <StreamContextMenu id={user} platform={platform} />
-      <Link id={user} href={`https://twitch.tv/${userLogin}`} target="_blank" sx={styles.wrapper}>
+      <Link
+        id={user}
+        href={getLinkForPlatform(platform, userLogin, LinkType.STREAM)}
+        target="_blank"
+        sx={styles.wrapper}
+      >
         <Box sx={styles.thumbnail.inner}>
           <Box sx={styles.thumbnail.wrapper}>
             <Image

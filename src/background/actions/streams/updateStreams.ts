@@ -1,3 +1,4 @@
+import browser from "webextension-polyfill";
 import { stores } from "@/common/store";
 import { Stream } from "@/common/types/stream";
 import { find } from "lodash";
@@ -16,11 +17,11 @@ export async function updateStreams(forceUpdate: boolean = false) {
   const previousStreams = (await stores.streams.get()).data;
 
   if (forceUpdate) {
-    console.log("force update");
+    browser.alarms.clear("updateStreams");
     await stores.streams.set({ data: [], isLoading: true });
   }
 
-  const updatedStreams = await getAllStreams();
+  const [updatedStreams, errors] = await getAllStreams();
 
   await stores.streams.set({ data: updatedStreams, isLoading: false });
 
@@ -28,41 +29,52 @@ export async function updateStreams(forceUpdate: boolean = false) {
     const withCategoryChange = settings.notifications.category;
 
     updatedStreams.forEach(async (stream) => {
-      const notified = find(previousStreams, ["user", stream.user]);
+      if (settings.notifications[stream.platform]) {
+        const notified = find(previousStreams, ["user", stream.user]);
 
-      if (!notified) {
-        newStreamNotification(stream);
-      }
+        if (!notified) {
+          newStreamNotification(stream);
+        }
 
-      if (notified && withCategoryChange) {
-        newCategoryNotification(notified, stream);
+        if (notified && withCategoryChange) {
+          newCategoryNotification(notified, stream);
+        }
       }
     });
   }
+
+  if (forceUpdate) {
+    browser.alarms.create("updateStreams", { periodInMinutes: 1 });
+  }
 }
 
-const getAllStreams = async (): Promise<Stream[]> => {
+const getAllStreams = async (): Promise<[Stream[], string[]]> => {
   const setProfiles = await getAllSetProfiles();
   const queries = [];
 
   for (const profile of setProfiles) {
     const client = getPlatformClient(profile.platform);
 
-    if (client) {
+    if (client && "getStreams" in client) {
       queries.push(client.getStreams());
     }
   }
 
-  return (await Promise.allSettled(queries))
-    .map((query) => {
-      if (query.status === "fulfilled") {
-        return query.value;
-      } else if (query.status === "rejected") {
-        console.error(query.reason);
-      }
-      return [];
-    })
-    .flat();
+  const errors: string[] = [];
+
+  return [
+    (await Promise.allSettled(queries))
+      .map((query) => {
+        if (query.status === "fulfilled") {
+          return query.value;
+        } else if (query.status === "rejected") {
+          errors.push(query.reason);
+        }
+        return [];
+      })
+      .flat(),
+    errors,
+  ];
 };
 
 const newStreamNotification = async (stream: Stream): Promise<void> => {

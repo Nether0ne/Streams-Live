@@ -6,15 +6,16 @@ import Settings from "../views/Settings";
 import Streams from "../views/Streams";
 import Snackbar from "../components/Snackbar";
 import { SnackbarProvider } from "../common/context/Snackbar";
+import { Box } from "@mui/material";
 
-const Wrapper = tw.div`
-  height: 550px;
-  width: 450px;
-`;
+const styles = {
+  height: "550px",
+  width: "450px",
+};
 
 const Popup: FC = () => {
   return (
-    <Wrapper>
+    <Box id="root" sx={styles}>
       <SnackbarProvider>
         <MainLayout>
           <Routes>
@@ -31,7 +32,7 @@ const Popup: FC = () => {
           <Snackbar />
         </MainLayout>
       </SnackbarProvider>
-    </Wrapper>
+    </Box>
   );
 };
 

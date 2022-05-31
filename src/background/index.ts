@@ -1,9 +1,6 @@
 import browser from "webextension-polyfill";
 import { t } from "@/common/helpers";
 import { stores } from "@/common/store";
-import * as Youtube from "@/api/youtube";
-// TODO: goodgame api handler
-//import * as Goodgame from "@/api/goodgame";
 import { Dictionary, Platform } from "@/common/types/general";
 import { setup } from "./actions/settings/setup";
 import { updateStreams } from "./actions/streams/updateStreams";
@@ -70,9 +67,9 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     if (tab.url?.startsWith(process.env.TWITCH_REDIRECT_URI as string)) {
       platform = Platform.TWITCH;
     }
-    // if (tab.url?.startsWith(process.env.YOUTUBE_REDIRECT_URI as string)) {
-    //   platform = Platform.YOUTUBE;
-    // }
+    if (tab.url?.startsWith(process.env.GOODGAME_REDIRECT_URI as string)) {
+      platform = Platform.GOODGAME;
+    }
 
     const accessToken = hashParams.get("access_token");
 

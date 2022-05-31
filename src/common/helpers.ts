@@ -1,6 +1,6 @@
 import { castArray } from "lodash-es";
 import browser from "webextension-polyfill";
-import { Dictionary, Platform } from "./types/general";
+import { Dictionary, LinkType, Platform } from "./types/general";
 import { Profile } from "./types/profile";
 
 export const t = browser.i18n.getMessage;
@@ -19,14 +19,15 @@ export function defaultProfileState(platform: Platform): Profile {
   };
 }
 
-export function getLinkForPlatform(platform: Platform, route?: string): string {
+export function getLinkForPlatform(platform: Platform, route?: string, type?: LinkType): string {
   switch (platform) {
-    case "twitch":
+    case Platform.TWITCH:
       return `https://www.twitch.tv/${route}`;
     // case "youtube":
     //   return `https://www.youtube.com/${route}`;
-    case "goodgame":
-      return `https://goodgame.ru/${route}`;
+    case Platform.GOODGAME:
+      const subRoute = type === LinkType.STREAM ? "channel/" : "";
+      return `https://goodgame.ru/${subRoute}${route}`;
     default:
       throw new RangeError();
   }

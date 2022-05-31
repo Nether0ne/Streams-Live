@@ -34,7 +34,7 @@ const ProfilesSettings: FC = () => {
         profiles.map(({ profile }) => <ProfileSettings platform={profile.platform} />)
       )}
 
-      {availablePlatforms.length > 0 && <AddProfile options={profilesToAdd} />}
+      {profilesToAdd.length > 0 && <AddProfile options={profilesToAdd} />}
     </Box>
   );
 };

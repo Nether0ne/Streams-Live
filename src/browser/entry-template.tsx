@@ -2,8 +2,6 @@ import { createRoot } from "react-dom/client";
 import { EntryWrapper } from "@seldszar/yael";
 import { ExoticComponent, FC } from "react";
 import { HashRouter } from "react-router-dom";
-import { SWRConfig } from "swr";
-import { GlobalStyles } from "twin.macro";
 import useSettings from "./common/hooks/settings";
 import { getTheme } from "./common/styles";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -20,7 +18,6 @@ const wrapper: EntryWrapper<ExoticComponent> = (Component) => {
       <HashRouter>
         <ThemeProvider theme={currentTheme}>
           <CssBaseline />
-          <GlobalStyles />
 
           <Component />
         </ThemeProvider>

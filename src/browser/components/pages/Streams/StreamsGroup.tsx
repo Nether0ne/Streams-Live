@@ -1,7 +1,7 @@
 import { Stream } from "@/common/types/stream";
 import { Box, Collapse, Typography } from "@mui/material";
 import { FC, useState, useContext } from "react";
-import StreamCard from "../../cards/stream/Twitch";
+import StreamCard from "../../cards/stream/Stream";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { GroupBy } from "@/common/types/settings";
 import { t } from "@/common/helpers";

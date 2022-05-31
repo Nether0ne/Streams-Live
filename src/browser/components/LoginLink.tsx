@@ -1,5 +1,5 @@
 import { Platform } from "@/common/types/general";
-import { Box, Link } from "@mui/material";
+import { Link } from "@mui/material";
 import { FC } from "react";
 
 interface LoginLinkProps {
@@ -14,6 +14,8 @@ const platformToData = {
     client: process.env.TWITCH_CLIENT_ID,
     redirect: process.env.TWITCH_REDIRECT_URI,
     scopes: ["user:read:follows"],
+    response_type: "token",
+    optional: undefined,
   },
   // [Platform.YOUTUBE]: {
   //   href: "https://accounts.google.com/o/oauth2/v2/auth",
@@ -25,10 +27,14 @@ const platformToData = {
   //   ],
   // },
   [Platform.GOODGAME]: {
-    href: "https://api.goodgame.ru/oauth2/authorize",
-    client: "", //process.env.GOODGAME_CLIENT_ID,
+    href: "https://api2.goodgame.ru/oauth/authorize",
+    client: process.env.GOODGAME_CLIENT_ID,
     redirect: "", //process.env.GOODGAME_REDIRECT_URI,
-    scopes: ["user:read:follows"],
+    scopes: ["user.favorites"],
+    response_type: "token",
+    optional: {
+      state: process.env.GOODGAME_CLIENT_SECRET,
+    },
   },
 };
 
@@ -38,8 +44,14 @@ const getLoginLink = (platform: Platform) => {
 
   url.searchParams.set("client_id", linkData.client as string);
   url.searchParams.set("redirect_uri", linkData.redirect as string);
-  url.searchParams.set("response_type", "token");
+  url.searchParams.set("response_type", linkData.response_type as string);
   url.searchParams.set("scope", linkData.scopes.map((scope) => `${scope}`).join(" "));
+
+  if (linkData.optional !== undefined) {
+    for (const [key, value] of Object.entries(linkData.optional)) {
+      url.searchParams.set(key, value as string);
+    }
+  }
 
   return url.href;
 };

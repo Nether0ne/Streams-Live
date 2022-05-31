@@ -9,6 +9,7 @@ import ky from "ky";
 import { find, map } from "lodash-es";
 
 const apiClient = ky.extend({
+  timeout: 600,
   prefixUrl: "https://api.twitch.tv/helix/",
   cache: "no-cache",
   headers: {
@@ -18,6 +19,8 @@ const apiClient = ky.extend({
     beforeRequest: [
       async (request) => {
         const accessToken = (await stores.twitchProfile.get()).accessToken;
+
+        // TODO: check if token needs to be refreshed
 
         if (!accessToken) return;
 
@@ -40,11 +43,12 @@ const apiClient = ky.extend({
 
 export async function getCurrentUser(): Promise<Partial<Profile>> {
   const twitchProfile = (await apiClient("users").json<{ data: TwitchProfile[] }>()).data[0];
+  const { id, display_name, profile_image_url } = twitchProfile;
 
   const profile = {
-    id: twitchProfile.id,
-    name: twitchProfile.display_name,
-    avatar: twitchProfile.profile_image_url,
+    id,
+    name: display_name,
+    avatar: profile_image_url,
     platform: Platform.TWITCH,
   };
 
@@ -91,15 +95,19 @@ export async function getStreams(after?: string): Promise<Stream[]> {
   const fetchedStreams: Stream[] = [];
 
   for (const stream of followedStreams) {
+    if (stream.user_name === "") {
+      continue;
+    }
+
     fetchedStreams.push({
-      user: stream.user_name!,
-      userLogin: stream.user_login!,
-      game: stream.game_name!,
-      title: stream.title!,
-      thumbnail: stream.thumbnail_url!,
-      viewers: stream.viewer_count!,
-      startedAt: stream.started_at!,
-      type: stream.type!,
+      user: stream.user_name,
+      userLogin: stream.user_login,
+      game: stream.game_name,
+      title: stream.title,
+      thumbnail: stream.thumbnail_url,
+      viewers: stream.viewer_count,
+      startedAt: stream.started_at,
+      type: stream.type,
       platform: Platform.TWITCH,
     });
   }

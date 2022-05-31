@@ -41,6 +41,9 @@ module.exports = (env, argv) => {
       new webpack.EnvironmentPlugin({
         TWITCH_CLIENT_ID: undefined,
         TWITCH_REDIRECT_URI: undefined,
+        GOODGAME_CLIENT_ID: undefined,
+        GOODGAME_CLIENT_SECRET: undefined,
+        GOODGAME_REDIRECT_URI: undefined,
       }),
       new webpack.ProvidePlugin({
         browser: "webextension-polyfill",
