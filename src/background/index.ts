@@ -13,10 +13,7 @@ import { updateProfile } from "./actions/profiles/updateProfile";
 import { backup } from "./actions/settings/backup";
 import { restore } from "./actions/settings/restore";
 import { reset } from "./actions/settings/reset";
-
-const iconUrlPlaceholder = browser.runtime.getURL("/icon/icon-128.png");
-
-(async () => await updateStreams())();
+import { getIconPath } from "./actions/misc/getIcon";
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   updateProfile,
@@ -39,7 +36,12 @@ browser.runtime.onMessage.addListener((message) => {
   return handler(...message.args);
 });
 
-browser.alarms.onAlarm.addListener(async (alarm) => {
+browser.alarms.onAlarm.addListener((alarm) => {
+  // Skip alarms older than 5 mins
+  if (alarm.scheduledTime + 300_000 < Date.now()) {
+    return;
+  }
+
   if (alarm.name === "updateStreams") {
     updateStreams();
   }
@@ -91,7 +93,7 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
             message: t("profileSetMessage", platform),
             contextMessage: t("profileSetContext", platform),
             type: "basic",
-            iconUrl: setProfile.avatar !== null ? setProfile.avatar : iconUrlPlaceholder,
+            iconUrl: setProfile.avatar !== null ? setProfile.avatar : await getIconPath(128),
           });
 
           await updateStreams();
