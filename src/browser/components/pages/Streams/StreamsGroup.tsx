@@ -8,22 +8,21 @@ import { t } from "@/common/helpers";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 
 const styles = {
-  wrapper: {
-    cursor: "pointer",
-  },
-  header: {
+  cursor: "pointer",
+  "& .header": {
     p: ".5rem .5rem",
     transition: "background-color .5s ease-out",
     "&:hover": {
       backgroundColor: "background.paper",
       transition: "background-color .5s ease-out",
     },
-  },
-  icon: {
-    fontSize: "1rem",
-  },
-  openIcon: {
-    transform: "rotate(180deg)",
+    "& svg": {
+      fontSize: "1rem",
+      mr: ".25rem",
+    },
+    "& .open": {
+      transform: "rotate(180deg)",
+    },
   },
 };
 
@@ -39,11 +38,11 @@ const StreamsGroup: FC<StreamsGroupProps> = ({ key, group }) => {
   const toggleOpen = () => setOpen(!open);
 
   return (
-    <Box id={key.replace(" ", "")} sx={styles.wrapper}>
+    <Box id={key.replace(" ", "")} sx={styles}>
       {key !== "undefined" && (
-        <Box sx={styles.header} onClick={toggleOpen}>
+        <Box className="header" onClick={toggleOpen}>
           <Typography>
-            <ArrowDropDownIcon sx={(styles.icon, !open ? styles.openIcon : undefined)} />
+            <ArrowDropDownIcon className={open ? "open" : ""} />
             {groupBy === GroupBy.PLATFORM ? t(key) : key}
           </Typography>
         </Box>

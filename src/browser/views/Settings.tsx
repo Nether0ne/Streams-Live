@@ -6,70 +6,48 @@ import ProfilesSettings from "../components/pages/Settings/Profiles";
 import NotificationsSettings from "../components/pages/Settings/Notifications";
 import ExtraSettings from "../components/pages/Settings/Extra";
 
+const styles = {
+  wrapper: {
+    display: "flex",
+    flexDirection: "column",
+    pt: "1rem",
+    gap: 2,
+  },
+  divider: {
+    m: "0 .5rem",
+    fontWeight: "bold",
+    "&::before, &::after": {
+      borderColor: "primary.light",
+    },
+    "& p": {
+      fontWeight: "600",
+    },
+  },
+};
+
 const Settings: FC = () => {
   return (
-    <Box
-      id="settings"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-      }}
-    >
+    <Box id="settings" sx={styles.wrapper}>
+      <Divider sx={styles.divider}>
+        <Typography>{t("generalSettings")}</Typography>
+      </Divider>
+
       <GeneralSettings />
 
-      <Divider
-        sx={{
-          fontWeight: "bold",
-          "&::before, &::after": {
-            borderColor: "primary.light",
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            fontWeight: "600",
-          }}
-        >
-          {t("profileSettings")}
-        </Typography>
+      <Divider sx={styles.divider}>
+        <Typography>{t("profileSettings")}</Typography>
       </Divider>
 
       <ProfilesSettings />
 
-      <Divider
-        sx={{
-          fontWeight: "bold",
-          "&::before, &::after": {
-            borderColor: "primary.light",
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            fontWeight: "600",
-          }}
-        >
-          {t("notificationsSettings")}
-        </Typography>
+      <Divider sx={styles.divider}>
+        <Typography>{t("notificationsSettings")}</Typography>
       </Divider>
 
       <NotificationsSettings />
 
-      <Divider
-        sx={{
-          "&::before, &::after": {
-            borderColor: "primary.light",
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            fontWeight: "600",
-          }}
-        >
-          {t("exportAndImportSettings")}
-        </Typography>
+      <Divider sx={styles.divider}>
+        <Typography>{t("exportAndImportSettings")}</Typography>
       </Divider>
 
       <ExtraSettings />

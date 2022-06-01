@@ -14,7 +14,7 @@ interface StreamCardProps {
 }
 
 const styles = {
-  wrapper: {
+  ".stream": {
     color: "inherit",
     textDecoration: "inherit",
     display: "flex",
@@ -27,24 +27,22 @@ const styles = {
       transition: "background-color .5s ease-out",
     },
   },
-  thumbnail: {
-    inner: {
-      display: "flex",
-      mr: "1rem",
-      alignSelf: "center",
-    },
-    wrapper: {
+  ".stream .thumbnail": {
+    display: "flex",
+    mr: "1rem",
+    alignSelf: "center",
+    "& .thumbnailWrapper": {
       position: "relative",
       overflow: "hidden",
       borderRadius: ".25rem",
       width: "6rem",
       height: "3.35rem",
     },
-    image: {
+    "& .image": {
       position: "absolute",
       backgroundColor: "background.paper",
     },
-    uptime: {
+    "& .uptime": {
       color: "#D2D3D3",
       position: "absolute",
       right: 0,
@@ -55,26 +53,31 @@ const styles = {
       paddingRight: ".25rem",
     },
   },
-  info: {
-    wrapper: {
+  ".stream .info": {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    overflow: "hidden",
+    width: "100%",
+    "& .mainWrapper": {
       display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      overflow: "hidden",
-      width: "100%",
+      justifyContent: "space-between",
+      "& .main": {
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "row",
+        "& svg": {
+          mr: ".5rem",
+          fontSize: "1rem",
+        },
+        "& .name": {
+          fontWeight: 600,
+          maxWidth: "14rem",
+        },
+      },
     },
-    heading: { display: "flex", justifyContent: "space-between" },
-    nameAndIcon: { display: "flex", alignItems: "center", flexDirection: "row" },
-    name: {
-      fontWeight: 600,
-      maxWidth: "14rem",
-    },
-    game: {
+    "& .game": {
       color: "#266798",
-    },
-    icon: {
-      mr: ".5rem",
-      fontSize: "1rem",
     },
   },
 };
@@ -83,32 +86,32 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
   const { user, userLogin, viewers, title, game, thumbnail, startedAt, type, platform } = stream;
 
   return (
-    <Box>
+    <Box sx={styles}>
       <StreamContextMenu id={user} platform={platform} />
       <Link
         id={user}
         href={getLinkForPlatform(platform, userLogin, LinkType.STREAM)}
         target="_blank"
-        sx={styles.wrapper}
+        className="stream"
       >
-        <Box sx={styles.thumbnail.inner}>
-          <Box sx={styles.thumbnail.wrapper}>
+        <Box className="thumbnail">
+          <Box className="thumbnailWrapper">
             <Image
               src={thumbnail.replace("{width}", "96").replace("{height}", "54")}
               alt={user}
-              style={styles.thumbnail.image}
+              className="image"
             />
 
-            <Uptime startedAt={startedAt} styles={styles.thumbnail.uptime} />
+            <Uptime startedAt={startedAt} className="uptime" />
           </Box>
         </Box>
 
-        <Box sx={styles.info.wrapper}>
-          <Box sx={styles.info.heading}>
-            <Box sx={styles.info.nameAndIcon}>
-              <PlatformIcon platform={platform} sx={styles.info.icon} />
+        <Box className="info">
+          <Box className="mainWrapper">
+            <Box className="main">
+              <PlatformIcon platform={platform} />
 
-              <Typography noWrap variant={"body2"} sx={styles.info.name}>
+              <Typography noWrap variant={"body2"}>
                 {user}
               </Typography>
             </Box>
@@ -134,7 +137,7 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
               followCursor
               arrow
             >
-              <Typography noWrap sx={styles.info.game}>
+              <Typography className="game" noWrap>
                 {game}
               </Typography>
             </Tooltip>

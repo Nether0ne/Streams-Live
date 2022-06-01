@@ -1,6 +1,6 @@
 {
-  "short_name": "__MSG_extName__",
-  "name": "__MSG_extName__",
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
   "version": "1.0.0",
   "manifest_version": 3,
   "permissions": ["alarms", "background", "notifications", "storage", "unlimitedStorage"],

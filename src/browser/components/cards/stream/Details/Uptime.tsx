@@ -1,14 +1,15 @@
 import { timeBetweenDates } from "@/common/helpers";
-import { Typography } from "@mui/material";
+import { SxProps, Typography } from "@mui/material";
 import { FC, useMemo } from "react";
 import useNow from "../../../../common/hooks/now";
 
 interface UptimeProps {
   startedAt: string;
-  styles: object | undefined;
+  styles?: SxProps;
+  className?: string;
 }
 
-const Uptime: FC<UptimeProps> = ({ startedAt, styles }) => {
+const Uptime: FC<UptimeProps> = ({ startedAt, styles = {}, className = "" }) => {
   const now = useNow();
   const calculatedUptime = timeBetweenDates(new Date(startedAt), now);
 
@@ -19,7 +20,11 @@ const Uptime: FC<UptimeProps> = ({ startedAt, styles }) => {
     }`;
   }, [calculatedUptime]);
 
-  return <Typography sx={styles}>{uptime}</Typography>;
+  return (
+    <Typography sx={styles} className={className}>
+      {uptime}
+    </Typography>
+  );
 };
 
 export default Uptime;

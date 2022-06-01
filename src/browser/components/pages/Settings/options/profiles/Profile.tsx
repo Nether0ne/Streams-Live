@@ -78,11 +78,7 @@ const ProfileSettings: FC<ProfileProps> = ({ platform }) => {
   };
 
   if (store.isLoading) {
-    return (
-      <SettingWrapper id={`${platform}Profile`} customStyles={styles.wrapper} clickable={false}>
-        <ProfileLoading />
-      </SettingWrapper>
-    );
+    return <ProfileLoading />;
   }
 
   return (

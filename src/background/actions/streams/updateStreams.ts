@@ -7,10 +7,9 @@ import { getIconPath } from "../misc/getIcon";
 import { t } from "@/common/helpers";
 import { getAllSetProfiles } from "../profiles/getAllSetupProfiles";
 import { getPlatformClient } from "../platform/getPlatformClient";
+import { NotificationType } from "@/common/types/general";
 
 export async function updateStreams(forceUpdate: boolean = false) {
-  console.log(`updated at ${new Date().toLocaleString()}`);
-
   const settings = await stores.settings.get();
   const notificationsEnabled = settings.notifications.enabled;
 
@@ -80,22 +79,22 @@ const getAllStreams = async (): Promise<[Stream[], string[]]> => {
 const newStreamNotification = async (stream: Stream): Promise<void> => {
   const { user, userLogin, game, title, platform } = stream;
 
-  createNotification(user, {
+  createNotification([NotificationType.STREAM, user, platform], {
     title: t("streamerOnline", [user ?? userLogin, platform]),
-    message: title,
-    contextMessage: game ?? "",
+    message: game ?? "",
+    contextMessage: title,
     type: "basic",
     iconUrl: await getIconPath(128),
   });
 };
 
 const newCategoryNotification = async (oldStream: Stream, newStream: Stream): Promise<void> => {
-  const { user, userLogin, game, title } = newStream;
+  const { user, userLogin, game, title, platform } = newStream;
   if (oldStream.game !== game) {
-    createNotification(user, {
+    createNotification([NotificationType.STREAM, user, platform], {
       title: t("streamerNewCategory", user ?? userLogin),
-      message: t("streamerNewCategoryMessage", [oldStream.game, game]),
-      contextMessage: title,
+      message: title,
+      contextMessage: t("streamerNewCategoryMessage", [oldStream.game, game]),
       type: "basic",
       iconUrl: await getIconPath(128),
     });

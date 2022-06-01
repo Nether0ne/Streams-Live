@@ -9,7 +9,7 @@ const mainApi = "https://api2.goodgame.ru/";
 const favoritesApi = "https://goodgame.ru/api/4/favorites/";
 
 const apiClient = ky.extend({
-  timeout: 600,
+  timeout: 700,
   cache: "no-cache",
   headers: {
     "Client-ID": process.env.GOODGAME_CLIENT_ID,

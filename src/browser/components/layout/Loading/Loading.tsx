@@ -3,23 +3,21 @@ import { CSSProperties } from "@mui/styled-engine";
 import { FC } from "react";
 
 interface Props {
-  customSx?: CSSProperties | undefined;
+  sx?: CSSProperties | undefined;
+  className?: string;
 }
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexGrow: 1,
-    height: "100%",
-  },
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexGrow: 1,
+  height: "100%",
 };
 
-const Loading: FC<Props> = ({ customSx }) => {
-  const sx = [{ ...styles.wrapper }, { ...customSx }];
+const Loading: FC<Props> = ({ sx, className }) => {
   return (
-    <Box sx={sx}>
+    <Box className="loading" sx={{ ...styles, ...sx }}>
       <CircularProgress color="primary" />
     </Box>
   );

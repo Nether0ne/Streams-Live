@@ -1,9 +1,9 @@
 {
-  "extName": {
+  "extensionName": {
     "message": "Streams Live"
   },
-  "extDescription": {
-    "message": "Streams Live отслеживает ваших любимых стримеров с разных платформ!"
+  "extensionDescription": {
+    "message": "Отслеживает ваших любимых стримеров с разных платформ!"
   },
   "extAuthor": {
     "message": "Автор nether"
@@ -13,6 +13,9 @@
   },
   "releases": {
     "message": "Релизы"
+  },
+  "issues": {
+    "message": "Баги и предложения"
   },
   "actionSuccess": {
     "message": "$action$ выполнено успешно!",

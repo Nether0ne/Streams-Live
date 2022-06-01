@@ -6,11 +6,9 @@ import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings"
 import StreamsGroup from "./StreamsGroup";
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  empty: {
+  display: "flex",
+  flexDirection: "column",
+  "& .empty": {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -27,17 +25,17 @@ const StreamsList: FC = () => {
   const { search } = streamSettings;
 
   return (
-    <Box id="streamsList" sx={styles.wrapper}>
+    <Box id="streamsList" sx={styles}>
       {isLoading || settingsIsLoading ? (
-        <Loading customSx={styles.loading} />
-      ) : streamGroups ? (
+        <Loading sx={styles.loading} />
+      ) : Object.keys(streamGroups).length ? (
         Object.keys(streamGroups)
           .map((key) => {
             return { key, value: streamGroups[key] };
           })
           .map(({ key, value }) => <StreamsGroup {...{ key, group: value }} />)
       ) : (
-        <Box sx={styles.empty}>
+        <Box className="empty">
           <Typography variant="body2">
             {search === undefined ? t("noStreams") : t("noFilteredStreams")}
           </Typography>

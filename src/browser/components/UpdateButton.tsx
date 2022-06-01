@@ -6,6 +6,7 @@ import { CSSProperties } from "@mui/styled-engine";
 
 interface UpdateButtonProps {
   readonly sx?: CSSProperties;
+  readonly className?: string;
   readonly onClick: () => void;
 }
 
@@ -18,7 +19,7 @@ const spinAnimation = keyframes`
   }
 `;
 
-const UpdateButton: FC<UpdateButtonProps> = ({ sx = {}, onClick }) => {
+const UpdateButton: FC<UpdateButtonProps> = ({ sx = {}, className = "", onClick }) => {
   const [spin, setSpin] = useState(false);
 
   return (
@@ -33,7 +34,7 @@ const UpdateButton: FC<UpdateButtonProps> = ({ sx = {}, onClick }) => {
       }}
       sx={{ ...sx, animation: spin ? `${spinAnimation} 1s ease` : undefined }}
     >
-      <RefreshIcon sx={sx} />
+      <RefreshIcon className={className} sx={sx} />
     </IconButton>
   );
 };

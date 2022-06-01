@@ -1,7 +1,7 @@
 import browser from "webextension-polyfill";
-import { t } from "@/common/helpers";
+import { getLinkForPlatform, t } from "@/common/helpers";
 import { stores } from "@/common/store";
-import { Dictionary, Platform } from "@/common/types/general";
+import { Dictionary, NotificationType, Platform } from "@/common/types/general";
 import { setup } from "./actions/settings/setup";
 import { updateStreams } from "./actions/streams/updateStreams";
 import { createNotification } from "./actions/misc/createNotification";
@@ -47,6 +47,18 @@ browser.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
+browser.notifications.onClicked.addListener((notificationId: string) => {
+  const [, type, user, platform] = notificationId.split(":");
+
+  switch (type) {
+    case NotificationType.STREAM: {
+      browser.tabs.create({
+        url: getLinkForPlatform(platform as Platform, user),
+      });
+    }
+  }
+});
+
 stores.streams.onChange(async () => {
   if ((await stores.streams.get()).isLoading === false) {
     updateBadge();
@@ -88,7 +100,7 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         const setProfile = await setupProfile(platform, profile);
 
         if (setProfile) {
-          await createNotification(`${platform}ProfileSet`, {
+          await createNotification(["profileSet", profile.name!, platform], {
             title: t("profileSet"),
             message: t("profileSetMessage", platform),
             contextMessage: t("profileSetContext", platform),

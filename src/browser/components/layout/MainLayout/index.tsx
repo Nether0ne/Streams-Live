@@ -14,6 +14,8 @@ const styles = {
     overflowY: "scroll",
     height: 550,
     width: 450,
+    scrollbarWidth: "thin",
+    scrollbarColor: "#3f51b5 default",
 
     "::-webkit-scrollbar": {
       width: 5,

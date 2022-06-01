@@ -9,7 +9,7 @@ import ky from "ky";
 import { find, map } from "lodash-es";
 
 const apiClient = ky.extend({
-  timeout: 600,
+  timeout: 700,
   prefixUrl: "https://api.twitch.tv/helix/",
   cache: "no-cache",
   headers: {

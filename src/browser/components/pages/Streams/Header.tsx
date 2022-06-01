@@ -8,16 +8,14 @@ import StreamsSettings from "./Settings";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 
 const styles = {
-  wrapper: {
-    width: "100%",
-    position: "sticky",
-    alignSelf: "center",
-    top: 0,
-    zIndex: 1,
-    paddingTop: ".5rem",
-    bgcolor: "background.default",
-  },
-  content: {
+  width: "100%",
+  position: "sticky",
+  alignSelf: "center",
+  top: 0,
+  zIndex: 1,
+  paddingTop: ".5rem",
+  bgcolor: "background.default",
+  "& .content": {
     width: "24rem",
     display: "flex",
     alignSelf: "center",
@@ -27,12 +25,9 @@ const styles = {
     borderRadius: 8,
     m: "0 auto",
     px: "1rem",
-  },
-  input: {
-    minWidth: "18rem",
-  },
-  updateIcon: {
-    fontSize: "1.25rem",
+    "& .refreshButton": {
+      fontSize: "1.25rem",
+    },
   },
 };
 
@@ -41,7 +36,9 @@ const searchFieldProps = {
   variant: "filled",
   size: "small",
   color: "primary",
-  sx: { ...styles.input },
+  sx: {
+    minWidth: "18rem",
+  },
   InputProps: {
     disableUnderline: true,
     sx: { input: { backgroundColor: "background.paper" } },
@@ -57,13 +54,13 @@ const StreamsHeader: FC = () => {
   const handleUpdateClick = () => sendRuntimeMessage("updateStreams", true);
 
   return (
-    <Box id="streamsHeader" sx={styles.wrapper}>
-      <Box sx={styles.content}>
+    <Box id="streamsHeader" sx={styles}>
+      <Box className="content">
         <Search search={search} onChange={handleSearchChange} textFieldProps={searchFieldProps} />
 
         <Tooltip title={<Typography>{t("refreshStreams")}</Typography>} placement="left">
           <Box>
-            <UpdateButton onClick={handleUpdateClick} sx={styles.updateIcon} />
+            <UpdateButton className="refreshButton" onClick={handleUpdateClick} />
           </Box>
         </Tooltip>
       </Box>

@@ -12,17 +12,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
   },
-  divider: {
-    fontWeight: "bold",
-    pt: "1rem",
-    pb: ".5rem",
-    "&::before, &::after": {
-      borderColor: "primary.light",
-    },
-  },
-  dividerText: {
-    fontWeight: "600",
-  },
   optionWrapper: {
     display: "flex",
     flexDirection: "row",
@@ -49,10 +38,6 @@ const GeneralSettings: FC = () => {
 
   return (
     <Box id="general" sx={styles.wrapper}>
-      <Divider sx={styles.divider}>
-        <Typography sx={styles.dividerText}>{t("generalSettings")}</Typography>
-      </Divider>
-
       <FontSizeSetting />
       <ThemeSettings />
       <SwitchSettings

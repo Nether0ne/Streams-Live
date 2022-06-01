@@ -47,14 +47,20 @@ const styles = {
   closeIcon: {
     fontSize: "1rem",
   },
+  defaultLink: {
+    textDecoration: "none",
+    color: "inherit",
+  },
   footer: {
     box: {
       display: "flex",
       flexDirection: "row",
-      gap: 2,
+      flexWrap: "wrap",
+      justifyContent: "center",
+      gap: 1,
     },
-    typography: {
-      display: "flex",
+    item: {
+      display: "inline-flex",
       alignItems: "center",
     },
     icon: {
@@ -64,9 +70,12 @@ const styles = {
   },
 };
 
+const authorGithub = "https://github.com/nether0ne";
+
 const footerItems = [
   { href: "https://github.com/Nether0ne/Streams-Live", label: t("repository") },
   { href: "https://github.com/Nether0ne/Streams-Live/releases", label: t("releases") },
+  { href: "https://github.com/Nether0ne/Streams-Live/issues", label: t("issues") },
 ];
 
 const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
@@ -94,17 +103,25 @@ const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
                   <StreamsLive sx={{ fontSize: 76 }} />
 
                   <Typography variant="body2">{t("extName")}</Typography>
-                  <Typography variant="body2">{t("extAuthor")}</Typography>
+                  <Typography variant="body2">
+                    <Link sx={styles.defaultLink} href={authorGithub} color={"text.secondary"}>
+                      {t("extAuthor")}
+                    </Link>
+                  </Typography>
                   <Typography py={3} textAlign={"center"}>
-                    {t("extDescription")}
+                    {t("extensionDescription")}
                   </Typography>
 
                   <Box sx={styles.footer.box}>
                     {footerItems.map(({ href, label }) => (
-                      <Link href={href} target="_blank" color={"text.secondary"}>
-                        <Typography sx={styles.footer.typography}>
-                          <LinkIcon sx={styles.footer.icon} /> {label}
-                        </Typography>
+                      <Link
+                        sx={styles.footer.item}
+                        href={href}
+                        target="_blank"
+                        color={"text.secondary"}
+                      >
+                        <LinkIcon sx={styles.footer.icon} />
+                        <Typography noWrap>{label}</Typography>
                       </Link>
                     ))}
                   </Box>

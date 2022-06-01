@@ -1,6 +1,6 @@
 import { t, getLinkForPlatform } from "@/common/helpers";
 import { Platform } from "@/common/types/general";
-import { Divider, Link, Menu, MenuItem, Typography } from "@mui/material";
+import { Link, Menu, MenuItem, Typography } from "@mui/material";
 import { FC } from "react";
 import useContextMenu from "@/browser/common/hooks/contextMenu";
 
@@ -10,7 +10,7 @@ interface StreamContextMenuProps {
 }
 
 const styles = {
-  menuItem: {
+  "& .menuItem": {
     py: ".25rem",
     px: ".5rem",
     transition: "background-color .5s ease-out",
@@ -18,7 +18,7 @@ const styles = {
       transition: "background-color .5s ease-out",
     },
   },
-  link: {
+  "& .link": {
     color: "inherit",
     textDecoration: "inherit",
   },
@@ -57,13 +57,14 @@ const StreamContextMenu: FC<StreamContextMenuProps> = ({ id, platform }) => {
       anchorReference="anchorPosition"
       anchorPosition={showMenu !== false ? { top: y, left: x } : undefined}
       MenuListProps={contextMenuProps}
+      sx={styles}
     >
       {contextMenuItems.map(({ path, label }) => {
         const href = getLinkForPlatform(platform, `${id}${path}`);
 
         return (
-          <Link href={href} target="_blank" sx={styles.link}>
-            <MenuItem sx={styles.menuItem}>
+          <Link className="link" href={href} target="_blank">
+            <MenuItem className="menuItem">
               <Typography>{label}</Typography>
             </MenuItem>
           </Link>

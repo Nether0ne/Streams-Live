@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router";
-import tw from "@emotion/styled";
 import MainLayout from "../components/layout/MainLayout";
 import Settings from "../views/Settings";
 import Streams from "../views/Streams";

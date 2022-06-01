@@ -25,6 +25,7 @@ const AddProfile: FC<AddProfileProps> = ({ options }) => {
     setProfileSelectAnchorEl(event.currentTarget);
     setShowProfileSelect(true);
   };
+  const handleClose = () => setShowProfileSelect(false);
 
   return (
     <SettingWrapper id="addProfile" customStyles={styles.wrapper} onClick={handleClick}>
@@ -34,7 +35,7 @@ const AddProfile: FC<AddProfileProps> = ({ options }) => {
 
       <Menu
         open={showProfileSelect}
-        onClose={() => setShowProfileSelect(false)}
+        onClose={handleClose}
         anchorEl={profileSelectAnchorEl}
         anchorOrigin={{
           vertical: "top",
@@ -43,7 +44,7 @@ const AddProfile: FC<AddProfileProps> = ({ options }) => {
       >
         {options.map((option) => (
           <LoginLink key={option} platform={option}>
-            <MenuItem>{t(option)}</MenuItem>
+            <MenuItem onClick={handleClose}>{t(option)}</MenuItem>
           </LoginLink>
         ))}
       </Menu>

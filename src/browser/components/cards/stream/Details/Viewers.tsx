@@ -10,45 +10,32 @@ interface ViewersProps {
 }
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
-  },
-  icon: {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  flexWrap: "wrap",
+  "& svg": {
     fontSize: "1rem",
     ml: "0.25rem",
     mb: "0.1rem",
   },
-  online: { color: "#e64c4c" },
+  "& .online": {
+    color: "#e64c4c",
+  },
 };
 
 const Viewers: FC<ViewersProps> = ({ count, type }) => {
-  if (type == "rerun") {
-    return (
-      <Box sx={styles.wrapper}>
-        <Tooltip title={<Typography>{t("rerun")}</Typography>} placement="left">
-          <Box sx={styles.wrapper}>
-            <Typography variant={"body2"}>
-              {digitWithSpaces(count)}
-              <RestoreIcon sx={styles.icon} />
-            </Typography>
-          </Box>
-        </Tooltip>
-      </Box>
-    );
-  }
+  const rerun = type === "rerun";
 
   return (
-    <Box sx={styles.wrapper}>
-      <Tooltip title={<Typography>{t("live")}</Typography>} placement="left">
-        <Box sx={{ ...styles.wrapper, ...styles.online }}>
-          <Typography variant={"body2"}>{digitWithSpaces(count)}</Typography>
-          <PeopleIcon sx={styles.icon} />
-        </Box>
-      </Tooltip>
-    </Box>
+    <Tooltip title={<Typography>{!rerun ? t("live") : t("rerun")}</Typography>} placement="left">
+      <Box className="viewers" sx={styles}>
+        <Typography className={!rerun ? "online" : ""} variant={"body2"}>
+          {digitWithSpaces(count)}
+        </Typography>
+        {!rerun ? <PeopleIcon className={!rerun ? "online" : ""} /> : <RestoreIcon />}
+      </Box>
+    </Tooltip>
   );
 };
 

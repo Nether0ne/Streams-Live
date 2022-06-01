@@ -12,3 +12,8 @@ export enum LinkType {
   CHAT = "chat",
   VIDEOS = "videos",
 }
+
+export enum NotificationType {
+  STREAM = "stream",
+  AUTH = "auth",
+}

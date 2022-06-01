@@ -5,17 +5,15 @@ import SortDirection from "./Settings/SortDirection";
 import GroupBy from "./Settings/GroupBy";
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignSelf: "center",
-    width: "24rem",
-    m: "0 auto",
-    px: "1rem",
-    py: ".25rem",
-  },
-  right: {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignSelf: "center",
+  width: "24rem",
+  m: "0 auto",
+  px: "1rem",
+  py: ".25rem",
+  "& .right": {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -24,7 +22,7 @@ const styles = {
       minWidth: "5rem",
     },
   },
-  left: {
+  "& .left": {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -36,12 +34,12 @@ const styles = {
 
 const StreamsSettings: FC = () => {
   return (
-    <Box id="streamsSettings" sx={styles.wrapper}>
-      <Box sx={styles.left}>
+    <Box id="streamsSettings" sx={styles}>
+      <Box className="left">
         <GroupBy />
       </Box>
 
-      <Box sx={styles.right}>
+      <Box className="right">
         <SortDirection />
         <SortField />
       </Box>
