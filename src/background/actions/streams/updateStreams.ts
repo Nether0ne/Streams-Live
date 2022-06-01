@@ -77,10 +77,10 @@ const getAllStreams = async (): Promise<[Stream[], string[]]> => {
 };
 
 const newStreamNotification = async (stream: Stream): Promise<void> => {
-  const { user, userLogin, game, title, platform } = stream;
+  const { user, game, title, platform } = stream;
 
   createNotification([NotificationType.STREAM, user, platform], {
-    title: t("streamerOnline", [user ?? userLogin, platform]),
+    title: t("streamerOnline", [user, platform]),
     message: game ?? "",
     contextMessage: title,
     type: "basic",
@@ -89,10 +89,10 @@ const newStreamNotification = async (stream: Stream): Promise<void> => {
 };
 
 const newCategoryNotification = async (oldStream: Stream, newStream: Stream): Promise<void> => {
-  const { user, userLogin, game, title, platform } = newStream;
+  const { user, game, title, platform } = newStream;
   if (oldStream.game !== game) {
     createNotification([NotificationType.STREAM, user, platform], {
-      title: t("streamerNewCategory", user ?? userLogin),
+      title: t("streamerNewCategory", user),
       message: title,
       contextMessage: t("streamerNewCategoryMessage", [oldStream.game, game]),
       type: "basic",

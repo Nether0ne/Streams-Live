@@ -83,14 +83,14 @@ const styles = {
 };
 
 const StreamCard: FC<StreamCardProps> = ({ stream }) => {
-  const { user, userLogin, viewers, title, game, thumbnail, startedAt, type, platform } = stream;
+  const { id, user, viewers, title, game, thumbnail, startedAt, type, platform } = stream;
 
   return (
     <Box sx={styles}>
       <StreamContextMenu id={user} platform={platform} />
       <Link
         id={user}
-        href={getLinkForPlatform(platform, userLogin, LinkType.STREAM)}
+        href={getLinkForPlatform(platform, user ?? id, LinkType.STREAM)}
         target="_blank"
         className="stream"
       >
@@ -102,7 +102,7 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
               className="image"
             />
 
-            <Uptime startedAt={startedAt} className="uptime" />
+            {startedAt && <Uptime startedAt={startedAt} className="uptime" />}
           </Box>
         </Box>
 

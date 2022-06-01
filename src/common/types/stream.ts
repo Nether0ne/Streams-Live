@@ -1,13 +1,13 @@
 import { Platform } from "./general";
 
 export interface Stream {
+  id: string;
   user: string;
-  userLogin: string;
   game: string | null;
   title: string;
   thumbnail: string;
   viewers: number;
-  startedAt: string;
+  startedAt: string | null;
   type: "live" | "rerun" | null;
   platform: Platform;
 }

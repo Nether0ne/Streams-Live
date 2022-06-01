@@ -62,14 +62,21 @@ export async function getStreams(after?: string): Promise<Stream[]> {
   const streams: Stream[] = [];
 
   for (const channel of favoriteChannels) {
-    const { channelkey, broadcast, title, game, preview, status, viewers } = channel;
+    const { streamkey, channelkey, broadcast, title, game, preview, online, viewers } = channel;
 
-    if (status && broadcast && typeof broadcast !== "boolean") {
-      const startedAt = new Date(broadcast.start * 1000).toISOString();
+    if (
+      online !== 0 &&
+      ((broadcast && typeof broadcast !== "boolean") || (!broadcast && viewers > 0))
+    ) {
+      let startedAt = null;
+
+      if (broadcast && typeof broadcast !== "boolean") {
+        startedAt = new Date(broadcast.start * 1000).toISOString();
+      }
 
       streams.push({
+        id: streamkey,
         user: channelkey,
-        userLogin: channelkey,
         game,
         title,
         thumbnail: `https://${preview.substring(2)}`,

@@ -100,8 +100,8 @@ export async function getStreams(after?: string): Promise<Stream[]> {
     }
 
     fetchedStreams.push({
+      id: stream.user_login,
       user: stream.user_name,
-      userLogin: stream.user_login,
       game: stream.game_name,
       title: stream.title,
       thumbnail: stream.thumbnail_url,

@@ -6,6 +6,7 @@ export interface GoodgameProfile {
 }
 
 export interface GoodgameStream {
+  streamkey: string;
   channelkey: string;
   broadcast:
     | null
@@ -18,6 +19,6 @@ export interface GoodgameStream {
   title: string;
   game: string;
   preview: string;
-  status: boolean;
+  online: number;
   viewers: number;
 }
