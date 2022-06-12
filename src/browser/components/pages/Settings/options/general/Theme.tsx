@@ -9,11 +9,9 @@ import { Theme } from "@/common/types/settings";
 import SettingLoading from "../SettingLoading";
 
 const styles = {
-  textWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    gap: ".25rem",
-  },
+  display: "flex",
+  flexDirection: "column",
+  gap: ".25rem",
 };
 
 const ThemeSettings: FC = () => {
@@ -33,7 +31,7 @@ const ThemeSettings: FC = () => {
       {store.isLoading ? (
         <SettingLoading />
       ) : (
-        <Box sx={styles.textWrapper}>
+        <Box sx={styles}>
           <Typography variant="body2">{t("theme")}</Typography>
           <Typography color="text.secondary">{t(`${theme}Theme`)}</Typography>
         </Box>

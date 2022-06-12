@@ -2,48 +2,31 @@ import { FC } from "react";
 import { Box, Skeleton, Switch } from "@mui/material";
 
 const styles = {
-  main: {
-    width: "5rem",
-  },
-  secondary: {
-    width: "2.5rem",
-  },
-  icon: {
-    marginRight: "1rem",
-  },
-  textWrapper: {
+  display: "flex",
+  width: "100%",
+  "& svg": { marginRight: "1rem" },
+  "& .text": {
     display: "flex",
     flexDirection: "column",
     gap: ".25rem",
     width: "100%",
   },
-  switch: {
-    wrapper: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      width: "100%",
-      ".MuiSvgIcon-root": {
-        marginRight: "1rem",
-      },
-    },
-    left: {
-      display: "flex",
-      flexDirection: "row",
-      alignSelf: "left",
-      alignItems: "center",
-      gap: "1rem",
-    },
-    right: {
-      mr: ".5rem",
+  "& .switch": {
+    justifyContent: "space-between",
+    alignItems: "center",
+    ".MuiSvgIcon-root": {
+      marginRight: "1rem",
     },
   },
+  "& .main": { width: "5rem" },
+  "& .secondary": { width: "2.5rem" },
+  "& .right": { mr: ".5rem" },
 };
 
 interface SettingLoadingProps {
-  icon?: JSX.Element;
-  secondaryText?: boolean;
-  withSwitch?: boolean;
+  readonly icon?: JSX.Element;
+  readonly secondaryText?: boolean;
+  readonly withSwitch?: boolean;
 }
 
 const SettingLoading: FC<SettingLoadingProps> = ({
@@ -52,22 +35,22 @@ const SettingLoading: FC<SettingLoadingProps> = ({
   icon,
 }) => {
   return withSwitch ? (
-    <Box sx={styles.switch.wrapper}>
+    <Box sx={styles}>
       {icon}
 
-      <Box sx={styles.textWrapper}>
-        <Skeleton sx={styles.main} />
-        {secondaryText && <Skeleton sx={styles.secondary} />}
+      <Box className="text">
+        <Skeleton className="main" />
+        {secondaryText && <Skeleton className="secondary" />}
       </Box>
 
-      <Skeleton sx={styles.switch.right}>
+      <Skeleton className="right">
         <Switch />
       </Skeleton>
     </Box>
   ) : (
-    <Box sx={styles.textWrapper}>
-      <Skeleton sx={styles.main} />
-      {secondaryText && <Skeleton sx={styles.secondary} />}
+    <Box sx={styles} className="text">
+      <Skeleton className="main" />
+      {secondaryText && <Skeleton className="secondary" />}
     </Box>
   );
 };

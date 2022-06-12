@@ -3,13 +3,14 @@ import { Navigate, Route, Routes } from "react-router";
 import MainLayout from "../components/layout/MainLayout";
 import Settings from "../views/Settings";
 import Streams from "../views/Streams";
-import Snackbar from "../components/Snackbar";
+import Snackbar from "../components/misc/Snackbar";
 import { SnackbarProvider } from "../common/context/Snackbar";
 import { Box } from "@mui/material";
 
 const styles = {
   height: "550px",
   width: "450px",
+  fontFamily: "Helvetica",
 };
 
 const Popup: FC = () => {

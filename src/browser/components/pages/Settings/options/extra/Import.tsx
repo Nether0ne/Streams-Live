@@ -6,11 +6,9 @@ import { Box, Typography } from "@mui/material";
 import { SnackbarContext } from "@/browser/common/context/Snackbar";
 
 const styles = {
-  textWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    gap: ".25rem",
-  },
+  display: "flex",
+  flexDirection: "column",
+  gap: ".25rem",
 };
 
 const ImportSetting: FC = () => {
@@ -45,7 +43,7 @@ const ImportSetting: FC = () => {
   return (
     <SettingWrapper id="import" onClick={handleClick}>
       <UploadIcon />
-      <Box sx={styles.textWrapper}>
+      <Box sx={styles}>
         <Typography variant="body2">{t("importSetting")}</Typography>
         <Typography color="text.secondary">{t(`importSettingDescription`)}</Typography>
       </Box>

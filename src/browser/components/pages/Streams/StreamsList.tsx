@@ -15,10 +15,12 @@ const styles = {
     flexGrow: 1,
     height: 400,
   },
-  loading: {
-    height: 400,
-  },
 };
+
+const loadingStyle = {
+  height: 400,
+};
+
 const StreamsList: FC = () => {
   const { streamGroups, isLoading, settingsIsLoading, streamSettings } =
     useContext(StreamSettingsContext);
@@ -27,7 +29,7 @@ const StreamsList: FC = () => {
   return (
     <Box id="streamsList" sx={styles}>
       {isLoading || settingsIsLoading ? (
-        <Loading sx={styles.loading} />
+        <Loading sx={loadingStyle} />
       ) : Object.keys(streamGroups).length ? (
         Object.keys(streamGroups)
           .map((key) => {

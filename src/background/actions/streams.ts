@@ -2,11 +2,9 @@ import browser from "webextension-polyfill";
 import { stores } from "@/common/store";
 import { Stream } from "@/common/types/stream";
 import { find } from "lodash";
-import { createNotification } from "../misc/createNotification";
-import { getIconPath } from "../misc/getIcon";
+import { createNotification, getIconPath } from "./misc";
 import { t } from "@/common/helpers";
-import { getAllSetProfiles } from "../profiles/getAllSetupProfiles";
-import { getPlatformClient } from "../platform/getPlatformClient";
+import { getPlatformClient, getAllSetPlatforms } from "./platform";
 import { NotificationType } from "@/common/types/general";
 
 export async function updateStreams(forceUpdate: boolean = false) {
@@ -48,11 +46,11 @@ export async function updateStreams(forceUpdate: boolean = false) {
 }
 
 const getAllStreams = async (): Promise<[Stream[], string[]]> => {
-  const setProfiles = await getAllSetProfiles();
+  const setProfiles = await getAllSetPlatforms();
   const queries = [];
 
   for (const profile of setProfiles) {
-    const client = getPlatformClient(profile.platform);
+    const client = getPlatformClient(profile);
 
     if (client && "getStreams" in client) {
       queries.push(client.getStreams());
@@ -93,8 +91,8 @@ const newCategoryNotification = async (oldStream: Stream, newStream: Stream): Pr
   if (oldStream.game !== game) {
     createNotification([NotificationType.STREAM, user, platform], {
       title: t("streamerNewCategory", user),
-      message: title,
-      contextMessage: t("streamerNewCategoryMessage", [oldStream.game, game]),
+      message: t("streamerNewCategoryMessage", [oldStream.game, game]),
+      contextMessage: title,
       type: "basic",
       iconUrl: await getIconPath(128),
     });

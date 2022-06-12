@@ -3,9 +3,9 @@ import { ChangeEvent, FC } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 
 interface SearchProps {
-  textFieldProps?: object;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  search: string;
+  readonly textFieldProps?: object;
+  readonly onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  readonly input: string;
 }
 
 const styles = {
@@ -17,11 +17,11 @@ const styles = {
   icon: { color: "action.active", my: 0.5, fontSize: "1.25rem" },
 };
 
-const Search: FC<SearchProps> = ({ textFieldProps, search, onChange }) => {
+const Search: FC<SearchProps> = ({ textFieldProps, input, onChange }) => {
   return (
     <Box sx={styles.wrapper}>
       <SearchIcon sx={styles.icon} />
-      <TextField {...textFieldProps} value={search} onChange={onChange} />
+      <TextField {...textFieldProps} value={input} onChange={onChange} />
     </Box>
   );
 };

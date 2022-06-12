@@ -2,9 +2,9 @@ import { defaultsDeep } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
 import { defaultSettings, Settings } from "../types/settings";
-import { Streams, Profile } from "../types/profile";
-import { Platform } from "../types/general";
-import { defaultProfileState } from "../helpers";
+import { Platform, PlatformName, PlatformType } from "../types/platform";
+import { defaultPlatformState } from "../helpers";
+import { Streams } from "../types/stream";
 
 export type StoreAreaName = "local" | "managed" | "sync";
 export type StoreMigration = (value: any) => Promise<any>;
@@ -151,8 +151,8 @@ export const stores = {
       },
     ],
   }),
-  twitchProfile: new Store<Profile>("local", "twitchProfile", {
-    defaultValue: defaultProfileState(Platform.TWITCH),
+  twitch: new Store<Platform>("local", "twitchProfile", {
+    defaultValue: defaultPlatformState(PlatformName.TWITCH, PlatformType.AUTH),
     migrations: [
       (value) => {
         const store = new Store("sync", "profiles", {
@@ -163,8 +163,21 @@ export const stores = {
       },
     ],
   }),
-  // youtubeProfile: new Store<Profile>("local", "youtubeProfile", {
-  //   defaultValue: defaultProfileState(Platform.YOUTUBE),
+  goodgame: new Store<Platform>("local", "goodgame", {
+    defaultValue: defaultPlatformState(PlatformName.GOODGAME, PlatformType.NONE),
+    migrations: [
+      (value) => {
+        const store = new Store("sync", "profiles", {
+          defaultValue: value,
+        });
+
+        return store.get();
+      },
+    ],
+  }),
+  // TODO: Add more platforms
+  // trovo: new Store<Platform>("local", "trovo", {
+  //   defaultValue: defaultPlatformState(PlatformName.TROVO, PlatformType.LIST),
   //   migrations: [
   //     (value) => {
   //       const store = new Store("sync", "profiles", {
@@ -175,18 +188,18 @@ export const stores = {
   //     },
   //   ],
   // }),
-  goodgameProfile: new Store<Profile>("local", "goodgameProfile", {
-    defaultValue: defaultProfileState(Platform.GOODGAME),
-    migrations: [
-      (value) => {
-        const store = new Store("sync", "profiles", {
-          defaultValue: value,
-        });
+  // wasd: new Store<Platform>("local", "wasd", {
+  //   defaultValue: defaultPlatformState(PlatformName.WASD, PlatformType.LIST),
+  //   migrations: [
+  //     (value) => {
+  //       const store = new Store("sync", "profiles", {
+  //         defaultValue: value,
+  //       });
 
-        return store.get();
-      },
-    ],
-  }),
+  //       return store.get();
+  //     },
+  //   ],
+  // }),
   streams: new Store<Streams>("local", "streams", {
     defaultValue: {
       data: [],

@@ -2,18 +2,16 @@ import { FC } from "react";
 import { Box, Divider, Typography } from "@mui/material";
 import { t } from "@/common/helpers";
 import GeneralSettings from "../components/pages/Settings/General";
-import ProfilesSettings from "../components/pages/Settings/Profiles";
 import NotificationsSettings from "../components/pages/Settings/Notifications";
 import ExtraSettings from "../components/pages/Settings/Extra";
+import PlatformsSettings from "../components/pages/Settings/Platforms";
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    flexDirection: "column",
-    pt: "1rem",
-    gap: 2,
-  },
-  divider: {
+  display: "flex",
+  flexDirection: "column",
+  pt: "1rem",
+  gap: 2,
+  "& .divider": {
     m: "0 .5rem",
     fontWeight: "bold",
     "&::before, &::after": {
@@ -27,26 +25,26 @@ const styles = {
 
 const Settings: FC = () => {
   return (
-    <Box id="settings" sx={styles.wrapper}>
-      <Divider sx={styles.divider}>
+    <Box id="settings" sx={styles}>
+      <Divider className="divider">
         <Typography>{t("generalSettings")}</Typography>
       </Divider>
 
       <GeneralSettings />
 
-      <Divider sx={styles.divider}>
+      <Divider className="divider">
         <Typography>{t("profileSettings")}</Typography>
       </Divider>
 
-      <ProfilesSettings />
+      <PlatformsSettings />
 
-      <Divider sx={styles.divider}>
+      <Divider className="divider">
         <Typography>{t("notificationsSettings")}</Typography>
       </Divider>
 
       <NotificationsSettings />
 
-      <Divider sx={styles.divider}>
+      <Divider className="divider">
         <Typography>{t("exportAndImportSettings")}</Typography>
       </Divider>
 

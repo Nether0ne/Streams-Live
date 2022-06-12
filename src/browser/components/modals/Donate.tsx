@@ -5,15 +5,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
 
 interface DonateModalProps {
-  open: boolean;
-  hide: () => void;
+  readonly open: boolean;
+  readonly hide: () => void;
 }
 
 const styles = {
-  backdrop: {
-    backdropFilter: "blur(2px)",
-  },
-  wrapper: {
+  zIndex: 2000,
+  backdropFilter: "blur(2px)",
+  "& .wrapper": {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -21,49 +20,46 @@ const styles = {
     height: "100%",
     maxWidth: "20rem",
     m: "0 auto",
-  },
-  background: {
-    backgroundColor: "background.default",
-    borderRadius: 2,
-  },
-  content: {
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
-  },
-  info: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    px: 2,
-    pb: 2,
-    mt: "1rem",
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    m: ".25rem",
-    ml: "1rem",
-  },
-  closeIcon: {
-    fontSize: "1rem",
-  },
-  footer: {
-    box: {
-      display: "flex",
-      flexDirection: "row",
-      gap: 2,
-      mt: "1rem",
+
+    "& .background": {
+      backgroundColor: "background.default",
+      borderRadius: 2,
     },
-    typography: {
+
+    "& .content": {
       display: "flex",
-      alignItems: "center",
-    },
-    icon: {
-      fontSize: "1rem",
-      marginRight: "0.1rem",
+      flexDirection: "column",
+      flexGrow: 1,
+      "& .header": {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        m: ".25rem",
+        ml: "1rem",
+      },
+      "& .info": {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        px: 2,
+        pb: 2,
+        mt: "1rem",
+        "& .footer": {
+          display: "flex",
+          flexDirection: "row",
+          gap: 2,
+          mt: "1rem",
+          "& .text": {
+            display: "flex",
+            alignItems: "center",
+          },
+        },
+      },
+      "& svg": {
+        fontSize: "1rem",
+        marginRight: "0.1rem",
+      },
     },
   },
 };
@@ -80,29 +76,29 @@ const DonateModal: FC<DonateModalProps> = ({ open, hide }) => {
         open={open}
         onClose={hide}
         closeAfterTransition
-        sx={styles.backdrop}
+        sx={styles}
         // TODO: fix backdrop behavior
         // BackdropComponent={Backdrop}
       >
         <Fade in={open}>
-          <Box sx={styles.wrapper}>
-            <Box sx={styles.background}>
-              <Box sx={styles.content}>
-                <Box sx={styles.header}>
+          <Box className="wrapper">
+            <Box className="background">
+              <Box className="content">
+                <Box className="header">
                   <Typography variant="body2">{t("donate")}</Typography>
 
                   <IconButton onClick={hide}>
-                    <CloseIcon sx={styles.closeIcon} />
+                    <CloseIcon />
                   </IconButton>
                 </Box>
-                <Box sx={styles.info}>
+                <Box className="info">
                   <Typography>{t("donateDescription")}</Typography>
 
-                  <Box sx={styles.footer.box}>
+                  <Box className="footer">
                     {links.map(({ href, label }) => (
                       <Link href={href} target="_blank" color={"text.secondary"}>
-                        <Typography sx={styles.footer.typography}>
-                          <LinkIcon sx={styles.footer.icon} /> {label}
+                        <Typography className="text">
+                          <LinkIcon /> {label}
                         </Typography>
                       </Link>
                     ))}

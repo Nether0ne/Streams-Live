@@ -1,4 +1,4 @@
-import { Platform } from "./general";
+import { PlatformName } from "./platform";
 
 export interface Stream {
   id: string;
@@ -9,10 +9,15 @@ export interface Stream {
   viewers: number;
   startedAt: string | null;
   type: "live" | "rerun" | null;
-  platform: Platform;
+  platform: PlatformName;
+}
+
+export interface Streams {
+  data: Stream[];
+  isLoading: boolean;
 }
 
 export interface StreamError {
   message: string;
-  platform: Platform;
+  platform: PlatformName;
 }

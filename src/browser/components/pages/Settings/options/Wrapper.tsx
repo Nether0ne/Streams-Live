@@ -3,25 +3,24 @@ import { CSSProperties } from "@mui/styled-engine";
 import { FC } from "react";
 
 const styles = {
-  default: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "start",
-    alignItems: "center",
-    gap: "1rem",
-    px: 1,
-    py: 2,
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "start",
+  alignItems: "center",
+  gap: "1rem",
+  px: 1,
+  py: 2,
+  transition: "background-color .5s ease-out",
+  "&:hover": {
+    backgroundColor: "background.paper",
     transition: "background-color .5s ease-out",
-    "&:hover": {
-      backgroundColor: "background.paper",
-      transition: "background-color .5s ease-out",
-    },
-    userSelect: "none",
-  } as CSSProperties,
-  clickable: {
-    cursor: "pointer",
-  } as CSSProperties,
-};
+  },
+  userSelect: "none",
+} as CSSProperties;
+
+const clickableStyle = {
+  cursor: "pointer",
+} as CSSProperties;
 
 interface SettingWrapperProps {
   readonly id: string;
@@ -38,11 +37,7 @@ const SettingWrapper: FC<SettingWrapperProps> = ({
   clickable = true,
   onClick,
 }) => {
-  const sx = [
-    { ...styles.default },
-    { ...(clickable ? styles.clickable : undefined) },
-    { ...customStyles },
-  ];
+  const sx = [{ ...styles }, { ...(clickable ? clickableStyle : undefined) }, { ...customStyles }];
 
   return (
     <Box id={id} sx={sx} onClick={onClick}>

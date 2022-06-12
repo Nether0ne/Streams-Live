@@ -1,7 +1,8 @@
 export interface GoodgameProfile {
-  user: {
-    user_id: string;
-    username: string;
+  id: string;
+  streamer: {
+    nickname: string;
+    avatar: string;
   };
 }
 

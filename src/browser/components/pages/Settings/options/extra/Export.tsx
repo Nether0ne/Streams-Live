@@ -6,11 +6,9 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { SnackbarContext } from "@/browser/common/context/Snackbar";
 
 const styles = {
-  textWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    gap: ".25rem",
-  },
+  display: "flex",
+  flexDirection: "column",
+  gap: ".25rem",
 };
 
 const ExportSetting: FC = () => {
@@ -49,7 +47,7 @@ const ExportSetting: FC = () => {
   return (
     <SettingWrapper id="export" onClick={handleClick}>
       <DownloadIcon />
-      <Box sx={styles.textWrapper}>
+      <Box sx={styles}>
         <Typography variant="body2">{t("exportSetting")}</Typography>
         <Typography color="text.secondary">{t(`exportSettingDescription`)}</Typography>
       </Box>

@@ -1,10 +1,10 @@
 import { FC, SyntheticEvent, useContext } from "react";
 import { Alert, IconButton, Snackbar as MuiSnackbar, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { SnackbarContext } from "../common/context/Snackbar";
+import { SnackbarContext } from "../../common/context/Snackbar";
 
 const styles = {
-  icon: {
+  "& svg": {
     fontSize: "1rem",
   },
 };
@@ -31,12 +31,13 @@ const Snackbar: FC = () => {
       autoHideDuration={3000}
       onClose={handleClose}
       message={<Typography>{message}</Typography>}
+      sx={styles}
     >
       <Alert
         severity={variant}
         action={[
           <IconButton size="small" key="close" onClick={handleClose}>
-            <CloseIcon sx={styles.icon} />
+            <CloseIcon />
           </IconButton>,
         ]}
       >

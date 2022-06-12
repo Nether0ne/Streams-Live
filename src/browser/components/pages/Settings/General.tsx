@@ -8,36 +8,15 @@ import LabelIcon from "@mui/icons-material/Label";
 import SwitchSettings from "./options/Switch";
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  optionWrapper: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    px: 1,
-    py: 2,
-    transition: "background-color .5s ease-out",
-    "&:hover": {
-      backgroundColor: "background.paper",
-      transition: "background-color .5s ease-out",
-    },
-  },
-  menuItemWrapper: {
-    justifyContent: "right",
-  },
-  menuItemIcon: {
-    fontSize: ".75rem",
-  },
+  display: "flex",
+  flexDirection: "column",
 };
 
 const GeneralSettings: FC = () => {
   const onBadgeChange = async () => await sendRuntimeMessage("updateBadge");
 
   return (
-    <Box id="general" sx={styles.wrapper}>
+    <Box id="general" sx={styles}>
       <FontSizeSetting />
       <ThemeSettings />
       <SwitchSettings

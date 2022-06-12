@@ -1,22 +1,27 @@
-import browser from "webextension-polyfill";
-import { getLinkForPlatform, t } from "@/common/helpers";
+import { getLinkForPlatform } from "@/common/helpers";
 import { stores } from "@/common/store";
-import { Dictionary, NotificationType, Platform } from "@/common/types/general";
-import { setup } from "./actions/settings/setup";
-import { updateStreams } from "./actions/streams/updateStreams";
-import { createNotification } from "./actions/misc/createNotification";
-import { setupProfile } from "./actions/profiles/setupProfile";
-import { getPlatformClient } from "./actions/platform/getPlatformClient";
-import { getProfile } from "./actions/profiles/getProfile";
-import { updateBadge } from "./actions/misc/updateBadge";
-import { updateProfile } from "./actions/profiles/updateProfile";
-import { backup } from "./actions/settings/backup";
-import { restore } from "./actions/settings/restore";
-import { reset } from "./actions/settings/reset";
-import { getIconPath } from "./actions/misc/getIcon";
+import { Dictionary, NotificationType } from "@/common/types/general";
+import { PlatformName } from "@/common/types/platform";
+import browser from "webextension-polyfill";
+import { updateBadge } from "./actions/misc";
+import {
+  getPlatform,
+  updatePlatform,
+  setupPlatform,
+  updateFollowedStreamers,
+  // TODO: Add more platforms
+  // findStreamer,
+  // search,
+} from "./actions/platform";
+import { setup, backup, restore, reset } from "./actions/settings";
+import { updateStreams } from "./actions/streams";
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
-  updateProfile,
+  // TODO: Add more platforms
+  // findStreamer,
+  // search,
+  updateFollowedStreamers,
+  updatePlatform,
   updateStreams,
   updateBadge,
   backup,
@@ -53,7 +58,7 @@ browser.notifications.onClicked.addListener((notificationId: string) => {
   switch (type) {
     case NotificationType.STREAM: {
       browser.tabs.create({
-        url: getLinkForPlatform(platform as Platform, user),
+        url: getLinkForPlatform(platform as PlatformName, user),
       });
     }
   }
@@ -76,41 +81,22 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     const url = new URL(tab.url);
     const hashParams = new URLSearchParams(url.hash.substring(1));
 
-    let platform = null;
+    let platformName = null;
 
     if (tab.url?.startsWith(process.env.TWITCH_REDIRECT_URI as string)) {
-      platform = Platform.TWITCH;
+      platformName = PlatformName.TWITCH;
     }
     if (tab.url?.startsWith(process.env.GOODGAME_REDIRECT_URI as string)) {
-      platform = Platform.GOODGAME;
+      platformName = PlatformName.GOODGAME;
     }
 
     const accessToken = hashParams.get("access_token");
 
-    if (platform && accessToken) {
-      const profile = await getProfile(platform);
+    if (platformName && accessToken) {
+      const platform = await getPlatform(platformName);
 
-      profile.accessToken = accessToken;
-      await stores[`${platform}Profile`].set(profile);
-
-      const platformClient = getPlatformClient(platform);
-
-      if (platformClient) {
-        const profile = await platformClient.getCurrentUser();
-        const setProfile = await setupProfile(platform, profile);
-
-        if (setProfile) {
-          await createNotification(["profileSet", profile.name!, platform], {
-            title: t("profileSet"),
-            message: t("profileSetMessage", platform),
-            contextMessage: t("profileSetContext", platform),
-            type: "basic",
-            iconUrl: setProfile.avatar !== null ? setProfile.avatar : await getIconPath(128),
-          });
-
-          await updateStreams();
-        }
-      }
+      await setupPlatform(platform, accessToken);
+      await updateStreams();
     } else {
       // TODO: uncomment when redirect uri will be not streaming site
       // await createNotification(`${platform}ProfileSetFailed`, {

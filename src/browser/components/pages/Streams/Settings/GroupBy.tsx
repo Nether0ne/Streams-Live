@@ -4,29 +4,28 @@ import { GroupBy as GroupByEnum } from "@/common/types/settings";
 import { MenuItem, Skeleton, StandardTextFieldProps, TextField } from "@mui/material";
 import { t } from "@/common/helpers";
 
-const styles = {
-  loader: {
-    width: "5rem",
+const loadingStyle = {
+  width: "5rem",
+};
+
+const selectStyle = {
+  ".MuiInputBase-input": {
+    p: 0,
+    pl: 1,
   },
-  select: {
-    ".MuiInputBase-input": {
-      p: 0,
-      pl: 1,
-    },
-    ".MuiSvgIcon-root": {
-      fontSize: "1.25rem",
-    },
-    ".MuiSelect-select:focus": {
-      backgroundColor: "background.default",
-    },
-    // Adjusts select icon to left
-    ".MuiSelect-select": {
-      minWidth: "3rem",
-      paddingLeft: "1.5rem",
-    },
-    "	.MuiSelect-icon": {
-      left: 0,
-    },
+  ".MuiSvgIcon-root": {
+    fontSize: "1.25rem",
+  },
+  ".MuiSelect-select:focus": {
+    backgroundColor: "background.default",
+  },
+  // Adjusts select icon to left
+  ".MuiSelect-select": {
+    minWidth: "3rem",
+    paddingLeft: "1.5rem",
+  },
+  "	.MuiSelect-icon": {
+    left: 0,
   },
 };
 
@@ -36,7 +35,7 @@ const selectProps: StandardTextFieldProps = {
   size: "small",
   color: "secondary",
   InputProps: {
-    sx: { ...styles.select },
+    sx: { ...selectStyle },
     disableUnderline: true,
   },
 };
@@ -53,7 +52,7 @@ const GroupBy: FC = () => {
   };
 
   return settingsIsLoading ? (
-    <Skeleton sx={styles.loader} />
+    <Skeleton sx={loadingStyle} />
   ) : (
     <TextField id="groupBy" {...selectProps} value={groupBy} onChange={changeGroupBy}>
       {groupByOptions.map((option) => (

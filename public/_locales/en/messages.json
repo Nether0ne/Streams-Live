@@ -93,11 +93,20 @@
   "twitch": {
     "message": "Twitch"
   },
-  "youtube": {
-    "message": "YouTube"
-  },
   "goodgame": {
     "message": "GoodGame"
+  },
+  "trovo": {
+    "message": "Trovo"
+  },
+  "wasd": {
+    "message": "WASD.TV"
+  },
+  "refresh": {
+    "message": "Refresh"
+  },
+  "platform": {
+    "message": "platform"
   },
   "profileSettings": {
     "message": "Profiles settings"
@@ -138,6 +147,36 @@
       }
     }
   },
+  "updateFollowingChannels": {
+    "message": "Update following channels"
+  },
+  "platformFollowingCount": {
+    "message": "$count$ streamers added",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdated": {
+    "message": "$platform$ following channels successfully updated! Following $count$ channels",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdateFailed": {
+    "message": "Could not fetch $platform$ following channels. Try again later.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
   "notificationsSettings": {
     "message": "Notifications settings"
   },
@@ -158,8 +197,24 @@
   "enabled": {
     "message": "Enabled"
   },
+  "enable": {
+    "message": "Enable $thing$",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
+  },
   "disabled": {
     "message": "Disabled"
+  },
+  "disable": {
+    "message": "Disable $thing$",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
   },
   "exportAndImportSettings": {
     "message": "Export and import settings"
@@ -228,7 +283,7 @@
     "message": "Platform"
   },
   "refreshStreams": {
-    "message": "Refresh"
+    "message": "Refresh streams"
   },
   "live": {
     "message": "Live"

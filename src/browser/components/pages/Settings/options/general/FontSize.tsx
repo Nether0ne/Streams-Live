@@ -9,16 +9,16 @@ import SettingWrapper from "../Wrapper";
 import SettingLoading from "../SettingLoading";
 
 const styles = {
-  textWrapper: {
+  display: "flex",
+  flexDirection: "column",
+  gap: ".25rem",
+};
+
+const menuItem = {
+  "& .icon": {
     display: "flex",
-    flexDirection: "column",
-    gap: ".25rem",
-  },
-  menuItemWrapper: {
     justifyContent: "right",
-  },
-  menuItemIcon: {
-    fontSize: ".75rem",
+    "& svg": { fontSize: ".75rem" },
   },
 };
 
@@ -52,7 +52,7 @@ const FontSizeSetting: FC = () => {
       {store.isLoading ? (
         <SettingLoading />
       ) : (
-        <Box sx={styles.textWrapper}>
+        <Box sx={styles}>
           <Typography variant="body2">{t("fontSize")}</Typography>
           <Typography color="text.secondary">{t(`${fontSize}fontSize`)}</Typography>
 
@@ -67,14 +67,15 @@ const FontSizeSetting: FC = () => {
           >
             {fontSizeOptions.map((option) => (
               <MenuItem
+                sx={menuItem}
                 selected={option.value === fontSize}
                 onClick={(_e) => handleMenuClick(option.value, "fontSize")}
               >
-                {option.label}
+                <Typography>{option.label}</Typography>
 
                 {option.value === fontSize && (
-                  <ListItemIcon sx={styles.menuItemWrapper}>
-                    <Check sx={styles.menuItemIcon} />
+                  <ListItemIcon className="icon">
+                    <Check />
                   </ListItemIcon>
                 )}
               </MenuItem>

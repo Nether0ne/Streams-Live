@@ -1,15 +1,15 @@
-import { Platform } from "@/common/types/general";
+import { PlatformName } from "@/common/types/platform";
 import { Link } from "@mui/material";
 import { FC } from "react";
 
 interface LoginLinkProps {
-  platform: Platform;
-  children: JSX.Element[] | JSX.Element;
-  style?: object;
+  readonly platformName: PlatformName;
+  readonly children: JSX.Element[] | JSX.Element;
+  readonly style?: object;
 }
 
 const platformToData = {
-  [Platform.TWITCH]: {
+  [PlatformName.TWITCH]: {
     href: "https://id.twitch.tv/oauth2/authorize",
     client: process.env.TWITCH_CLIENT_ID,
     redirect: process.env.TWITCH_REDIRECT_URI,
@@ -17,16 +17,8 @@ const platformToData = {
     response_type: "token",
     optional: undefined,
   },
-  // [Platform.YOUTUBE]: {
-  //   href: "https://accounts.google.com/o/oauth2/v2/auth",
-  //   client: process.env.YOUTUBE_CLIENT_ID,
-  //   redirect: process.env.YOUTUBE_REDIRECT_URI,
-  //   scopes: [
-  //     "https://www.googleapis.com/auth/youtube.readonly",
-  //     "https://www.googleapis.com/auth/userinfo.profile",
-  //   ],
-  // },
-  [Platform.GOODGAME]: {
+  [PlatformName.GOODGAME]: {
+    // TODO: we don't need auth for goodgame
     href: "https://api2.goodgame.ru/oauth/authorize",
     client: process.env.GOODGAME_CLIENT_ID,
     redirect: "", //process.env.GOODGAME_REDIRECT_URI,
@@ -36,10 +28,33 @@ const platformToData = {
       state: process.env.GOODGAME_CLIENT_SECRET,
     },
   },
+  // TODO: Add more platforms
+  // [PlatformName.TROVO]: {
+  //   // TODO: we don't need auth for trovo
+  //   href: "https://api2.goodgame.ru/oauth/authorize",
+  //   client: process.env.GOODGAME_CLIENT_ID,
+  //   redirect: "", //process.env.GOODGAME_REDIRECT_URI,
+  //   scopes: ["user.favorites"],
+  //   response_type: "token",
+  //   optional: {
+  //     state: process.env.GOODGAME_CLIENT_SECRET,
+  //   },
+  // },
+  // [PlatformName.WASD]: {
+  //   // TODO: we don't need auth for wasd
+  //   href: "https://api2.goodgame.ru/oauth/authorize",
+  //   client: process.env.GOODGAME_CLIENT_ID,
+  //   redirect: "", //process.env.GOODGAME_REDIRECT_URI,
+  //   scopes: ["user.favorites"],
+  //   response_type: "token",
+  //   optional: {
+  //     state: process.env.GOODGAME_CLIENT_SECRET,
+  //   },
+  // },
 };
 
-const getLoginLink = (platform: Platform) => {
-  const linkData = platformToData[platform];
+const getLoginLink = (platformName: PlatformName) => {
+  const linkData = platformToData[platformName];
   const url = new URL(linkData.href);
 
   url.searchParams.set("client_id", linkData.client as string);
@@ -63,8 +78,8 @@ const styles = {
   height: "100%",
 };
 
-const LoginLink: FC<LoginLinkProps> = ({ platform, children, style }) => {
-  const href = getLoginLink(platform);
+const LoginLink: FC<LoginLinkProps> = ({ platformName, children, style }) => {
+  const href = getLoginLink(platformName);
   return (
     <Link href={href} target={"_blank"} style={{ ...styles, ...style }}>
       {children}

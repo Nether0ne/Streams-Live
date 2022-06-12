@@ -5,9 +5,10 @@
   "manifest_version": 3,
   "permissions": ["alarms", "background", "notifications", "storage", "unlimitedStorage"],
   "host_permissions": [
-    "https://www.twitch.tv/*",
-    "https://api2.goodgame.ru/oauth/receivecode*",
-    "https://goodgame.ru/"
+    "*://*.twitch.tv/*",
+    "*://*.api2.goodgame.ru/oauth/receivecode*",
+    "*://*.goodgame.ru/",
+    "*://*.wasd.tv/"
   ],
   "default_locale": "ru",
   "action": {

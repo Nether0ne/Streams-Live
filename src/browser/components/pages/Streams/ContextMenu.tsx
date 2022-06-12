@@ -1,12 +1,12 @@
 import { t, getLinkForPlatform } from "@/common/helpers";
-import { Platform } from "@/common/types/general";
 import { Link, Menu, MenuItem, Typography } from "@mui/material";
 import { FC } from "react";
+import { PlatformName } from "@/common/types/platform";
 import useContextMenu from "@/browser/common/hooks/contextMenu";
 
 interface StreamContextMenuProps {
   id: string;
-  platform: Platform;
+  platformName: PlatformName;
 }
 
 const styles = {
@@ -47,7 +47,7 @@ const contextMenuItems = [
   },
 ];
 
-const StreamContextMenu: FC<StreamContextMenuProps> = ({ id, platform }) => {
+const StreamContextMenu: FC<StreamContextMenuProps> = ({ id, platformName }) => {
   const { x, y, showMenu } = useContextMenu(id);
 
   return (
@@ -60,7 +60,7 @@ const StreamContextMenu: FC<StreamContextMenuProps> = ({ id, platform }) => {
       sx={styles}
     >
       {contextMenuItems.map(({ path, label }) => {
-        const href = getLinkForPlatform(platform, `${id}${path}`);
+        const href = getLinkForPlatform(platformName, `${id}${path}`);
 
         return (
           <Link className="link" href={href} target="_blank">

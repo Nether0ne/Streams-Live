@@ -2,14 +2,15 @@ import { objectToUrlParams } from "@/common/helpers";
 import { stores } from "@/common/store";
 import { TwitchProfile } from "@/common/types/api/twitch";
 import { TwitchStream } from "@/common/types/api/twitch";
-import { Platform } from "@/common/types/general";
-import { Profile } from "@/common/types/profile";
+import { PlatformName, UserData } from "@/common/types/platform";
 import { Stream } from "@/common/types/stream";
 import ky from "ky";
 import { find, map } from "lodash-es";
 
+const thumbnailHeight = "54";
+const thumbnailWidth = "96";
+
 const apiClient = ky.extend({
-  timeout: 700,
   prefixUrl: "https://api.twitch.tv/helix/",
   cache: "no-cache",
   headers: {
@@ -18,7 +19,7 @@ const apiClient = ky.extend({
   hooks: {
     beforeRequest: [
       async (request) => {
-        const accessToken = (await stores.twitchProfile.get()).accessToken;
+        const accessToken = (await stores.twitch.get()).accessToken;
 
         // TODO: check if token needs to be refreshed
 
@@ -30,9 +31,9 @@ const apiClient = ky.extend({
     afterResponse: [
       async (input, options, response) => {
         if (response.status === 401) {
-          const twitch = await stores.twitchProfile.get();
+          const twitch = await stores.twitch.get();
           twitch.accessToken = undefined;
-          await stores.twitchProfile.set(twitch);
+          await stores.twitch.set(twitch);
         }
 
         return response;
@@ -41,7 +42,7 @@ const apiClient = ky.extend({
   },
 });
 
-export async function getCurrentUser(): Promise<Partial<Profile>> {
+export async function getCurrentUser(): Promise<UserData> {
   const twitchProfile = (await apiClient("users").json<{ data: TwitchProfile[] }>()).data[0];
   const { id, display_name, profile_image_url } = twitchProfile;
 
@@ -49,14 +50,19 @@ export async function getCurrentUser(): Promise<Partial<Profile>> {
     id,
     name: display_name,
     avatar: profile_image_url,
-    platform: Platform.TWITCH,
   };
 
   return profile;
 }
 
 export async function getStreams(after?: string): Promise<Stream[]> {
-  const userId = (await stores.twitchProfile.get()).id;
+  const settings = await stores.twitch.get();
+
+  if (!(settings.data && settings.data.id)) {
+    return [];
+  }
+
+  const userId = settings.data.id;
   if (!userId) {
     return [];
   }
@@ -104,11 +110,13 @@ export async function getStreams(after?: string): Promise<Stream[]> {
       user: stream.user_name,
       game: stream.game_name,
       title: stream.title,
-      thumbnail: stream.thumbnail_url,
+      thumbnail: stream.thumbnail_url
+        .replace("{width}", thumbnailWidth)
+        .replace("{height}", thumbnailHeight),
       viewers: stream.viewer_count,
       startedAt: stream.started_at,
       type: stream.type,
-      platform: Platform.TWITCH,
+      platform: PlatformName.TWITCH,
     });
   }
 

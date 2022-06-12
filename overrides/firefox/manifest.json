@@ -9,9 +9,10 @@
     "notifications",
     "storage",
     "unlimitedStorage",
-    "https://www.twitch.tv/*",
-    "https://api2.goodgame.ru/oauth/receivecode*",
-    "https://goodgame.ru/*"
+    "*://*.twitch.tv/*",
+    "*://*.api2.goodgame.ru/oauth/receivecode*",
+    "*://*.goodgame.ru/",
+    "*://*.wasd.tv/"
   ],
   "background": {
     "scripts": ["background.js"]

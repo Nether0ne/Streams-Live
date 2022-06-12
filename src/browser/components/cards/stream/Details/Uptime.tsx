@@ -4,9 +4,9 @@ import { FC, useMemo } from "react";
 import useNow from "../../../../common/hooks/now";
 
 interface UptimeProps {
-  startedAt: string;
-  styles?: SxProps;
-  className?: string;
+  readonly startedAt: string;
+  readonly styles?: SxProps;
+  readonly className?: string;
 }
 
 const Uptime: FC<UptimeProps> = ({ startedAt, styles = {}, className = "" }) => {

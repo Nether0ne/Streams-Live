@@ -5,22 +5,20 @@ import SwitchSettings from "./options/Switch";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SwitchLeftIcon from "@mui/icons-material/SwitchLeft";
 import useSettings from "@/browser/common/hooks/settings";
-import { useAllSetProfiles } from "@/browser/common/hooks/profile";
-import PlatformIcon from "../../PlatformIcon";
+import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
+import PlatformIcon from "../../misc/PlatformIcon";
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    flexDirection: "column",
-  },
+  display: "flex",
+  flexDirection: "column",
 };
 
 const NotificationsSettings: FC = () => {
   const [{ notifications }] = useSettings();
-  const setProfiles = useAllSetProfiles();
+  const setPlatforms = useAllSetPlatforms();
 
   return (
-    <Box id="notifications" sx={styles.wrapper}>
+    <Box id="notifications" sx={styles}>
       <SwitchSettings
         {...{
           id: "notificationsEnabled",
@@ -41,14 +39,14 @@ const NotificationsSettings: FC = () => {
             setting: "notifications.category",
           }}
         />
-        {setProfiles.map(({ profile }) => (
+        {setPlatforms.map(({ platform }) => (
           <SwitchSettings
             {...{
-              id: `notifications${profile.platform}`,
-              label: t("notificationsPlatform", t(profile.platform)),
-              icon: <PlatformIcon platform={profile.platform} />,
+              id: `notifications${platform.name}`,
+              label: t("notificationsPlatform", t(platform.name)),
+              icon: <PlatformIcon platformName={platform.name} />,
               secondaryText: true,
-              setting: `notifications.${profile.platform}`,
+              setting: `notifications.${platform.name}`,
             }}
           />
         ))}

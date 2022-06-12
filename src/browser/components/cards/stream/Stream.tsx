@@ -1,20 +1,20 @@
 import { Stream } from "@/common/types/stream";
 import { Box, Link, Tooltip, Typography } from "@mui/material";
 import { FC } from "react";
-import Uptime from "./Details/Uptime";
-import Image from "../../Image";
-import Viewers from "./Details/Viewers";
+import Uptime from "./details/Uptime";
+import Image from "../../misc/Image";
+import Viewers from "./details/Viewers";
 import StreamContextMenu from "../../pages/Streams/ContextMenu";
-import PlatformIcon from "../../PlatformIcon";
+import PlatformIcon from "../../misc/PlatformIcon";
 import { getLinkForPlatform } from "@/common/helpers";
 import { LinkType } from "@/common/types/general";
 
 interface StreamCardProps {
-  stream: Stream;
+  readonly stream: Stream;
 }
 
 const styles = {
-  ".stream": {
+  "& .stream": {
     color: "inherit",
     textDecoration: "inherit",
     display: "flex",
@@ -26,21 +26,21 @@ const styles = {
       backgroundColor: "background.paper",
       transition: "background-color .5s ease-out",
     },
-  },
-  ".stream .thumbnail": {
-    display: "flex",
-    mr: "1rem",
-    alignSelf: "center",
-    "& .thumbnailWrapper": {
-      position: "relative",
-      overflow: "hidden",
-      borderRadius: ".25rem",
-      width: "6rem",
-      height: "3.35rem",
-    },
-    "& .image": {
-      position: "absolute",
-      backgroundColor: "background.paper",
+    "& .thumbnail": {
+      display: "flex",
+      mr: "1rem",
+      alignSelf: "center",
+      "& .thumbnailWrapper": {
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: ".25rem",
+        width: "6rem",
+        height: "3.35rem",
+      },
+      "& .image": {
+        position: "absolute",
+        backgroundColor: "background.paper",
+      },
     },
     "& .uptime": {
       color: "#D2D3D3",
@@ -52,27 +52,27 @@ const styles = {
       paddingLeft: ".25rem",
       paddingRight: ".25rem",
     },
-  },
-  ".stream .info": {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    overflow: "hidden",
-    width: "100%",
-    "& .mainWrapper": {
+    "& .info": {
       display: "flex",
-      justifyContent: "space-between",
-      "& .main": {
+      flexDirection: "column",
+      justifyContent: "center",
+      overflow: "hidden",
+      width: "100%",
+      "& .mainWrapper": {
         display: "flex",
-        alignItems: "center",
-        flexDirection: "row",
-        "& svg": {
-          mr: ".5rem",
-          fontSize: "1rem",
-        },
-        "& .name": {
-          fontWeight: 600,
-          maxWidth: "14rem",
+        justifyContent: "space-between",
+        "& .main": {
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "row",
+          "& svg": {
+            mr: ".5rem",
+            fontSize: "1rem",
+          },
+          "& .name": {
+            fontWeight: 600,
+            maxWidth: "14rem",
+          },
         },
       },
     },
@@ -87,7 +87,7 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
 
   return (
     <Box sx={styles}>
-      <StreamContextMenu id={user} platform={platform} />
+      <StreamContextMenu id={user} platformName={platform} />
       <Link
         id={user}
         href={getLinkForPlatform(platform, user ?? id, LinkType.STREAM)}
@@ -96,11 +96,7 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
       >
         <Box className="thumbnail">
           <Box className="thumbnailWrapper">
-            <Image
-              src={thumbnail.replace("{width}", "96").replace("{height}", "54")}
-              alt={user}
-              className="image"
-            />
+            <Image src={thumbnail} alt={user} className="image" />
 
             {startedAt && <Uptime startedAt={startedAt} className="uptime" />}
           </Box>
@@ -109,7 +105,7 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
         <Box className="info">
           <Box className="mainWrapper">
             <Box className="main">
-              <PlatformIcon platform={platform} />
+              <PlatformIcon platformName={platform} />
 
               <Typography noWrap variant={"body2"}>
                 {user}

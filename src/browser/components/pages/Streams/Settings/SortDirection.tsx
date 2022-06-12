@@ -4,16 +4,21 @@ import SortIcon from "@mui/icons-material/Sort";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 import { SortDirection as SortDirectionEnum } from "@/common/types/settings";
 
-const styles = {
-  loading: { width: "0.75rem" },
-  iconButton: {
-    padding: ".25rem",
-  },
-  icon: {
+const loadingStyle = {
+  width: "0.75rem",
+};
+
+const buttonStyle = {
+  padding: ".25rem",
+  "& svg": {
     fontSize: "1rem",
+  },
+  "& .desc": {
     transform: "scale(-1, 1)",
   },
-  iconAsc: { transform: "scale(-1, -1)" },
+  "& .asc": {
+    transform: "scale(-1, -1)",
+  },
 };
 
 const SortDirection: FC = () => {
@@ -28,15 +33,10 @@ const SortDirection: FC = () => {
     });
 
   return settingsIsLoading ? (
-    <Skeleton variant="circular" sx={styles.loading} />
+    <Skeleton variant="circular" sx={loadingStyle} />
   ) : (
-    <IconButton id="sortDirection" sx={styles.iconButton} onClick={changeSortDirection}>
-      <SortIcon
-        sx={{
-          ...styles.icon,
-          ...(sortDirection == SortDirectionEnum.ASC ? styles.iconAsc : undefined),
-        }}
-      />
+    <IconButton id="sortDirection" sx={buttonStyle} onClick={changeSortDirection}>
+      <SortIcon className={sortDirection === SortDirectionEnum.ASC ? "asc" : "desc"} />
     </IconButton>
   );
 };

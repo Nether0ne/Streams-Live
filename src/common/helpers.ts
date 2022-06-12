@@ -1,7 +1,7 @@
 import { castArray } from "lodash-es";
 import browser from "webextension-polyfill";
-import { Dictionary, LinkType, Platform } from "./types/general";
-import { Profile } from "./types/profile";
+import { Dictionary, LinkType } from "./types/general";
+import { Platform, PlatformName, PlatformType } from "./types/platform";
 
 export const t = browser.i18n.getMessage;
 
@@ -9,25 +9,29 @@ export function sendRuntimeMessage<T extends unknown[], V>(type: string, ...args
   return browser.runtime.sendMessage({ type, args });
 }
 
-export function defaultProfileState(platform: Platform): Profile {
+export function defaultPlatformState(name: PlatformName, type: PlatformType): Platform {
   return {
-    id: undefined,
-    accessToken: undefined,
-    name: undefined,
-    platform,
-    avatar: undefined,
+    name,
+    enabled: false,
+    type,
+    data: type === PlatformType.AUTH ? { id: null, name: null, avatar: null } : null,
+    followedStreamers: [],
   };
 }
 
-export function getLinkForPlatform(platform: Platform, route?: string, type?: LinkType): string {
+export function getLinkForPlatform(
+  platform: PlatformName,
+  route?: string,
+  type?: LinkType
+): string {
   switch (platform) {
-    case Platform.TWITCH:
+    case PlatformName.TWITCH:
       return `https://www.twitch.tv/${route}`;
-    // case "youtube":
-    //   return `https://www.youtube.com/${route}`;
-    case Platform.GOODGAME:
-      const subRoute = type === LinkType.STREAM ? "channel/" : "";
-      return `https://goodgame.ru/${subRoute}${route}`;
+    case PlatformName.GOODGAME:
+      return `https://goodgame.ru/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
+    // TODO: Add more platforms
+    // case PlatformName.WASD:
+    //   return `https://wasd.tv/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
     default:
       throw new RangeError();
   }

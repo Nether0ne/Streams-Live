@@ -4,7 +4,6 @@ import { FC } from "react";
 
 interface Props {
   sx?: CSSProperties | undefined;
-  className?: string;
 }
 
 const styles = {
@@ -15,7 +14,7 @@ const styles = {
   height: "100%",
 };
 
-const Loading: FC<Props> = ({ sx, className }) => {
+const Loading: FC<Props> = ({ sx }) => {
   return (
     <Box className="loading" sx={{ ...styles, ...sx }}>
       <CircularProgress color="primary" />

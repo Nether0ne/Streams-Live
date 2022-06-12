@@ -1,11 +1,9 @@
 import { stores } from "@/common/store";
 import { GoodgameProfile, GoodgameStream } from "@/common/types/api/goodgame";
-import { Platform } from "@/common/types/general";
-import { Profile } from "@/common/types/profile";
+import { FollowedStreamer, PlatformName } from "@/common/types/platform";
 import { Stream } from "@/common/types/stream";
 import ky from "ky";
 
-const mainApi = "https://api2.goodgame.ru/";
 const favoritesApi = "https://goodgame.ru/api/4/favorites/";
 
 const apiClient = ky.extend({
@@ -18,23 +16,16 @@ const apiClient = ky.extend({
   hooks: {
     beforeRequest: [
       async (request) => {
-        const accessToken = (await stores.goodgameProfile.get()).accessToken;
-
-        // TODO: check if token needs to be refreshed
-
-        if (!accessToken) return;
-
-        request.headers.set("Authorization", `Bearer ${accessToken}`);
         request.headers.set("Content-Type", "application/x-www-form-urlencoded");
       },
     ],
     afterResponse: [
       async (input, options, response) => {
-        // if (response.status === 401) {
-        //   const goodgame = await stores.goodgameProfile.get();
-        //   goodgame.accessToken = undefined;
-        //   await stores.goodgameProfile.set(goodgame);
-        // }
+        if (response.status === 401) {
+          const goodgame = await stores.goodgame.get();
+          goodgame.accessToken = undefined;
+          await stores.goodgame.set(goodgame);
+        }
 
         return response;
       },
@@ -42,22 +33,25 @@ const apiClient = ky.extend({
   },
 });
 
-export async function getCurrentUser(): Promise<Partial<Profile>> {
-  const info = await apiClient(`${mainApi}info`).json<GoodgameProfile>();
+export async function getFollowedStreamers(): Promise<FollowedStreamer[]> {
+  const favoriteChannels = await apiClient(favoritesApi).json<GoodgameProfile[]>();
+  const streamers = [];
 
-  const { user } = info;
-  const { user_id, username } = user;
+  for (const channel of favoriteChannels) {
+    const { id, streamer } = channel;
+    const { nickname, avatar } = streamer;
 
-  const profile = {
-    id: user_id,
-    name: username,
-    platform: Platform.GOODGAME,
-  };
+    streamers.push({
+      id: id,
+      name: nickname,
+      avatar: `https://goodgame.ru/${avatar.replace("\\", "")}`,
+    });
+  }
 
-  return profile;
+  return streamers;
 }
 
-export async function getStreams(after?: string): Promise<Stream[]> {
+export async function getStreams(): Promise<Stream[]> {
   const favoriteChannels = await apiClient(favoritesApi).json<GoodgameStream[]>();
   const streams: Stream[] = [];
 
@@ -83,7 +77,7 @@ export async function getStreams(after?: string): Promise<Stream[]> {
         viewers,
         startedAt,
         type: "live",
-        platform: Platform.GOODGAME,
+        platform: PlatformName.GOODGAME,
       });
     }
   }

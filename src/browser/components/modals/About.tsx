@@ -6,66 +6,63 @@ import LinkIcon from "@mui/icons-material/Link";
 import StreamsLive from "../icons/StreamsLive";
 
 interface AboutModalProps {
-  open: boolean;
-  hide: () => void;
+  readonly open: boolean;
+  readonly hide: () => void;
 }
 
 const styles = {
-  backdrop: {
-    backdropFilter: "blur(2px)",
-  },
-  wrapper: {
+  zIndex: 2000,
+  backdropFilter: "blur(2px)",
+  "& .wrapper": {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexGrow: 1,
     height: "100%",
-  },
-  background: {
-    backgroundColor: "background.default",
-    borderRadius: 2,
-  },
-  content: {
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
-    width: "18rem",
-    m: "0 auto",
-  },
-  info: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    px: 2,
-    pb: 2,
-  },
-  header: {
-    textAlign: "right",
-    m: ".25rem",
-  },
-  closeIcon: {
-    fontSize: "1rem",
-  },
-  defaultLink: {
-    textDecoration: "none",
-    color: "inherit",
-  },
-  footer: {
-    box: {
+    "& .background": {
+      backgroundColor: "background.default",
+      borderRadius: 2,
+    },
+    "& .content": {
       display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      gap: 1,
-    },
-    item: {
-      display: "inline-flex",
-      alignItems: "center",
-    },
-    icon: {
-      fontSize: "1rem",
-      marginRight: "0.1rem",
+      flexDirection: "column",
+      flexGrow: 1,
+      width: "18rem",
+      m: "0 auto",
+      "& .info": {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        px: 2,
+        pb: 2,
+      },
+      "& .header": {
+        textAlign: "right",
+        m: ".25rem",
+        "& svg": {
+          fontSize: "1rem",
+        },
+      },
+      "& .footer": {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        gap: 1,
+        "& .item": {
+          display: "inline-flex",
+          alignItems: "center",
+        },
+        "& svg": {
+          fontSize: "1rem",
+          marginRight: "0.1rem",
+        },
+      },
+      "& .link": {
+        textDecoration: "none",
+        color: "inherit",
+      },
     },
   },
 };
@@ -86,25 +83,25 @@ const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
         open={open}
         onClose={hide}
         closeAfterTransition
-        sx={styles.backdrop}
+        sx={styles}
         // TODO: fix backdrop behavior
         // BackdropComponent={Backdrop}
       >
         <Fade in={open}>
-          <Box sx={styles.wrapper}>
-            <Box sx={styles.background}>
-              <Box sx={styles.content}>
-                <Box sx={styles.header}>
+          <Box className="wrapper">
+            <Box className="background">
+              <Box className="content">
+                <Box className="header">
                   <IconButton onClick={hide}>
-                    <CloseIcon sx={styles.closeIcon} />
+                    <CloseIcon />
                   </IconButton>
                 </Box>
-                <Box sx={styles.info}>
+                <Box className="info">
                   <StreamsLive sx={{ fontSize: 76 }} />
 
                   <Typography variant="body2">{t("extName")}</Typography>
                   <Typography variant="body2">
-                    <Link sx={styles.defaultLink} href={authorGithub} color={"text.secondary"}>
+                    <Link className="link" href={authorGithub} color={"text.secondary"}>
                       {t("extAuthor")}
                     </Link>
                   </Typography>
@@ -112,15 +109,10 @@ const AboutModal: FC<AboutModalProps> = ({ open, hide }) => {
                     {t("extensionDescription")}
                   </Typography>
 
-                  <Box sx={styles.footer.box}>
+                  <Box className="footer">
                     {footerItems.map(({ href, label }) => (
-                      <Link
-                        sx={styles.footer.item}
-                        href={href}
-                        target="_blank"
-                        color={"text.secondary"}
-                      >
-                        <LinkIcon sx={styles.footer.icon} />
+                      <Link className="item" href={href} target="_blank" color={"text.secondary"}>
+                        <LinkIcon />
                         <Typography noWrap>{label}</Typography>
                       </Link>
                     ))}

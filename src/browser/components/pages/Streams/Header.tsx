@@ -1,21 +1,21 @@
 import { sendRuntimeMessage } from "@/common/helpers";
 import { Box, Tooltip, Typography } from "@mui/material";
 import { FC, ChangeEvent, useContext } from "react";
-import Search from "../../Search";
-import UpdateButton from "../../UpdateButton";
+import Search from "../../misc/Search";
+import UpdateButton from "../../misc/UpdateButton";
 import { t } from "@/common/helpers";
 import StreamsSettings from "./Settings";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 
 const styles = {
+  zIndex: 1,
   width: "100%",
   position: "sticky",
   alignSelf: "center",
   top: 0,
-  zIndex: 1,
   paddingTop: ".5rem",
   bgcolor: "background.default",
-  "& .content": {
+  "& .search": {
     width: "24rem",
     display: "flex",
     alignSelf: "center",
@@ -55,14 +55,14 @@ const StreamsHeader: FC = () => {
 
   return (
     <Box id="streamsHeader" sx={styles}>
-      <Box className="content">
-        <Search search={search} onChange={handleSearchChange} textFieldProps={searchFieldProps} />
+      <Box className="search">
+        <Search input={search} onChange={handleSearchChange} textFieldProps={searchFieldProps} />
 
-        <Tooltip title={<Typography>{t("refreshStreams")}</Typography>} placement="left">
-          <Box>
-            <UpdateButton className="refreshButton" onClick={handleUpdateClick} />
-          </Box>
-        </Tooltip>
+        <UpdateButton
+          className="refreshButton"
+          onClick={handleUpdateClick}
+          tooltip={t("refreshStreams")}
+        />
       </Box>
       <StreamsSettings />
     </Box>

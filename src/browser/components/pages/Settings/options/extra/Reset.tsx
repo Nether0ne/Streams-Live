@@ -6,11 +6,9 @@ import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import FactoryResetModal from "@/browser/components/modals/FactoryReset";
 
 const styles = {
-  textWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    gap: ".25rem",
-  },
+  display: "flex",
+  flexDirection: "column",
+  gap: ".25rem",
 };
 
 const ResetSetting: FC = () => {
@@ -22,7 +20,7 @@ const ResetSetting: FC = () => {
   return (
     <SettingWrapper id="reset" onClick={openDialog}>
       <ReportProblemIcon />
-      <Box sx={styles.textWrapper}>
+      <Box sx={styles}>
         <Typography variant="body2">{t("resetSetting")}</Typography>
         <Typography color="text.secondary">{t(`resetSettingDescription`)}</Typography>
       </Box>

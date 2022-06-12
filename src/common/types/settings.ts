@@ -37,7 +37,8 @@ export interface NotificationSettings {
   enabled: boolean;
   category: boolean;
   twitch: boolean;
-  youtube: boolean;
+  trovo: boolean;
+  wasd: boolean;
   goodgame: boolean;
 }
 
@@ -63,7 +64,8 @@ export const defaultSettings: Settings = {
     enabled: true,
     category: false,
     twitch: true,
-    youtube: true,
+    trovo: true,
+    wasd: true,
     goodgame: true,
   },
   stream: {

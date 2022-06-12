@@ -7,29 +7,27 @@ import SettingWrapper from "./Wrapper";
 import SettingLoading from "./SettingLoading";
 
 const styles = {
-  wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  } as CSSProperties,
-  left: {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  "& .left": {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     gap: "1rem",
     width: "100%",
+    "& .content": {
+      display: "flex",
+      justifyContent: "space-between",
+      width: "100%",
+      "& .text": {
+        display: "flex",
+        flexDirection: "column",
+        gap: ".25rem",
+      },
+    },
   },
-  contentWrapper: {
-    display: "flex",
-    justifyContent: "space-between",
-    width: "100%",
-  },
-  textWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    gap: ".25rem",
-  },
-};
+} as CSSProperties;
 
 interface SwitchProps {
   readonly id: string;
@@ -62,14 +60,14 @@ const SwitchSettings: FC<SwitchProps> = ({
   };
 
   return (
-    <SettingWrapper id={id} customStyles={styles.wrapper} onClick={handleThemeDivClick}>
+    <SettingWrapper id={id} customStyles={styles} onClick={handleThemeDivClick}>
       {store.isLoading ? (
         <SettingLoading withSwitch {...{ secondaryText, icon }} />
       ) : (
-        <Box sx={styles.left}>
+        <Box className="left">
           {icon}
-          <Box sx={styles.contentWrapper}>
-            <Box sx={styles.textWrapper}>
+          <Box className="content">
+            <Box className="text">
               <Typography variant="body2">{label}</Typography>
               {secondaryText && (
                 <Typography color="text.secondary">{t(state ? "enabled" : "disabled")}</Typography>
