@@ -3,10 +3,10 @@
     "message": "Streams Live"
   },
   "extensionDescription": {
-    "message": "Відстежує ваших улюблених стримерів з різних платформ!"
+    "message": "Відстежує улюблених стримерів з різних платформ!"
   },
   "extAuthor": {
-    "message": "Автор nether"
+    "message": "Створив nether"
   },
   "repository": {
     "message": "GitHub"
@@ -18,7 +18,7 @@
     "message": "Баги та пропозиції"
   },
   "actionSuccess": {
-    "message": "$action$ успішно виконано!",
+    "message": "$action$ успішно виконано",
     "placeholders": {
       "action": {
         "content": "$1"
@@ -26,7 +26,7 @@
     }
   },
   "actionFailed": {
-    "message": "$action$ не було виконано",
+    "message": "$action$ не виконано",
     "placeholders": {
       "action": {
         "content": "$1"
@@ -34,7 +34,7 @@
     }
   },
   "invalidFile": {
-    "message": "Вказаний файл не являється допустимим файлом для завантаження!"
+    "message": "Вказаний файл не підходить для використання"
   },
   "streams": {
     "message": "Канали онлайн"
@@ -52,13 +52,13 @@
     "message": "Підтримка"
   },
   "donateDescription": {
-    "message": "Streams Live - застосунок з відкритим вихідним кодом. Якщо він вам подобається - підтримайте автора, щоб проект продовжував жити."
+    "message": "Streams Live - це безкоштовний додаток з відкритим кодом. Якщо він вам сподобався - будь ласка, пожертвуйте на подяку для подальшого розвитку застосунку!"
   },
   "coinbase": {
     "message": "Coinbase"
   },
   "generalSettings": {
-    "message": "Головні налаштування"
+    "message": "Основні налаштування"
   },
   "fontSize": {
     "message": "Розмір шрифту"
@@ -70,7 +70,7 @@
     "message": "Маленький"
   },
   "mediumFontSize": {
-    "message": "Нормальний"
+    "message": "Середній"
   },
   "largeFontSize": {
     "message": "Великий"
@@ -88,13 +88,28 @@
     "message": "Темна"
   },
   "badge": {
-    "message": "Відображати значок на іконці в браузері"
+    "message": "Відображати значок з кількістю активних каналів"
   },
   "twitch": {
     "message": "Twitch"
   },
   "goodgame": {
     "message": "GoodGame"
+  },
+  "goodgameHint": {
+    "message": "Ви будете отримувати інформацію та повідомлення о трансляціях якщо залогінені на Goodgame.ru"
+  },
+  "trovo": {
+    "message": "Trovo"
+  },
+  "wasd": {
+    "message": "WASD.TV"
+  },
+  "refresh": {
+    "message": "Оновити"
+  },
+  "platform": {
+    "message": "платформа"
   },
   "profileSettings": {
     "message": "Налаштування профілей"
@@ -128,7 +143,45 @@
     }
   },
   "platformProfileUpdateFailed": {
-    "message": "Помилка при оновленні профіля $platform$. Спробуйте пізніше.",
+    "message": "Не вдалося оновити профіль $platform$. Будь ласка, спробуйте пізніше.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "updateFollowingChannels": {
+    "message": "Оновити зафоловлені канали"
+  },
+  "platformFollowingCount": {
+    "message": "$count$ стримерів додано",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingCountEmpty": {
+    "message": "Жодного стримеру не було додано з $platform$",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdated": {
+    "message": "Відстежуваємі канали з $platform$ успішно оновлені! Відстежується $count$ каналів",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdateFailed": {
+    "message": "Не вдалося оновити відстежуваємі каналі з $platform$. Будь ласка, спробуйте пізніше.",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -139,10 +192,10 @@
     "message": "Налаштування повідомлень"
   },
   "notificationsEnabled": {
-    "message": "Увімкнути повідомлення"
+    "message": "Включити повідомлення"
   },
   "notificationsCategory": {
-    "message": "Увімкнути повідомлення о зміні категорії"
+    "message": "Включити повідомлення про зміну категорії"
   },
   "notificationsPlatform": {
     "message": "$platform$ повідомлення",
@@ -153,37 +206,53 @@
     }
   },
   "enabled": {
-    "message": "Увімкнено"
+    "message": "Включено"
+  },
+  "enable": {
+    "message": "$thing$ тепер включено",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
   },
   "disabled": {
     "message": "Вимкнено"
   },
+  "disable": {
+    "message": "$thing$ тепер вимкнено",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
+  },
   "exportAndImportSettings": {
-    "message": "Експорт та імпорт налаштувань"
+    "message": "Імпорт та експорт налаштувань"
   },
   "exportSetting": {
     "message": "Експорт налаштувань"
   },
   "exportSettingDescription": {
-    "message": "Експортуйте свої налаштування у файл"
+    "message": "Експортуйте ваші налаштування у файл"
   },
   "importSetting": {
     "message": "Імпорт налаштувань"
   },
   "importSettingDescription": {
-    "message": "Застосуйте ваші експортовані налаштування тут"
+    "message": "Застосуйте ваш експортований файл тут"
   },
   "resetSetting": {
     "message": "Скинути налаштування застосунку"
   },
   "resetSettingDescription": {
-    "message": "Скидує налаштування до заводських, виходить із авторизованих профілей"
+    "message": "Скидує усі налаштування до налаштувань за замовчанням та відчищає акаунти"
   },
   "resetWarning": {
     "message": "Ваші налаштування ось-ось будуть скинуті"
   },
   "resetWarningDescription": {
-    "message": "Ця дія скинє налаштування до заводських. Продовжити?"
+    "message": "Ця дія скинє ваші налаштування до налаштувань за замовчанням. Ви впевнені що бажаєте продовжити?"
   },
   "resetAbort": {
     "message": "Залишити налаштування"
@@ -192,16 +261,16 @@
     "message": "Скинути налаштування"
   },
   "noStreams": {
-    "message": "Немає стримерів онлайн"
+    "message": "Немає каналів онлайн"
   },
   "noFilteredStreams": {
-    "message": "Немає стримерів підходящих до критеріїв пошуку"
+    "message": "Канали з даним пошуковим запитом не знайдені"
   },
   "noProfilesSet": {
-    "message": "Здається ви ще не додали жодного профілю"
+    "message": "Схоже що ви ще не налаштували жодного профілю"
   },
   "goToProfilesSettings": {
-    "message": "Додати профіль"
+    "message": "Налаштувати профіль"
   },
   "search": {
     "message": "Пошук"
@@ -216,16 +285,16 @@
     "message": "Ім'я"
   },
   "noneGroupBy": {
-    "message": "Відсутнє"
+    "message": "Немає"
   },
   "gameGroupBy": {
-    "message": "По категорії"
+    "message": "Категорія"
   },
   "platformGroupBy": {
-    "message": "По платформі"
+    "message": "Платформа"
   },
   "refreshStreams": {
-    "message": "Оновити"
+    "message": "Оновити стрими"
   },
   "live": {
     "message": "Онлайн"
@@ -243,10 +312,10 @@
     "message": "Відкрити тільки чат"
   },
   "openVideos": {
-    "message": "Відкрити сторінку видео"
+    "message": "Відкрити сторінку відео"
   },
   "streamerOnline": {
-    "message": "$streamer$ онлайн на $platform$!",
+    "message": "$streamer$ почав трансляцію на $platform$!",
     "placeholders": {
       "streamer": {
         "content": "$1"
@@ -276,10 +345,10 @@
     }
   },
   "profileSet": {
-    "message": "Профіль добавлено"
+    "message": "Профіль налаштован"
   },
   "profileSetMessage": {
-    "message": "Ваш $platform$ профіль було додано",
+    "message": "Ваш $platform$ профіль було приєднано",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -287,7 +356,7 @@
     }
   },
   "profileSetContext": {
-    "message": "Ваші зафоловлені стримери з $platform$, котрі онлайн, повинні з'явитися в застосунку!",
+    "message": "Ваші відстежуваємі канали з $platform$ повинні опинитися у застосунку!",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -295,7 +364,7 @@
     }
   },
   "profileSetFailed": {
-    "message": "Не вдалося додати $platform$ профіль",
+    "message": "Не вдалося приєднати профіль з $platform$",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -303,11 +372,20 @@
     }
   },
   "profileSetFailedMessage": {
-    "message": "Трапилась помилка при налаштуванні $platform$ профіля. Будь ласка, сппробуйте пізніше.",
+    "message": "При приєднані профіля з $platform$ відбулася помилка. Будь ласка, спробуйте пізніше.",
     "placeholders": {
       "platform": {
         "content": "$1"
       }
     }
+  },
+  "backgroundResetTitle": {
+    "message": "Схоже що застосунок не працює у фоновому режимі"
+  },
+  "backgroundResetDescription": {
+    "message": "Для подальшої роботи у фоновому режимі, будь ласка, перезапустіть застосунок"
+  },
+  "backgroundResetButton": {
+    "message": "Перезапустити застосунок"
   }
 }

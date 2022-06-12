@@ -3,10 +3,10 @@
     "message": "Streams Live"
   },
   "extensionDescription": {
-    "message": "Отслеживает ваших любимых стримеров с разных платформ!"
+    "message": "Отслеживает ваших любых стримеров с разных платформ!"
   },
   "extAuthor": {
-    "message": "Автор nether"
+    "message": "Создал nether"
   },
   "repository": {
     "message": "GitHub"
@@ -18,7 +18,7 @@
     "message": "Баги и предложения"
   },
   "actionSuccess": {
-    "message": "$action$ выполнено успешно!",
+    "message": "$action$ выполнено успешно",
     "placeholders": {
       "action": {
         "content": "$1"
@@ -26,7 +26,7 @@
     }
   },
   "actionFailed": {
-    "message": "$action$ не было выполнено",
+    "message": "$action$ не удалось выполнить",
     "placeholders": {
       "action": {
         "content": "$1"
@@ -34,7 +34,7 @@
     }
   },
   "invalidFile": {
-    "message": "Указанный файл не является допустимым файлом для загрузки!"
+    "message": "Выбранный файл не подходит для использования"
   },
   "streams": {
     "message": "Каналы онлайн"
@@ -43,16 +43,16 @@
     "message": "Настройки"
   },
   "more": {
-    "message": "Больше"
+    "message": "Еще"
   },
   "about": {
-    "message": "Про приложение"
+    "message": "Про программу"
   },
   "donate": {
     "message": "Поддержать"
   },
   "donateDescription": {
-    "message": "Streams Live - приложение с открытым исходным кодом. Если оно вам понравилось - поддержите автора, чтобы проект не был заброшен."
+    "message": "Streams Live - бесплатный проект с открытым исходным кодом. Если он вам понравился - поддержите проект для последующего развития приложения!"
   },
   "coinbase": {
     "message": "Coinbase"
@@ -70,13 +70,13 @@
     "message": "Маленький"
   },
   "mediumFontSize": {
-    "message": "Нормальный"
+    "message": "Средний"
   },
   "largeFontSize": {
     "message": "Большой"
   },
   "largestFontSize": {
-    "message": "Наибольший"
+    "message": "Самый большой"
   },
   "theme": {
     "message": "Тема"
@@ -88,13 +88,28 @@
     "message": "Темная"
   },
   "badge": {
-    "message": "Показывать значок на иконке в браузере"
+    "message": "Показывать значок с количеством активных стримов"
   },
   "twitch": {
     "message": "Twitch"
   },
   "goodgame": {
     "message": "GoodGame"
+  },
+  "goodgameHint": {
+    "message": "Вы будете получать информацию и уведомления о стримах если залогинены на goodgame.ru"
+  },
+  "trovo": {
+    "message": "Trovo"
+  },
+  "wasd": {
+    "message": "WASD.TV"
+  },
+  "refresh": {
+    "message": "Обновить"
+  },
+  "platform": {
+    "message": "платформа"
   },
   "profileSettings": {
     "message": "Настройки профилей"
@@ -128,7 +143,45 @@
     }
   },
   "platformProfileUpdateFailed": {
-    "message": "Ошибка при обновлении профиля $platform$. Попробуйте позже.",
+    "message": "Не получилось обновить профиль $platform$. Попробуйте позже.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "updateFollowingChannels": {
+    "message": "Обновить зафоловленные каналы"
+  },
+  "platformFollowingCount": {
+    "message": "$count$ каналов зафоловлено",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingCountEmpty": {
+    "message": "Каналы с $platform$ не были зафоловлены",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdated": {
+    "message": "Зафоловленные каналы с $platform$ успешно обновлены! Зафоловлено $count$ каналов",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdateFailed": {
+    "message": "Не получилось обновить онлайн-трансляции с $platform$. Попробуйте позже.",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -142,7 +195,7 @@
     "message": "Включить уведомления"
   },
   "notificationsCategory": {
-    "message": "Включить уведомления о смене категории"
+    "message": "Включить уведомления смены категории"
   },
   "notificationsPlatform": {
     "message": "$platform$ уведомления",
@@ -155,8 +208,24 @@
   "enabled": {
     "message": "Включено"
   },
+  "enable": {
+    "message": "$thing$ теперь включено",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
+  },
   "disabled": {
     "message": "Выключено"
+  },
+  "disable": {
+    "message": "$thing$ теперь выключено",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
   },
   "exportAndImportSettings": {
     "message": "Экспорт и импорт настроек"
@@ -165,43 +234,43 @@
     "message": "Экспорт настроек"
   },
   "exportSettingDescription": {
-    "message": "Экспортируете свои настройки в файл"
+    "message": "Экспорт настроек в файл восстановления"
   },
   "importSetting": {
     "message": "Импорт настроек"
   },
   "importSettingDescription": {
-    "message": "Примените ваши экспортированные настройки здесь"
+    "message": "Примените файл с настройками здесь"
   },
   "resetSetting": {
-    "message": "Сброс настроек приложения"
+    "message": "Сброс приложения"
   },
   "resetSettingDescription": {
-    "message": "Сбрасывает все настройки до настроек по-умолчанию, выходит из всех профилей"
+    "message": "Сбрасывает все настройки до состояния по-умолчанию и очищает аккаунты"
   },
   "resetWarning": {
     "message": "Ваши настройки вот-вот будут сброшены"
   },
   "resetWarningDescription": {
-    "message": "Это действие сбросит настройки до базовых. Продолжить?"
+    "message": "Это действие сбросит настройки до состояния по-умолчанию. Вы уверены что хотите продолжить?"
   },
   "resetAbort": {
     "message": "Оставить настройки"
   },
   "resetConfirm": {
-    "message": "Сбросить настройки"
+    "message": "Сбросить настрйоки"
   },
   "noStreams": {
-    "message": "Нет стримеров в сети"
+    "message": "Нет каналов онлайн"
   },
   "noFilteredStreams": {
-    "message": "Нет стримеров подходящих критерию поиска"
+    "message": "Каналы с данным поисковым запросом не найдены"
   },
   "noProfilesSet": {
-    "message": "Похоже вы еще не добавили ни одного профиля"
+    "message": "Похоже вы еще не настроили ни одного профиля"
   },
   "goToProfilesSettings": {
-    "message": "Добавить профиль"
+    "message": "Настроить профиль"
   },
   "search": {
     "message": "Поиск"
@@ -225,10 +294,10 @@
     "message": "Платформа"
   },
   "refreshStreams": {
-    "message": "Обновить"
+    "message": "Обновить стримы"
   },
   "live": {
-    "message": "В сети"
+    "message": "Онлайн"
   },
   "rerun": {
     "message": "Повтор"
@@ -246,7 +315,7 @@
     "message": "Открыть страницу видео"
   },
   "streamerOnline": {
-    "message": "$streamer$ онлайн на $platform$!",
+    "message": "$streamer$ запустил трансляцию на $platform$!",
     "placeholders": {
       "streamer": {
         "content": "$1"
@@ -276,10 +345,10 @@
     }
   },
   "profileSet": {
-    "message": "Профиль добавлен"
+    "message": "Профиль настроен"
   },
   "profileSetMessage": {
-    "message": "Ваш $platform$ профиль был добавлен",
+    "message": "Ваш $platform$ профиль был подключен",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -287,7 +356,7 @@
     }
   },
   "profileSetContext": {
-    "message": "Ваши онлайн зафоловленные стримеры с $platform$ должны появиться в расширении!",
+    "message": "Ваши зафоловленные стримеры с $platform$ должны появится в приложении!",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -295,7 +364,7 @@
     }
   },
   "profileSetFailed": {
-    "message": "Не получилось добавить $platform$ профиль",
+    "message": "Не получилось связать профиль $platform$",
     "placeholders": {
       "platform": {
         "content": "$1"
@@ -303,11 +372,20 @@
     }
   },
   "profileSetFailedMessage": {
-    "message": "Произошла ошибка при добавлении $platform$ профиля. Пожалуйста, попробуйте позже.",
+    "message": "Произошла ошибка при попытке связать профиль $platform$. Попробуйте позже.",
     "placeholders": {
       "platform": {
         "content": "$1"
       }
     }
+  },
+  "backgroundResetTitle": {
+    "message": "Похоже что приложение больше не работает в фоновом режиме"
+  },
+  "backgroundResetDescription": {
+    "message": "Перезапустите приложения для продолжения работы"
+  },
+  "backgroundResetButton": {
+    "message": "Перезапустить приложение"
   }
 }
