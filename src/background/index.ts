@@ -3,7 +3,7 @@ import { stores } from "@/common/store";
 import { Dictionary, NotificationType } from "@/common/types/general";
 import { PlatformName } from "@/common/types/platform";
 import browser from "webextension-polyfill";
-import { updateBadge } from "./actions/misc";
+import { updateBadge, ping } from "./actions/misc";
 import {
   getPlatform,
   updatePlatform,
@@ -30,6 +30,7 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   backup,
   restore,
   reset,
+  ping,
 };
 
 browser.alarms.create("updateStreams", { periodInMinutes: updateInterval });

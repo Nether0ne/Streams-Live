@@ -378,5 +378,14 @@
         "content": "$1"
       }
     }
+  },
+  "backgroundResetTitle": {
+    "message": "Seems like the application can't work in the background anymore"
+  },
+  "backgroundResetDescription": {
+    "message": "To continue working in the background, please reset the application"
+  },
+  "backgroundResetButton": {
+    "message": "Reset application"
   }
 }

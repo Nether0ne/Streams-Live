@@ -55,3 +55,7 @@ export async function getIconPath(size: number): Promise<string> {
     `icon/${authorized ? `icon-${size}.png` : `icon-gray-${size}.png`}`
   );
 }
+
+export async function ping(): Promise<string> {
+  return "pong";
+}

@@ -6,6 +6,10 @@ import Streams from "../views/Streams";
 import Snackbar from "../components/misc/Snackbar";
 import { SnackbarProvider } from "../common/context/Snackbar";
 import { Box } from "@mui/material";
+import { usePingError } from "../common/hooks/pingError";
+import BackgroundReset from "../components/modals/BackgroundReset";
+import useSettings from "../common/hooks/settings";
+import Loading from "../components/layout/Loading/Loading";
 
 const styles = {
   height: "550px",
@@ -14,24 +18,34 @@ const styles = {
 };
 
 const Popup: FC = () => {
+  const [, { isLoading }] = useSettings();
+  const [error] = usePingError();
+
   return (
     <Box id="root" sx={styles}>
-      <SnackbarProvider>
-        <MainLayout>
-          <Routes>
-            <Route index element={<Navigate to="streams" />} />
-            <Route path="streams">
-              <Route index element={<Streams />} />
-              <Route path="streams" element={<Streams />} />
-            </Route>
-            <Route path="settings">
-              <Route index element={<Settings />} />
-              <Route path="settings" element={<Settings />} />
-            </Route>
-          </Routes>
-          <Snackbar />
-        </MainLayout>
-      </SnackbarProvider>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <SnackbarProvider>
+            <MainLayout>
+              <Routes>
+                <Route index element={<Navigate to="streams" />} />
+                <Route path="streams">
+                  <Route index element={<Streams />} />
+                  <Route path="streams" element={<Streams />} />
+                </Route>
+                <Route path="settings">
+                  <Route index element={<Settings />} />
+                  <Route path="settings" element={<Settings />} />
+                </Route>
+              </Routes>
+              <Snackbar />
+            </MainLayout>
+          </SnackbarProvider>
+          <BackgroundReset isOpen={!!error} />
+        </>
+      )}
     </Box>
   );
 };

@@ -59,13 +59,13 @@ export async function getStreams(): Promise<Stream[]> {
   const followedStreams = await getFollowedStreams();
   const streamers = await getGeneralStreams(map(followedStreams, "user_id"));
 
-  for (const stream of streamers) {
+  for (const followedStream of followedStreams) {
     const s = find(streamers, {
-      user_id: stream.id,
+      user_id: followedStream.user_id,
     });
 
     if (s == null) {
-      stream.type = "rerun";
+      followedStream.type = "rerun";
     }
   }
 
