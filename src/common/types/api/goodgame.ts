@@ -7,6 +7,7 @@ export interface GoodgameProfile {
 }
 
 export interface GoodgameStream {
+  id: string;
   streamkey: string;
   channelkey: string;
   broadcast:

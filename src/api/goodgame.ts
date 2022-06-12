@@ -56,7 +56,7 @@ export async function getStreams(): Promise<Stream[]> {
   const streams: Stream[] = [];
 
   for (const channel of favoriteChannels) {
-    const { streamkey, channelkey, broadcast, title, game, preview, online, viewers } = channel;
+    const { id, streamkey, channelkey, broadcast, title, game, preview, online, viewers } = channel;
 
     if (
       online !== 0 &&
@@ -71,6 +71,7 @@ export async function getStreams(): Promise<Stream[]> {
       streams.push({
         id: streamkey,
         user: channelkey,
+        user_id: id,
         game,
         title,
         thumbnail: `https://${preview.substring(2)}`,

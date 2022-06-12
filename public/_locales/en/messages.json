@@ -96,6 +96,9 @@
   "goodgame": {
     "message": "GoodGame"
   },
+  "goodgameHint": {
+    "message": "You will receive followed streams information and notifications if you are logged in on the Goodgame.ru"
+  },
   "trovo": {
     "message": "Trovo"
   },
@@ -154,6 +157,14 @@
     "message": "$count$ streamers added",
     "placeholders": {
       "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingCountEmpty": {
+    "message": "No streamers added from $platform$",
+    "placeholders": {
+      "platform": {
         "content": "$1"
       }
     }

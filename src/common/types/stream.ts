@@ -2,6 +2,7 @@ import { PlatformName } from "./platform";
 
 export interface Stream {
   id: string;
+  user_id: string;
   user: string;
   game: string | null;
   title: string;

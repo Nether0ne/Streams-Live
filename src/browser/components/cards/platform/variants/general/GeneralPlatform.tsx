@@ -7,6 +7,7 @@ import PlatformWrapper from "../Wrapper";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import UpdateButton from "@/browser/components/misc/UpdateButton";
 import { SnackbarContext } from "@/browser/common/context/Snackbar";
 import ManageStreamersModal from "@/browser/components/modals/ManageStreamers";
@@ -38,7 +39,11 @@ const GeneralPlatform: FC<GeneralPlatformProps> = ({ platformName }) => {
     sendRuntimeMessage("updateFollowedStreamers", platform);
   };
   const disablePlatform = async () => {
-    await store.set({ ...platform, enabled: false });
+    await store.set({
+      ...platform,
+      followedStreamers: platform.type === PlatformType.NONE ? [] : platform.followedStreamers,
+      enabled: false,
+    });
   };
   const updateStreamers = async () => {
     try {
@@ -67,11 +72,16 @@ const GeneralPlatform: FC<GeneralPlatformProps> = ({ platformName }) => {
       leftChildren={
         <Box sx={styles.left}>
           <Typography variant="body2">{t(platformName)}</Typography>
-          {platform.enabled && platform.followedStreamers.length > 0 && (
-            <Typography color="text.secondary">
-              {t("platformFollowingCount", [platform.followedStreamers.length])}
-            </Typography>
-          )}
+          {platform.enabled &&
+            (platform.followedStreamers.length > 0 ? (
+              <Typography color="text.secondary">
+                {t("platformFollowingCount", [platform.followedStreamers.length])}
+              </Typography>
+            ) : (
+              <Typography color="text.secondary">
+                {t("platformFollowingCountEmpty", t(platform.name))}
+              </Typography>
+            ))}
         </Box>
       }
       rightChildren={
@@ -97,11 +107,21 @@ const GeneralPlatform: FC<GeneralPlatformProps> = ({ platformName }) => {
             </Tooltip>
           </>
         ) : (
-          <Tooltip title={<Typography>{t("enable", t("platform"))}</Typography>} placement="top">
-            <IconButton onClick={enablePlatform}>
-              <AddIcon />
-            </IconButton>
-          </Tooltip>
+          <>
+            {t(`${platformName}Hint`) !== "" && (
+              <Tooltip title={<Typography>{t(`${platformName}Hint`)}</Typography>} placement="top">
+                <IconButton>
+                  <InfoOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+
+            <Tooltip title={<Typography>{t("enable", t("platform"))}</Typography>} placement="top">
+              <IconButton onClick={enablePlatform}>
+                <AddIcon />
+              </IconButton>
+            </Tooltip>
+          </>
         )
       }
     />

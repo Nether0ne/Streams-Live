@@ -16,6 +16,9 @@ import {
 import { setup, backup, restore, reset } from "./actions/settings";
 import { updateStreams } from "./actions/streams";
 
+const updateInterval = 1;
+const updateStreamsAlarm = "updateStreams";
+
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   // TODO: Add more platforms
   // findStreamer,
@@ -29,7 +32,7 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   reset,
 };
 
-browser.alarms.create("updateStreams", { periodInMinutes: 1 });
+browser.alarms.create("updateStreams", { periodInMinutes: updateInterval });
 
 browser.runtime.onMessage.addListener((message) => {
   const { [message.type]: handler } = messageHandlers;
@@ -47,7 +50,7 @@ browser.alarms.onAlarm.addListener((alarm) => {
     return;
   }
 
-  if (alarm.name === "updateStreams") {
+  if (alarm.name === updateStreamsAlarm) {
     updateStreams();
   }
 });
