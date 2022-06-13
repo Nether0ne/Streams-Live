@@ -1,4 +1,4 @@
-# <img src="public/icon-48.png" width="38" align="left" /> Streams Live
+# <img src="/public/icon-48.png" width="38" align="left" /> Streams Live
 
 > Helps tracking your favorite streamers across different platforms!
 
@@ -39,6 +39,7 @@ To support this project you can consider donating via available options to keep 
 ## Honorable mentions
 
 I would like to thank [Seldszar](https://github.com/Seldszar) for his Twitch extension [Gumbo](https://github.com/Seldszar/Gumbo), which inspired me and helped in many ways to develop Streams Live extension.
+
 Also I would like to thank my friends who advised and helped me through the development process!
 
 ## License
