@@ -9,8 +9,7 @@
     "notifications",
     "storage",
     "unlimitedStorage",
-    "*://*.twitch.tv/*",
-    "*://*.api2.goodgame.ru/oauth/receivecode*",
+    "*://*.nether0ne.github.io/#/streams-live/auth",
     "*://*.goodgame.ru/",
     "*://*.wasd.tv/"
   ],

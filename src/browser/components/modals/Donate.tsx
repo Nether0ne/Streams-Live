@@ -65,7 +65,7 @@ const styles = {
 };
 
 const links = [
-  { href: "https://github.com/Nether0ne/Streams-Live/releases", label: t("coinbase") },
+  { href: "https://nether0ne.github.io/#/r/streams-live-coinbase", label: t("coinbase") },
 ];
 
 const DonateModal: FC<DonateModalProps> = ({ open, hide }) => {

@@ -1,8 +1,12 @@
 import * as Goodgame from "@/api/goodgame";
 import * as Twitch from "@/api/twitch";
 import * as Wasd from "@/api/wasd";
+import { t } from "@/common/helpers";
 import { stores } from "@/common/store";
 import { FollowedStreamer, Platform, PlatformName } from "@/common/types/platform";
+import { createNotification, getIconPath } from "./misc";
+import { updateStreams } from "./streams";
+import browser from "webextension-polyfill";
 
 export async function getPlatform(name: PlatformName): Promise<Platform> {
   switch (name) {
@@ -127,4 +131,44 @@ export async function updateFollowedStreamers(
   }
 
   return null;
+}
+
+export async function platformAuth(accessToken: string, platformName: PlatformName) {
+  const platform = await getPlatform(platformName);
+  platform.accessToken = accessToken;
+  platform.enabled = true;
+  await stores[platformName].set(platform);
+
+  const updatedPlatform = await updatePlatform(platform);
+
+  if (updatedPlatform) {
+    createNotification(["profileSet", updatedPlatform.name!, platform.name], {
+      title: t("profileSet"),
+      message: t("profileSetMessage", platform.name),
+      contextMessage: t("profileSetContext", platform.name),
+      type: "basic",
+      iconUrl:
+        updatedPlatform.data && updatedPlatform.data.avatar
+          ? updatedPlatform.data.avatar
+          : await getIconPath(128),
+    });
+
+    await updateStreams();
+  }
+}
+
+export async function authInit(platformName: PlatformName) {
+  if (platformName === PlatformName.TWITCH) {
+    const url = new URL("https://id.twitch.tv/oauth2/authorize");
+
+    url.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
+    url.searchParams.set("redirect_uri", process.env.AUTH_REDIRECT_URI as string);
+    url.searchParams.set("response_type", "token");
+    url.searchParams.set("scope", "user:read:follows");
+
+    browser.tabs.create({
+      active: true,
+      url: url.href,
+    });
+  }
 }

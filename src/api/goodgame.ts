@@ -10,7 +10,6 @@ const apiClient = ky.extend({
   timeout: 700,
   cache: "no-cache",
   headers: {
-    "Client-ID": process.env.GOODGAME_CLIENT_ID,
     Application: "json",
   },
   hooks: {

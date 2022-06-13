@@ -20,53 +20,52 @@ import StreamsLive from "../../icons/StreamsLive";
 import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
 
 interface SidebarProps {
-  aboutModalToggler: () => void;
-  donateModalToggler: () => void;
+  readonly aboutModalToggler: () => void;
+  readonly donateModalToggler: () => void;
 }
 
 const styles = {
-  wrapper: {
-    height: "550px",
-    backgroundColor: "background.paper",
-    display: "flex",
-    flexDirection: "column",
-    position: "sticky",
-    top: 0,
-    left: 0,
-    justifyContent: "space-between",
-    p: 0.5,
-    py: 2,
-  },
-  bottomWrapper: {
+  height: "550px",
+  backgroundColor: "background.paper",
+  display: "flex",
+  flexDirection: "column",
+  position: "sticky",
+  top: 0,
+  left: 0,
+  justifyContent: "space-between",
+  p: 0.5,
+  py: 2,
+  "& .bottom": {
     display: "flex",
     flexDirection: "column",
     gap: 2,
   },
-  icon: {
-    sidebar: { fontSize: "1.25rem" },
-    menu: { fontSize: "1rem" },
+  "& * > svg": {
+    fontSize: "1.25rem",
   },
-  appIcon: {
-    set: {
-      color: "primary.main",
-    },
-    unset: {
-      color: "#a9a9a9",
-    },
+  "& .menu > svg": {
+    fontSize: "1rem",
   },
-  menu: {
-    py: 0,
+  "& .appSet svg": {
+    color: "primary.main",
   },
-  menuItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: 1,
-    py: ".25rem",
-    px: ".5rem",
+  "& .appUnset svg": {
+    color: "#a9a9a9",
+  },
+};
+
+const menuItem = {
+  display: "flex",
+  alignItems: "center",
+  gap: 1,
+  py: ".25rem",
+  px: ".5rem",
+  transition: "background-color .5s ease-out",
+  "&:hover": {
     transition: "background-color .5s ease-out",
-    "&:hover": {
-      transition: "background-color .5s ease-out",
-    },
+  },
+  "& svg": {
+    fontSize: "1rem",
   },
 };
 
@@ -81,7 +80,7 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
   const moreItems = [
     {
       label: t("about"),
-      icon: <InfoIcon sx={styles.icon.menu} />,
+      icon: <InfoIcon />,
       onClick: () => {
         aboutModalToggler();
         setMoreMenuOpen(false);
@@ -89,7 +88,7 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
     },
     {
       label: t("donate"),
-      icon: <MonetizationOnOutlinedIcon sx={styles.icon.menu} />,
+      icon: <MonetizationOnOutlinedIcon />,
       onClick: () => {
         donateModalToggler();
         setMoreMenuOpen(false);
@@ -98,18 +97,11 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
   ];
 
   return (
-    <Box id="sidebar" sx={styles.wrapper}>
-      {/* TODO: replace url with chrome store url */}
-      <MuiLink href={"https://twitch.tv"} target="_blank">
-        <Tooltip title={<Typography>{t("extName")}</Typography>} placement="right">
-          <IconButton>
-            {/* TODO: apply exstension icon */}
-            <StreamsLive
-              sx={{
-                ...styles.icon.sidebar,
-                ...(platforms.length > 0 ? styles.appIcon.set : styles.appIcon.unset),
-              }}
-            />
+    <Box id="sidebar" className="sidebar" sx={styles}>
+      <MuiLink href={"https://nether0ne.github.io/#/streams-live/"} target="_blank">
+        <Tooltip title={<Typography>{t("extensionName")}</Typography>} placement="right">
+          <IconButton className={platforms.length > 0 ? "appSet" : "appUnset"}>
+            <StreamsLive />
           </IconButton>
         </Tooltip>
       </MuiLink>
@@ -118,17 +110,17 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
         <Link to="streams">
           <Tooltip title={<Typography>{t("streams")}</Typography>} placement="right">
             <IconButton>
-              <LiveTvIcon sx={styles.icon.sidebar} />
+              <LiveTvIcon />
             </IconButton>
           </Tooltip>
         </Link>
       </Box>
 
-      <Box id="settings" sx={styles.bottomWrapper}>
+      <Box id="settings" className="bottom">
         <Link to="settings">
           <Tooltip title={<Typography>{t("settings")}</Typography>} placement="right">
             <IconButton>
-              <SettingsOutlinedIcon sx={styles.icon.sidebar} />
+              <SettingsOutlinedIcon />
             </IconButton>
           </Tooltip>
         </Link>
@@ -136,19 +128,19 @@ const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) =>
         <Box id="more">
           <Tooltip title={<Typography>{t("more")}</Typography>} placement="right">
             <IconButton onClick={() => setMoreMenuOpen(true)}>
-              <MoreVertIcon sx={styles.icon.sidebar} />
+              <MoreVertIcon />
             </IconButton>
           </Tooltip>
 
           <Menu
+            className="menu"
             open={moreMenuOpen}
-            sx={styles.menu}
             MenuListProps={menuProps}
             BackdropComponent={Backdrop}
             onClose={() => setMoreMenuOpen(false)}
           >
             {moreItems.map(({ label, icon, onClick }) => (
-              <MenuItem {...{ onClick }} sx={styles.menuItem}>
+              <MenuItem {...{ onClick }} sx={menuItem}>
                 {icon}
                 <Typography>{label}</Typography>
               </MenuItem>

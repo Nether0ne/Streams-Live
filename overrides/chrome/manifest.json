@@ -5,12 +5,11 @@
   "manifest_version": 3,
   "permissions": ["alarms", "background", "notifications", "storage", "unlimitedStorage"],
   "host_permissions": [
-    "*://*.twitch.tv/*",
-    "*://*.api2.goodgame.ru/oauth/receivecode*",
+    "*://nether0ne.github.io/#/streams-live/auth",
     "*://*.goodgame.ru/",
     "*://*.wasd.tv/"
   ],
-  "default_locale": "ru",
+  "default_locale": "en",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

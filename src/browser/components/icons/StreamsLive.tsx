@@ -1,10 +1,10 @@
 import { SvgIcon, SxProps } from "@mui/material";
 import { FC } from "react";
 
-interface GoodgameIconProps {
+interface StreamsLiveIconProps {
   readonly sx?: SxProps;
 }
-const GoodgameIcon: FC<GoodgameIconProps> = ({ sx }) => {
+const StreamsLiveIcon: FC<StreamsLiveIconProps> = ({ sx }) => {
   return (
     <SvgIcon
       sx={sx}
@@ -19,4 +19,4 @@ const GoodgameIcon: FC<GoodgameIconProps> = ({ sx }) => {
   );
 };
 
-export default GoodgameIcon;
+export default StreamsLiveIcon;

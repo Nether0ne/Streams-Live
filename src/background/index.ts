@@ -5,10 +5,10 @@ import { PlatformName } from "@/common/types/platform";
 import browser from "webextension-polyfill";
 import { updateBadge, ping } from "./actions/misc";
 import {
-  getPlatform,
+  authInit,
   updatePlatform,
-  setupPlatform,
   updateFollowedStreamers,
+  platformAuth,
   // TODO: Add more platforms
   // findStreamer,
   // search,
@@ -23,6 +23,7 @@ const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   // TODO: Add more platforms
   // findStreamer,
   // search,
+  authInit,
   updateFollowedStreamers,
   updatePlatform,
   updateStreams,
@@ -82,33 +83,17 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   }
 
   if (changeInfo.status === "complete" && tab.url) {
-    const url = new URL(tab.url);
-    const hashParams = new URLSearchParams(url.hash.substring(1));
+    if (tab.url.startsWith(process.env.AUTH_REDIRECT_URI as string)) {
+      const url = new URL(tab.url);
+      const urlHash = url.hash.substring(1);
+      const hashParams = new URLSearchParams(urlHash.substring(urlHash.indexOf("#") + 1));
 
-    let platformName = null;
+      const accessToken = hashParams.get("access_token");
 
-    if (tab.url?.startsWith(process.env.TWITCH_REDIRECT_URI as string)) {
-      platformName = PlatformName.TWITCH;
-    }
-    if (tab.url?.startsWith(process.env.GOODGAME_REDIRECT_URI as string)) {
-      platformName = PlatformName.GOODGAME;
-    }
-
-    const accessToken = hashParams.get("access_token");
-
-    if (platformName && accessToken) {
-      const platform = await getPlatform(platformName);
-
-      await setupPlatform(platform, accessToken);
-      await updateStreams();
-    } else {
-      // TODO: uncomment when redirect uri will be not streaming site
-      // await createNotification(`${platform}ProfileSetFailed`, {
-      //   title: t("profileSetFailed"),
-      //   message: t("profileSetFailedMessage", platform),
-      //   type: "basic",
-      //   iconUrl: iconUrlPlaceholder,
-      // });
+      if (accessToken) {
+        const platformName = PlatformName.TWITCH;
+        await platformAuth(accessToken, platformName);
+      }
     }
   }
 });

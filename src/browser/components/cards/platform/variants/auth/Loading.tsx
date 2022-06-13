@@ -1,8 +1,7 @@
 import TwitchIcon from "@/browser/components/icons/platforms/Twitch";
+import SettingWrapper from "@/browser/components/pages/Settings/options/Wrapper";
 import { Avatar, Box, IconButton, Skeleton } from "@mui/material";
-import { CSSProperties } from "@mui/styled-engine";
-import { FC } from "react";
-import SettingWrapper from "../Wrapper";
+import { CSSProperties, FC } from "react";
 
 const styles = {
   width: "100%",
@@ -29,8 +28,8 @@ const styles = {
     "& svg": { fontSize: "1.25rem" },
   },
 } as CSSProperties;
-// TODO: apply to current platform cards
-const ProfileLoading: FC = () => {
+
+const PlatformLoading: FC = () => {
   return (
     <SettingWrapper id={"loadingProfile"} customStyles={styles} clickable={false}>
       <TwitchIcon />
@@ -54,4 +53,4 @@ const ProfileLoading: FC = () => {
   );
 };
 
-export default ProfileLoading;
+export default PlatformLoading;

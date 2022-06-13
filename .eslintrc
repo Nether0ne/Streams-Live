@@ -14,9 +14,9 @@
     "node": true
   },
   "rules": {
-    "react/prop-types": "off",
+    "react/prop-types": "on",
     "react/display-name": "off",
-    "react/react-in-jsx-scope": "on"
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {
