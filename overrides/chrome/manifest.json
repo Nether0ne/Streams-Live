@@ -1,0 +1,31 @@
+{
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": ["alarms", "background", "notifications", "storage", "unlimitedStorage"],
+  "host_permissions": [
+    "*://nether0ne.github.io/#/streams-live/auth",
+    "*://*.goodgame.ru/",
+    "*://*.wasd.tv/"
+  ],
+  "default_locale": "en",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/icon/icon-16.png",
+      "32": "/icon/icon-32.png",
+      "48": "/icon/icon-48.png",
+      "128": "/icon/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "/icon/icon-16.png",
+    "32": "/icon/icon-32.png",
+    "48": "/icon/icon-48.png",
+    "128": "/icon/icon-128.png"
+  }
+}

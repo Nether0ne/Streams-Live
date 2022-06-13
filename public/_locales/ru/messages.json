@@ -1,0 +1,391 @@
+{
+  "extensionName": {
+    "message": "Streams Live"
+  },
+  "extensionDescription": {
+    "message": "Отслеживает ваших любых стримеров с разных платформ!"
+  },
+  "extAuthor": {
+    "message": "Создал nether"
+  },
+  "repository": {
+    "message": "GitHub"
+  },
+  "releases": {
+    "message": "Релизы"
+  },
+  "issues": {
+    "message": "Баги и предложения"
+  },
+  "actionSuccess": {
+    "message": "$action$ выполнено успешно",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "actionFailed": {
+    "message": "$action$ не удалось выполнить",
+    "placeholders": {
+      "action": {
+        "content": "$1"
+      }
+    }
+  },
+  "invalidFile": {
+    "message": "Выбранный файл не подходит для использования"
+  },
+  "streams": {
+    "message": "Каналы онлайн"
+  },
+  "settings": {
+    "message": "Настройки"
+  },
+  "more": {
+    "message": "Еще"
+  },
+  "about": {
+    "message": "Про программу"
+  },
+  "donate": {
+    "message": "Поддержать"
+  },
+  "donateDescription": {
+    "message": "Streams Live - бесплатный проект с открытым исходным кодом. Если он вам понравился - поддержите проект для последующего развития приложения!"
+  },
+  "coinbase": {
+    "message": "Coinbase"
+  },
+  "generalSettings": {
+    "message": "Главные настройки"
+  },
+  "fontSize": {
+    "message": "Размер шрифта"
+  },
+  "smallestFontSize": {
+    "message": "Самый маленький"
+  },
+  "smallFontSize": {
+    "message": "Маленький"
+  },
+  "mediumFontSize": {
+    "message": "Средний"
+  },
+  "largeFontSize": {
+    "message": "Большой"
+  },
+  "largestFontSize": {
+    "message": "Самый большой"
+  },
+  "theme": {
+    "message": "Тема"
+  },
+  "lightTheme": {
+    "message": "Светлая"
+  },
+  "darkTheme": {
+    "message": "Темная"
+  },
+  "badge": {
+    "message": "Показывать значок с количеством активных стримов"
+  },
+  "twitch": {
+    "message": "Twitch"
+  },
+  "goodgame": {
+    "message": "GoodGame"
+  },
+  "goodgameHint": {
+    "message": "Вы будете получать информацию и уведомления о стримах если залогинены на goodgame.ru"
+  },
+  "trovo": {
+    "message": "Trovo"
+  },
+  "wasd": {
+    "message": "WASD.TV"
+  },
+  "refresh": {
+    "message": "Обновить"
+  },
+  "platform": {
+    "message": "платформа"
+  },
+  "profileSettings": {
+    "message": "Настройки профилей"
+  },
+  "addProfile": {
+    "message": "Добавить профиль"
+  },
+  "refreshProfile": {
+    "message": "Обновить профиль"
+  },
+  "platformProfile": {
+    "message": "$platform$ профиль",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "logout": {
+    "message": "Выйти"
+  },
+  "platformProfileUpdated": {
+    "message": "$username$ $platform$ профиль обновлен",
+    "placeholders": {
+      "username": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformProfileUpdateFailed": {
+    "message": "Не получилось обновить профиль $platform$. Попробуйте позже.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "updateFollowingChannels": {
+    "message": "Обновить зафоловленные каналы"
+  },
+  "platformFollowingCount": {
+    "message": "$count$ каналов зафоловлено",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingCountEmpty": {
+    "message": "Каналы с $platform$ не были зафоловлены",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdated": {
+    "message": "Зафоловленные каналы с $platform$ успешно обновлены! Зафоловлено $count$ каналов",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      },
+      "count": {
+        "content": "$2"
+      }
+    }
+  },
+  "platformFollowingChannelsUpdateFailed": {
+    "message": "Не получилось обновить онлайн-трансляции с $platform$. Попробуйте позже.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "notificationsSettings": {
+    "message": "Настройки уведомлений"
+  },
+  "notificationsEnabled": {
+    "message": "Включить уведомления"
+  },
+  "notificationsCategory": {
+    "message": "Включить уведомления смены категории"
+  },
+  "notificationsPlatform": {
+    "message": "$platform$ уведомления",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "enabled": {
+    "message": "Включено"
+  },
+  "enable": {
+    "message": "$thing$ теперь включено",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
+  },
+  "disabled": {
+    "message": "Выключено"
+  },
+  "disable": {
+    "message": "$thing$ теперь выключено",
+    "placeholders": {
+      "thing": {
+        "content": "$1"
+      }
+    }
+  },
+  "exportAndImportSettings": {
+    "message": "Экспорт и импорт настроек"
+  },
+  "exportSetting": {
+    "message": "Экспорт настроек"
+  },
+  "exportSettingDescription": {
+    "message": "Экспорт настроек в файл восстановления"
+  },
+  "importSetting": {
+    "message": "Импорт настроек"
+  },
+  "importSettingDescription": {
+    "message": "Примените файл с настройками здесь"
+  },
+  "resetSetting": {
+    "message": "Сброс приложения"
+  },
+  "resetSettingDescription": {
+    "message": "Сбрасывает все настройки до состояния по-умолчанию и очищает аккаунты"
+  },
+  "resetWarning": {
+    "message": "Ваши настройки вот-вот будут сброшены"
+  },
+  "resetWarningDescription": {
+    "message": "Это действие сбросит настройки до состояния по-умолчанию. Вы уверены что хотите продолжить?"
+  },
+  "resetAbort": {
+    "message": "Оставить настройки"
+  },
+  "resetConfirm": {
+    "message": "Сбросить настрйоки"
+  },
+  "noStreams": {
+    "message": "Нет каналов онлайн"
+  },
+  "noFilteredStreams": {
+    "message": "Каналы с данным поисковым запросом не найдены"
+  },
+  "noProfilesSet": {
+    "message": "Похоже вы еще не настроили ни одного профиля"
+  },
+  "goToProfilesSettings": {
+    "message": "Настроить профиль"
+  },
+  "search": {
+    "message": "Поиск"
+  },
+  "viewersSortField": {
+    "message": "Зрители"
+  },
+  "startedAtSortField": {
+    "message": "Время"
+  },
+  "userSortField": {
+    "message": "Имя"
+  },
+  "noneGroupBy": {
+    "message": "Отсутствует"
+  },
+  "gameGroupBy": {
+    "message": "Категория"
+  },
+  "platformGroupBy": {
+    "message": "Платформа"
+  },
+  "refreshStreams": {
+    "message": "Обновить стримы"
+  },
+  "live": {
+    "message": "Онлайн"
+  },
+  "rerun": {
+    "message": "Повтор"
+  },
+  "openStream": {
+    "message": "Открыть стрим"
+  },
+  "openOnlyStream": {
+    "message": "Открыть только стрим"
+  },
+  "openOnlyChat": {
+    "message": "Открыть только чат"
+  },
+  "openVideos": {
+    "message": "Открыть страницу видео"
+  },
+  "streamerOnline": {
+    "message": "$streamer$ запустил трансляцию на $platform$!",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      },
+      "platform": {
+        "content": "$2"
+      }
+    }
+  },
+  "streamerNewCategory": {
+    "message": "$streamer$ поменял категорию",
+    "placeholders": {
+      "streamer": {
+        "content": "$1"
+      }
+    }
+  },
+  "streamerNewCategoryMessage": {
+    "message": "$category1$ ➡️ $category2$",
+    "placeholders": {
+      "category1": {
+        "content": "$1"
+      },
+      "category2": {
+        "content": "$2"
+      }
+    }
+  },
+  "profileSet": {
+    "message": "Профиль настроен"
+  },
+  "profileSetMessage": {
+    "message": "Ваш $platform$ профиль был подключен",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetContext": {
+    "message": "Ваши зафоловленные стримеры с $platform$ должны появится в приложении!",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailed": {
+    "message": "Не получилось связать профиль $platform$",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "profileSetFailedMessage": {
+    "message": "Произошла ошибка при попытке связать профиль $platform$. Попробуйте позже.",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "backgroundResetTitle": {
+    "message": "Похоже что приложение больше не работает в фоновом режиме"
+  },
+  "backgroundResetDescription": {
+    "message": "Перезапустите приложения для продолжения работы"
+  },
+  "backgroundResetButton": {
+    "message": "Перезапустить приложение"
+  }
+}
