@@ -71,7 +71,7 @@ export async function getStreams(): Promise<Stream[]> {
 
   const fetchedStreams: Stream[] = [];
 
-  for (const stream of streamers) {
+  for (const stream of followedStreams) {
     if (stream.user_name === "") {
       continue;
     }
