@@ -4,6 +4,7 @@ import TwitchIcon from "@icons/platforms/Twitch";
 import GoodgameIcon from "@icons/platforms/Goodgame";
 import { SxProps } from "@mui/material";
 import TrovoIcon from "@icons/platforms/Trovo";
+import WasdTVIcon from "@icons/platforms/WasdTV";
 
 interface PlatformIconProps {
   readonly platformName: PlatformName;
@@ -18,9 +19,9 @@ const PlatformIcon: FC<PlatformIconProps> = ({ platformName, sx }) => {
   ) : // TODO: Add more platforms
   // ) : platformName === PlatformName.TROVO ? (
   //   <TrovoIcon {...{ sx }} />
-  // ) : platformName === PlatformName.WASD ? (
-  //   <>WASD</>
-  null;
+  platformName === PlatformName.WASD ? (
+    <WasdTVIcon {...{ sx }} />
+  ) : null;
 };
 
 export default PlatformIcon;

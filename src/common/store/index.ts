@@ -188,18 +188,18 @@ export const stores = {
   //     },
   //   ],
   // }),
-  // wasd: new Store<Platform>("local", "wasd", {
-  //   defaultValue: defaultPlatformState(PlatformName.WASD, PlatformType.LIST),
-  //   migrations: [
-  //     (value) => {
-  //       const store = new Store("sync", "profiles", {
-  //         defaultValue: value,
-  //       });
+  wasd: new Store<Platform>("local", "wasd", {
+    defaultValue: defaultPlatformState(PlatformName.WASD, PlatformType.LIST),
+    migrations: [
+      (value) => {
+        const store = new Store("sync", "profiles", {
+          defaultValue: value,
+        });
 
-  //       return store.get();
-  //     },
-  //   ],
-  // }),
+        return store.get();
+      },
+    ],
+  }),
   streams: new Store<Streams>("local", "streams", {
     defaultValue: {
       data: [],

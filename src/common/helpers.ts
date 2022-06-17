@@ -30,8 +30,8 @@ export function getLinkForPlatform(
     case PlatformName.GOODGAME:
       return `https://goodgame.ru/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
     // TODO: Add more platforms
-    // case PlatformName.WASD:
-    //   return `https://wasd.tv/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
+    case PlatformName.WASD:
+      return `https://wasd.tv/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
     default:
       throw new RangeError();
   }

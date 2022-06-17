@@ -17,8 +17,8 @@ export async function getPlatform(name: PlatformName): Promise<Platform> {
     // TODO: Add more platforms
     // case PlatformName.TROVO:
     //   return await stores.trovo.get();
-    // case PlatformName.WASD:
-    //   return await stores.wasd.get();
+    case PlatformName.WASD:
+      return await stores.wasd.get();
   }
 }
 
@@ -27,7 +27,7 @@ export async function getAllSetPlatforms(): Promise<Platform[]> {
   const goodgame = await stores.goodgame.get();
   // TODO: Add more platforms
   // const trovo = await stores.trovo.get();
-  // const wasd = await stores.wasd.get();
+  const wasd = await stores.wasd.get();
 
   const setProfiles = [];
 
@@ -35,7 +35,7 @@ export async function getAllSetPlatforms(): Promise<Platform[]> {
   if (goodgame.enabled) setProfiles.push(goodgame);
   // TODO: Add more platforms
   // if (trovo.enabled) setProfiles.push(trovo);
-  // if (wasd.enabled) setProfiles.push(wasd);
+  if (wasd.enabled) setProfiles.push(wasd);
 
   return setProfiles;
 }
@@ -52,8 +52,8 @@ export function getPlatformClient(
     // TODO: Add more platforms
     // case PlatformName.TROVO:
     //   return Trovo;
-    // case PlatformName.WASD:
-    //   return Wasd;
+    case PlatformName.WASD:
+      return Wasd;
     default:
       return null;
   }
@@ -90,29 +90,29 @@ export async function updatePlatform(platform: Platform): Promise<Platform | nul
 }
 
 // TODO: Add more platforms
-// export async function search(platform: Platform, name: string): Promise<FollowedStreamer[]> {
-//   const client = getPlatformClient(platform);
+export async function search(platform: Platform, name: string): Promise<FollowedStreamer[]> {
+  const client = getPlatformClient(platform);
 
-//   if (client && "search" in client) {
-//     return await client.search(name);
-//   }
+  if (client && "search" in client) {
+    return await client.search(name);
+  }
 
-//   return [];
-// }
+  return [];
+}
 
-// export async function findStreamer(
-//   platform: Platform,
-//   streamer: string
-// ): Promise<FollowedStreamer | null> {
-//   const client = getPlatformClient(platform);
+export async function findStreamer(
+  platform: Platform,
+  streamer: string
+): Promise<FollowedStreamer | null> {
+  const client = getPlatformClient(platform);
 
-//   if (client && "findStreamer" in client) {
-//     const foundStreamer = await client.findStreamer(streamer);
-//     return foundStreamer;
-//   }
+  if (client && "findStreamer" in client) {
+    const foundStreamer = await client.findStreamer(streamer);
+    return foundStreamer;
+  }
 
-//   return null;
-// }
+  return null;
+}
 
 export async function updateFollowedStreamers(
   platform: Platform

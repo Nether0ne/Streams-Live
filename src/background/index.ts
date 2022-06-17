@@ -10,8 +10,8 @@ import {
   updateFollowedStreamers,
   platformAuth,
   // TODO: Add more platforms
-  // findStreamer,
-  // search,
+  findStreamer,
+  search,
 } from "./actions/platform";
 import { setup, backup, restore, reset } from "./actions/settings";
 import { updateStreams } from "./actions/streams";
@@ -21,8 +21,8 @@ const updateStreamsAlarm = "updateStreams";
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
   // TODO: Add more platforms
-  // findStreamer,
-  // search,
+  findStreamer,
+  search,
   authInit,
   updateFollowedStreamers,
   updatePlatform,

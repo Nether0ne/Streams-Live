@@ -3,7 +3,7 @@ export enum PlatformName {
   GOODGAME = "goodgame",
   // TODO: Add more platforms
   // TROVO = "trovo",
-  // WASD = "wasd",
+  WASD = "wasd",
 }
 
 export interface Platform {
@@ -38,5 +38,5 @@ export const PlatformsTypeMap = {
   [PlatformName.GOODGAME]: PlatformType.NONE,
   // TODO: Add more platforms
   // [PlatformName.TROVO]: PlatformType.LIST,
-  // [PlatformName.WASD]: PlatformType.LIST,
+  [PlatformName.WASD]: PlatformType.LIST,
 };
