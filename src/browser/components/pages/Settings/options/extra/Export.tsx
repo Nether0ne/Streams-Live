@@ -1,9 +1,9 @@
 import { FC, useContext } from "react";
-import SettingWrapper from "../Wrapper";
-import { sendRuntimeMessage, t } from "@/common/helpers";
+import SettingWrapper from "@pages/Settings/options/Wrapper";
+import { sendRuntimeMessage, t } from "@common/helpers";
 import { Box, Typography } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
-import { SnackbarContext } from "@/browser/common/context/Snackbar";
+import { SnackbarContext } from "@context/Snackbar";
 
 const styles = {
   display: "flex",

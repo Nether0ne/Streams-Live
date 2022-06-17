@@ -1,7 +1,7 @@
-import { stores } from "@/common/store";
-import { GoodgameProfile, GoodgameStream } from "@/common/types/api/goodgame";
-import { FollowedStreamer, PlatformName } from "@/common/types/platform";
-import { Stream } from "@/common/types/stream";
+import { stores } from "@common/store";
+import { GoodgameProfile, GoodgameStream } from "@customTypes/api/goodgame";
+import { FollowedStreamer, PlatformName } from "@customTypes/platform";
+import { Stream } from "@customTypes/stream";
 import ky from "ky";
 
 const favoritesApi = "https://goodgame.ru/api/4/favorites/";

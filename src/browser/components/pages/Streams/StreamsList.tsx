@@ -1,9 +1,9 @@
 import { FC, useContext } from "react";
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Box, Typography } from "@mui/material";
-import Loading from "../../layout/Loading/Loading";
-import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
-import StreamsGroup from "./StreamsGroup";
+import Loading from "@layout/Loading";
+import { StreamSettingsContext } from "@context/StreamsSettings";
+import StreamsGroup from "@pages/Streams/StreamsGroup";
 
 const styles = {
   display: "flex",

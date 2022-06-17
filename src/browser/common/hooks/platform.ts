@@ -1,7 +1,7 @@
-import { stores } from "@/common/store";
-import { PlatformName } from "@/common/types/platform";
+import { stores } from "@common/store";
+import { PlatformName } from "@customTypes/platform";
 import { get } from "lodash-es";
-import { useStore } from "./store";
+import { useStore } from "@hooks/store";
 
 export function usePlatform(name: PlatformName) {
   return useStore(get(stores, name));

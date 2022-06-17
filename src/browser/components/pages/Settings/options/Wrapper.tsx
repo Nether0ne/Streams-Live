@@ -1,4 +1,4 @@
-import { Box, BoxProps, SxProps, Theme } from "@mui/material";
+import { Box } from "@mui/material";
 import { CSSProperties } from "@mui/styled-engine";
 import { FC } from "react";
 

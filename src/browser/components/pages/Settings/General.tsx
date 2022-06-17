@@ -1,11 +1,11 @@
-import { sendRuntimeMessage, t } from "@/common/helpers";
-import { Box, Typography, Divider } from "@mui/material";
+import { sendRuntimeMessage, t } from "@common/helpers";
+import { Box } from "@mui/material";
 import { FC } from "react";
-import FontSizeSetting from "./options/general/FontSize";
-import ThemeSettings from "./options/general/Theme";
+import FontSizeSetting from "@pages/Settings/options/general/FontSize";
+import ThemeSettings from "@pages/Settings/options/general/Theme";
 
 import LabelIcon from "@mui/icons-material/Label";
-import SwitchSettings from "./options/Switch";
+import SwitchSettings from "@pages/Settings/options/Switch";
 
 const styles = {
   display: "flex",

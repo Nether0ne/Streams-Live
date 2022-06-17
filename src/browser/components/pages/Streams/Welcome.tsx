@@ -1,4 +1,4 @@
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Box, Button, Typography } from "@mui/material";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";

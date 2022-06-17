@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { keyframes } from "@emotion/react";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { CSSProperties } from "@mui/styled-engine";
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 
 interface UpdateButtonProps {
   readonly sx?: CSSProperties;

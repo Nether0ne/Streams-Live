@@ -1,5 +1,5 @@
-import Platform from "@/browser/components/cards/platform/Platform";
-import { PlatformName, PlatformsTypeMap } from "@/common/types/platform";
+import Platform from "@cards/platform";
+import { PlatformName, PlatformsTypeMap } from "@customTypes/platform";
 import { Box } from "@mui/material";
 import { FC } from "react";
 

@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router";
-import MainLayout from "../components/layout/MainLayout";
-import Settings from "../views/Settings";
-import Streams from "../views/Streams";
-import Snackbar from "../components/misc/Snackbar";
-import { SnackbarProvider } from "../common/context/Snackbar";
+import MainLayout from "@layout/MainLayout";
+import Settings from "@views/Settings";
+import Streams from "@views/Streams";
+import Snackbar from "@misc/Snackbar";
+import { SnackbarProvider } from "@context/Snackbar";
 import { Box } from "@mui/material";
-import { usePingError } from "../common/hooks/pingError";
-import BackgroundReset from "../components/modals/BackgroundReset";
-import useSettings from "../common/hooks/settings";
-import Loading from "../components/layout/Loading/Loading";
+import { usePingError } from "@hooks/pingError";
+import BackgroundReset from "@modals/BackgroundReset";
+import useSettings from "@hooks/settings";
+import Loading from "@layout/Loading";
 
 const styles = {
   height: "550px",

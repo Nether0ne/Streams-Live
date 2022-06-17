@@ -1,9 +1,9 @@
-import { objectToUrlParams } from "@/common/helpers";
-import { stores } from "@/common/store";
-import { TwitchProfile } from "@/common/types/api/twitch";
-import { TwitchStream } from "@/common/types/api/twitch";
-import { FollowedStreamer, PlatformName, UserData } from "@/common/types/platform";
-import { Stream } from "@/common/types/stream";
+import { objectToUrlParams } from "@common/helpers";
+import { stores } from "@common/store";
+import { TwitchProfile } from "@customTypes/api/twitch";
+import { TwitchStream } from "@customTypes/api/twitch";
+import { FollowedStreamer, PlatformName, UserData } from "@customTypes/platform";
+import { Stream } from "@customTypes/stream";
 import ky from "ky";
 import { find, map } from "lodash-es";
 

@@ -1,11 +1,11 @@
-import { sendRuntimeMessage } from "@/common/helpers";
-import { Box, Tooltip, Typography } from "@mui/material";
+import { sendRuntimeMessage } from "@common/helpers";
+import { Box } from "@mui/material";
 import { FC, ChangeEvent, useContext } from "react";
-import Search from "../../misc/Search";
-import UpdateButton from "../../misc/UpdateButton";
-import { t } from "@/common/helpers";
-import StreamsSettings from "./Settings";
-import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
+import Search from "@misc/Search";
+import UpdateButton from "@misc/UpdateButton";
+import { t } from "@common/helpers";
+import StreamsSettings from "@pages/Streams/Settings";
+import { StreamSettingsContext } from "@context/StreamsSettings";
 
 const styles = {
   zIndex: 1,

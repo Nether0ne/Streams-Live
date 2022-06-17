@@ -1,8 +1,8 @@
-import { objectToUrlParams } from "@/common/helpers";
-import { stores } from "@/common/store";
-import { WasdMedia, WasdSearch, WasdSearchChannel } from "@/common/types/api/wasd";
-import { FollowedStreamer, PlatformName } from "@/common/types/platform";
-import { Stream } from "@/common/types/stream";
+import { objectToUrlParams } from "@common/helpers";
+import { stores } from "@common/store";
+import { WasdMedia, WasdSearch, WasdSearchChannel } from "@customTypes/api/wasd";
+import { FollowedStreamer, PlatformName } from "@customTypes/platform";
+import { Stream } from "@customTypes/stream";
 import ky from "ky";
 
 const searchApi = "api/search";

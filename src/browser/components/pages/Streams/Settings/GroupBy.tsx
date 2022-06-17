@@ -1,8 +1,8 @@
 import { ChangeEvent, FC, useContext } from "react";
-import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
-import { GroupBy as GroupByEnum } from "@/common/types/settings";
+import { StreamSettingsContext } from "@context/StreamsSettings";
+import { GroupBy as GroupByEnum } from "@customTypes/settings";
 import { MenuItem, Skeleton, StandardTextFieldProps, TextField } from "@mui/material";
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 
 const loadingStyle = {
   width: "5rem",

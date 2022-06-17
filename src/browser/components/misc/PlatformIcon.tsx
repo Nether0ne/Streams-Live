@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { PlatformName } from "@/common/types/platform";
-import TwitchIcon from "../icons/platforms/Twitch";
-import GoodgameIcon from "../icons/platforms/Goodgame";
+import { PlatformName } from "@customTypes/platform";
+import TwitchIcon from "@icons/platforms/Twitch";
+import GoodgameIcon from "@icons/platforms/Goodgame";
 import { SxProps } from "@mui/material";
-import TrovoIcon from "../icons/platforms/Trovo";
+import TrovoIcon from "@icons/platforms/Trovo";
 
 interface PlatformIconProps {
   readonly platformName: PlatformName;

@@ -1,5 +1,5 @@
-import PlatformIcon from "@/browser/components/misc/PlatformIcon";
-import { PlatformName } from "@/common/types/platform";
+import PlatformIcon from "@misc/PlatformIcon";
+import { PlatformName } from "@customTypes/platform";
 import { Box } from "@mui/material";
 import { FC } from "react";
 

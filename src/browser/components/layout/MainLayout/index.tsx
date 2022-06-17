@@ -1,9 +1,9 @@
 import { PropsOf } from "@emotion/react";
 import { Box } from "@mui/material";
 import { FC, useState } from "react";
-import AboutModal from "../../modals/About";
-import DonateModal from "../../modals/Donate";
-import Sidebar from "../Sidebar";
+import AboutModal from "@modals/About";
+import DonateModal from "@modals/Donate";
+import Sidebar from "@layout/Sidebar";
 
 const styles = {
   wrapper: {

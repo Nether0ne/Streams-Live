@@ -1,13 +1,13 @@
-import { Stream } from "@/common/types/stream";
+import { Stream } from "@customTypes/stream";
 import { Box, Link, Tooltip, Typography } from "@mui/material";
 import { FC } from "react";
-import Uptime from "./details/Uptime";
-import Image from "../../misc/Image";
-import Viewers from "./details/Viewers";
-import StreamContextMenu from "../../pages/Streams/ContextMenu";
-import PlatformIcon from "../../misc/PlatformIcon";
-import { getLinkForPlatform } from "@/common/helpers";
-import { LinkType } from "@/common/types/general";
+import Uptime from "@cards/stream/details/Uptime";
+import Image from "@misc/Image";
+import Viewers from "@cards/stream/details/Viewers";
+import StreamContextMenu from "@pages/Streams/ContextMenu";
+import PlatformIcon from "@misc/PlatformIcon";
+import { getLinkForPlatform } from "@common/helpers";
+import { LinkType } from "@customTypes/general";
 
 interface StreamCardProps {
   readonly stream: Stream;

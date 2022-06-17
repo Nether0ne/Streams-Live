@@ -1,7 +1,7 @@
 import { castArray } from "lodash-es";
 import browser from "webextension-polyfill";
-import { Dictionary, LinkType } from "./types/general";
-import { Platform, PlatformName, PlatformType } from "./types/platform";
+import { Dictionary, LinkType } from "@customTypes/general";
+import { Platform, PlatformName, PlatformType } from "@customTypes/platform";
 
 export const t = browser.i18n.getMessage;
 

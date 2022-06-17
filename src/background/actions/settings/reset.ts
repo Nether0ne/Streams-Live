@@ -1,5 +1,5 @@
 import browser from "webextension-polyfill";
-import { setup } from "./setup";
+import { setup } from "@background/actions/settings/setup";
 
 export async function reset(): Promise<void> {
   await Promise.allSettled([

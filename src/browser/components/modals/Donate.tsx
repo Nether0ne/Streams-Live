@@ -1,4 +1,4 @@
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Box, Fade, Modal, Typography, IconButton, Link, Portal, Backdrop } from "@mui/material";
 import { FC } from "react";
 import CloseIcon from "@mui/icons-material/Close";

@@ -1,10 +1,10 @@
 import { defaultsDeep } from "lodash-es";
 import browser, { Storage } from "webextension-polyfill";
 
-import { defaultSettings, Settings } from "../types/settings";
-import { Platform, PlatformName, PlatformType } from "../types/platform";
-import { defaultPlatformState } from "../helpers";
-import { Streams } from "../types/stream";
+import { defaultSettings, Settings } from "@customTypes/settings";
+import { Platform, PlatformName, PlatformType } from "@customTypes/platform";
+import { defaultPlatformState } from "@common/helpers";
+import { Streams } from "@customTypes/stream";
 
 export type StoreAreaName = "local" | "managed" | "sync";
 export type StoreMigration = (value: any) => Promise<any>;

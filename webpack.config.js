@@ -8,6 +8,7 @@ const { EntryWrapperPlugin } = require("@seldszar/yael");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
@@ -25,8 +26,8 @@ module.exports = (env, argv) => {
         "react-dom/test-utils": "preact/test-utils",
         "react-dom": "preact/compat",
         "react/jsx-runtime": "preact/jsx-runtime",
-        "@": path.resolve("src"),
       },
+      plugins: [new TsconfigPathsPlugin()],
     },
     module: {
       rules: [

@@ -1,9 +1,9 @@
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Box, Fade, Modal, Typography, IconButton, Link, Portal, Backdrop } from "@mui/material";
 import { FC } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import LinkIcon from "@mui/icons-material/Link";
-import StreamsLive from "../icons/StreamsLive";
+import StreamsLive from "@icons/StreamsLive";
 
 interface AboutModalProps {
   readonly open: boolean;

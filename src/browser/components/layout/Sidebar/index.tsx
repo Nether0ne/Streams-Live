@@ -9,7 +9,7 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import { FC, useState } from "react";
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Link } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LiveTvIcon from "@mui/icons-material/LiveTv";

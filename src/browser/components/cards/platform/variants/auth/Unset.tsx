@@ -1,9 +1,9 @@
-import { PlatformName } from "@/common/types/platform";
+import { PlatformName } from "@customTypes/platform";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 import { FC } from "react";
-import PlatformWrapper from "../Wrapper";
+import PlatformWrapper from "@cards/platform/variants/Wrapper";
 import AddIcon from "@mui/icons-material/Add";
-import { sendRuntimeMessage, t } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "@common/helpers";
 
 interface UnsetAuthProfileProps {
   readonly platformName: PlatformName;

@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
-import StreamsHeader from "../components/pages/Streams/Header";
-import { useAllSetPlatforms } from "../common/hooks/platform";
-import { StreamSettingsProvider } from "../common/context/StreamsSettings";
-import StreamsList from "../components/pages/Streams/StreamsList";
-import Welcome from "../components/pages/Streams/Welcome";
-import useSettings from "../common/hooks/settings";
-import Loading from "../components/layout/Loading/Loading";
+import StreamsHeader from "@pages/Streams/Header";
+import { useAllSetPlatforms } from "@hooks/platform";
+import { StreamSettingsProvider } from "@context/StreamsSettings";
+import StreamsList from "@pages/Streams/StreamsList";
+import Welcome from "@pages/Streams/Welcome";
+import useSettings from "@hooks/settings";
+import Loading from "@layout/Loading";
 
 const styles = {
   display: "flex",

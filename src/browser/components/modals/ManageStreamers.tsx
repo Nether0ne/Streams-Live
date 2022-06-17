@@ -1,5 +1,5 @@
-import { usePlatform } from "@/browser/common/hooks/platform";
-import { FollowedStreamer, PlatformName } from "@/common/types/platform";
+import { usePlatform } from "@hooks/platform";
+import { FollowedStreamer, PlatformName } from "@customTypes/platform";
 import {
   Autocomplete,
   Box,
@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { ChangeEvent, FC, SyntheticEvent, useEffect, useState } from "react";
-import { sendRuntimeMessage, t } from "@/common/helpers";
+import { sendRuntimeMessage, t } from "@common/helpers";
 
 const styles = {
   backdrop: {

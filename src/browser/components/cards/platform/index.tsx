@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { PlatformName, PlatformType } from "@/common/types/platform";
-import AuthPlatform from "./variants/auth/AuthPlatform";
-import GeneralPlatform from "./variants/general/GeneralPlatform";
+import { PlatformName, PlatformType } from "@customTypes/platform";
+import AuthPlatform from "@cards/platform/variants/auth/AuthPlatform";
+import GeneralPlatform from "@cards/platform/variants/general/GeneralPlatform";
 
 interface PlatformProps {
   readonly platformName: PlatformName;

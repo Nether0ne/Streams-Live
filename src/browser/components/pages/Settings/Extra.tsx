@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
-import ExportSetting from "./options/extra/Export";
-import ImportSetting from "./options/extra/Import";
-import ResetSetting from "./options/extra/Reset";
+import ExportSetting from "@pages/Settings/options/extra/Export";
+import ImportSetting from "@pages/Settings/options/extra/Import";
+import ResetSetting from "@pages/Settings/options/extra/Reset";
 
 const ExtraSettings: FC = () => {
   return (

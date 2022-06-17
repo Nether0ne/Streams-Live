@@ -1,4 +1,4 @@
-import { Box, TextField, TextFieldProps } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { ChangeEvent, FC } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 

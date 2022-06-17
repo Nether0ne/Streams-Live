@@ -1,9 +1,9 @@
-import { getLinkForPlatform } from "@/common/helpers";
-import { stores } from "@/common/store";
-import { Dictionary, NotificationType } from "@/common/types/general";
-import { PlatformName } from "@/common/types/platform";
+import { getLinkForPlatform } from "@common/helpers";
+import { stores } from "@common/store";
+import { Dictionary, NotificationType } from "@customTypes/general";
+import { PlatformName } from "@customTypes/platform";
 import browser from "webextension-polyfill";
-import { updateBadge, ping } from "./actions/misc";
+import { updateBadge, ping } from "@background/actions/misc";
 import {
   authInit,
   updatePlatform,

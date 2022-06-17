@@ -1,12 +1,12 @@
 import browser from "webextension-polyfill";
-import { stores } from "@/common/store";
-import { Stream } from "@/common/types/stream";
+import { stores } from "@common/store";
+import { Stream } from "@customTypes/stream";
 import { find } from "lodash";
-import { createNotification, getIconPath } from "./misc";
-import { t } from "@/common/helpers";
-import { getPlatformClient, getAllSetPlatforms } from "./platform";
-import { NotificationType } from "@/common/types/general";
-import { FollowedStreamer } from "@/common/types/platform";
+import { createNotification, getIconPath } from "@background/actions/misc";
+import { t } from "@common/helpers";
+import { getPlatformClient, getAllSetPlatforms } from "@background/actions/platform";
+import { NotificationType } from "@customTypes/general";
+import { FollowedStreamer } from "@customTypes/platform";
 
 export async function updateStreams(forceUpdate: boolean = false) {
   const settings = await stores.settings.get();

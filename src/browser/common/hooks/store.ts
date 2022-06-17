@@ -1,4 +1,4 @@
-import { Store } from "@/common/store";
+import { Store } from "@common/store";
 import { useState, useEffect } from "react";
 
 export interface UseStoreState<T> {

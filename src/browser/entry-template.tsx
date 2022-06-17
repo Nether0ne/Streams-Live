@@ -3,8 +3,8 @@ import { EntryWrapper } from "@seldszar/yael";
 import { ExoticComponent, FC } from "react";
 import { HashRouter } from "react-router-dom";
 import { GlobalStyles } from "twin.macro";
-import useSettings from "./common/hooks/settings";
-import { getTheme } from "./common/styles";
+import useSettings from "@hooks/settings";
+import { getTheme } from "@/browser/common/styles";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
 const wrapper: EntryWrapper<ExoticComponent> = (Component) => {

@@ -1,5 +1,5 @@
-import { Store, stores, StoreState } from "@/common/store";
-import { Settings } from "@/common/types/settings";
+import { Store, stores, StoreState } from "@common/store";
+import { Settings } from "@customTypes/settings";
 import { get } from "lodash-es";
 
 export async function restore(data: StoreState<Settings>): Promise<void> {

@@ -1,4 +1,4 @@
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Modal, Portal, Fade, Box, Typography, Button } from "@mui/material";
 import { FC } from "react";
 import browser from "webextension-polyfill";

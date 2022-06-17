@@ -1,5 +1,5 @@
-import TwitchIcon from "@/browser/components/icons/platforms/Twitch";
-import SettingWrapper from "@/browser/components/pages/Settings/options/Wrapper";
+import TwitchIcon from "@icons/platforms/Twitch";
+import SettingWrapper from "@pages/Settings/options/Wrapper";
 import { Avatar, Box, IconButton, Skeleton } from "@mui/material";
 import { CSSProperties, FC } from "react";
 

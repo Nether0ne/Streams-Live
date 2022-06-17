@@ -1,6 +1,6 @@
-import { stores } from "@/common/store";
-import { SortField } from "@/common/types/settings";
-import { useStore } from "../store";
+import { stores } from "@common/store";
+import { SortField } from "@customTypes/settings";
+import { useStore } from "@hooks/store";
 
 export function useSortField() {
   const [settings, store] = useStore(stores.settings);

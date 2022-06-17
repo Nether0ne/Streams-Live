@@ -1,4 +1,4 @@
-import { stores } from "@/common/store";
+import { stores } from "@common/store";
 
 export async function setup(migrate = false): Promise<void> {
   const allStores = Object.values(stores);

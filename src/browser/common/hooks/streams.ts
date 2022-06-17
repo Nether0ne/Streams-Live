@@ -1,15 +1,15 @@
-import { stores } from "@/common/store";
-import { GroupBy, SortField, SortDirection } from "@/common/types/settings";
+import { stores } from "@common/store";
+import { GroupBy, SortField, SortDirection } from "@customTypes/settings";
 import { useEffect, useState } from "react";
-import useSettings from "./settings";
-import { useStore } from "./store";
+import useSettings from "@hooks/settings";
+import { useStore } from "@hooks/store";
 import { orderBy, groupBy as groupItemsBy } from "lodash-es";
-import { useSearch } from "./streamsSettings/search";
-import { useGroupBy } from "./streamsSettings/groupBy";
-import { useSortField } from "./streamsSettings/sortField";
-import { useSortDirection } from "./streamsSettings/sortDirection";
+import { useSearch } from "@hooks/streamsSettings/search";
+import { useGroupBy } from "@hooks/streamsSettings/groupBy";
+import { useSortField } from "@hooks/streamsSettings/sortField";
+import { useSortDirection } from "@hooks/streamsSettings/sortDirection";
 import { Dictionary } from "lodash";
-import { Stream } from "@/common/types/stream";
+import { Stream } from "@customTypes/stream";
 
 export default function useStreams() {
   return useStore(stores.streams);

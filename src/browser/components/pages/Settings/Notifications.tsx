@@ -1,12 +1,12 @@
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Box, Collapse } from "@mui/material";
 import { FC } from "react";
-import SwitchSettings from "./options/Switch";
+import SwitchSettings from "@pages/Settings/options/Switch";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SwitchLeftIcon from "@mui/icons-material/SwitchLeft";
-import useSettings from "@/browser/common/hooks/settings";
-import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
-import PlatformIcon from "../../misc/PlatformIcon";
+import useSettings from "@hooks/settings";
+import { useAllSetPlatforms } from "@hooks/platform";
+import PlatformIcon from "@misc/PlatformIcon";
 
 const styles = {
   display: "flex",

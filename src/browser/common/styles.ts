@@ -1,4 +1,4 @@
-import { FontSize, Theme as ThemeSetting } from "@/common/types/settings";
+import { FontSize, Theme as ThemeSetting } from "@customTypes/settings";
 import { createTheme, Theme } from "@mui/material/styles";
 
 export function getBaseFontSize(value: FontSize) {

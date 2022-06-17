@@ -1,6 +1,6 @@
 import browser from "webextension-polyfill";
-import { stores } from "@/common/store";
-import { getAllSetPlatforms } from "./platform";
+import { stores } from "@common/store";
+import { getAllSetPlatforms } from "@background/actions/platform";
 
 const badgeColor = "#666666";
 

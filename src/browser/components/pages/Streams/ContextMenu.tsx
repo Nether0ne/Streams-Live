@@ -1,8 +1,8 @@
-import { t, getLinkForPlatform } from "@/common/helpers";
+import { t, getLinkForPlatform } from "@common/helpers";
 import { Link, Menu, MenuItem, Typography } from "@mui/material";
 import { FC } from "react";
-import { PlatformName } from "@/common/types/platform";
-import useContextMenu from "@/browser/common/hooks/contextMenu";
+import { PlatformName } from "@customTypes/platform";
+import useContextMenu from "@hooks/contextMenu";
 
 interface StreamContextMenuProps {
   id: string;

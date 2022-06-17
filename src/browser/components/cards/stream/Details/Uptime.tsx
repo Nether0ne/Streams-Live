@@ -1,7 +1,7 @@
-import { timeBetweenDates } from "@/common/helpers";
+import { timeBetweenDates } from "@common/helpers";
 import { SxProps, Typography } from "@mui/material";
 import { FC, useMemo } from "react";
-import useNow from "../../../../common/hooks/now";
+import useNow from "@hooks/now";
 
 interface UptimeProps {
   readonly startedAt: string;

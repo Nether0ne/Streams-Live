@@ -1,9 +1,9 @@
-import { usePlatform } from "@/browser/common/hooks/platform";
-import { PlatformName } from "@/common/types/platform";
+import { usePlatform } from "@hooks/platform";
+import { PlatformName } from "@customTypes/platform";
 import { FC } from "react";
-import PlatformLoading from "./Loading";
-import SetAuthProfile from "./Set";
-import UnsetAuthProfile from "./Unset";
+import PlatformLoading from "@layout/Loading";
+import SetAuthProfile from "@cards/platform/variants/auth/Set";
+import UnsetAuthProfile from "@cards/platform/variants/auth/Unset";
 
 interface AuthPlatformProps {
   readonly platformName: PlatformName;

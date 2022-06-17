@@ -1,12 +1,12 @@
-import UpdateButton from "@/browser/components/misc/UpdateButton";
-import { Platform, PlatformName } from "@/common/types/platform";
+import UpdateButton from "@misc/UpdateButton";
+import { Platform, PlatformName } from "@customTypes/platform";
 import { Avatar, Box, capitalize, IconButton, Tooltip, Typography } from "@mui/material";
 import { FC, useContext } from "react";
-import PlatformWrapper from "../Wrapper";
+import PlatformWrapper from "@cards/platform/variants/Wrapper";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { SnackbarContext } from "@/browser/common/context/Snackbar";
-import { defaultPlatformState, sendRuntimeMessage, t } from "@/common/helpers";
-import { usePlatform } from "@/browser/common/hooks/platform";
+import { SnackbarContext } from "@context/Snackbar";
+import { defaultPlatformState, sendRuntimeMessage, t } from "@common/helpers";
+import { usePlatform } from "@hooks/platform";
 
 interface SetAuthProfileProps {
   readonly platformName: PlatformName;

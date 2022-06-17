@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Box, Divider, Typography } from "@mui/material";
-import { t } from "@/common/helpers";
-import GeneralSettings from "../components/pages/Settings/General";
-import NotificationsSettings from "../components/pages/Settings/Notifications";
-import ExtraSettings from "../components/pages/Settings/Extra";
-import PlatformsSettings from "../components/pages/Settings/Platforms";
+import { t } from "@common/helpers";
+import GeneralSettings from "@pages/Settings/General";
+import NotificationsSettings from "@pages/Settings/Notifications";
+import ExtraSettings from "@pages/Settings/Extra";
+import PlatformsSettings from "@pages/Settings/Platforms";
 
 const styles = {
   display: "flex",

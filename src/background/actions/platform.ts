@@ -1,11 +1,11 @@
-import * as Goodgame from "@/api/goodgame";
-import * as Twitch from "@/api/twitch";
-import * as Wasd from "@/api/wasd";
-import { t } from "@/common/helpers";
-import { stores } from "@/common/store";
-import { FollowedStreamer, Platform, PlatformName } from "@/common/types/platform";
-import { createNotification, getIconPath } from "./misc";
-import { updateStreams } from "./streams";
+import * as Goodgame from "@api/goodgame";
+import * as Twitch from "@api/twitch";
+import * as Wasd from "@api/wasd";
+import { t } from "@common/helpers";
+import { stores } from "@common/store";
+import { FollowedStreamer, Platform, PlatformName } from "@customTypes/platform";
+import { createNotification, getIconPath } from "@background/actions/misc";
+import { updateStreams } from "@background/actions/streams";
 import browser from "webextension-polyfill";
 
 export async function getPlatform(name: PlatformName): Promise<Platform> {

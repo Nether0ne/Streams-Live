@@ -1,6 +1,6 @@
-import { stores } from "@/common/store";
-import { SortDirection } from "@/common/types/settings";
-import { useStore } from "../store";
+import { stores } from "@common/store";
+import { SortDirection } from "@customTypes/settings";
+import { useStore } from "@hooks/store";
 
 export function useSortDirection() {
   const [settings, store] = useStore(stores.settings);

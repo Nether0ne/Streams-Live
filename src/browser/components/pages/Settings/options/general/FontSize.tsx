@@ -1,12 +1,12 @@
 import { Box, Typography, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import { FC, useState } from "react";
-import { FontSize } from "@/common/types/settings";
-import { t } from "@/common/helpers";
-import useSettings from "@/browser/common/hooks/settings";
+import { FontSize } from "@customTypes/settings";
+import { t } from "@common/helpers";
+import useSettings from "@hooks/settings";
 import Check from "@mui/icons-material/Check";
 import TextFieldsIcon from "@mui/icons-material/TextFields";
-import SettingWrapper from "../Wrapper";
-import SettingLoading from "../SettingLoading";
+import SettingWrapper from "@pages/Settings/options/Wrapper";
+import SettingLoading from "@pages/Settings/options/SettingLoading";
 
 const styles = {
   display: "flex",

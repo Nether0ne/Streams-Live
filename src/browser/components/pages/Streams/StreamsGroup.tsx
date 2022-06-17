@@ -1,10 +1,10 @@
-import { Stream } from "@/common/types/stream";
+import { Stream } from "@customTypes/stream";
 import { Box, Collapse, Typography } from "@mui/material";
 import { FC, useState, useContext } from "react";
-import StreamCard from "../../cards/stream/Stream";
+import StreamCard from "@cards/stream";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { GroupBy } from "@/common/types/settings";
-import { t } from "@/common/helpers";
+import { GroupBy } from "@customTypes/settings";
+import { t } from "@common/helpers";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 
 const styles = {

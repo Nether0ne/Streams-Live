@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Stack } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import { CSSProperties } from "@mui/styled-engine";
 import { FC } from "react";
 

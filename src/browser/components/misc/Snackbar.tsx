@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent, useContext } from "react";
 import { Alert, IconButton, Snackbar as MuiSnackbar, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { SnackbarContext } from "../../common/context/Snackbar";
+import { SnackbarContext } from "@context/Snackbar";
 
 const styles = {
   "& svg": {

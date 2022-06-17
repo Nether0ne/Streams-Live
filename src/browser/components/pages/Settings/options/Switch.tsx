@@ -1,10 +1,10 @@
 import useSettings from "@/browser/common/hooks/settings";
-import { t } from "@/common/helpers";
+import { t } from "@common/helpers";
 import { Box, Typography, FormGroup, Switch } from "@mui/material";
 import { get, set } from "lodash-es";
 import { CSSProperties, FC } from "react";
-import SettingWrapper from "./Wrapper";
-import SettingLoading from "./SettingLoading";
+import SettingWrapper from "@pages/Settings/options/Wrapper";
+import SettingLoading from "@pages/Settings/options/SettingLoading";
 
 const styles = {
   display: "flex",

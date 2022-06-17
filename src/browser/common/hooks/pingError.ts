@@ -1,4 +1,4 @@
-import { sendRuntimeMessage } from "@/common/helpers";
+import { sendRuntimeMessage } from "@common/helpers";
 import pTimeout from "p-timeout";
 import { useState } from "react";
 import { useEffectOnce, useHarmonicIntervalFn } from "react-use";

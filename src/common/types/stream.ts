@@ -1,4 +1,4 @@
-import { PlatformName } from "./platform";
+import { PlatformName } from "@customTypes/platform";
 
 export interface Stream {
   id: string;

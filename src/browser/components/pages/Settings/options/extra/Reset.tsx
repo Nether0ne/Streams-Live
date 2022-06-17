@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
-import SettingWrapper from "../Wrapper";
-import { t } from "@/common/helpers";
+import SettingWrapper from "@pages/Settings/options/Wrapper";
+import { t } from "@common/helpers";
 import { Box, Typography } from "@mui/material";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
-import FactoryResetModal from "@/browser/components/modals/FactoryReset";
+import FactoryResetModal from "@modals/FactoryReset";
 
 const styles = {
   display: "flex",

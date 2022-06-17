@@ -1,6 +1,6 @@
 import { FC, createContext } from "react";
-import { defaultSettings, StreamSettings } from "@/common/types/settings";
-import { Stream } from "@/common/types/stream";
+import { defaultSettings, StreamSettings } from "@customTypes/settings";
+import { Stream } from "@customTypes/stream";
 import { Dictionary } from "lodash";
 import { useStreamsWithSettings } from "../hooks/streams";
 

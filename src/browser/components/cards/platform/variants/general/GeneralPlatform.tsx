@@ -1,16 +1,16 @@
-import { usePlatform } from "@/browser/common/hooks/platform";
-import { sendRuntimeMessage, t } from "@/common/helpers";
-import { FollowedStreamer, PlatformName, PlatformType } from "@/common/types/platform";
+import { usePlatform } from "@hooks/platform";
+import { sendRuntimeMessage, t } from "@common/helpers";
+import { FollowedStreamer, PlatformName, PlatformType } from "@customTypes/platform";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { FC, useContext, useState } from "react";
-import PlatformWrapper from "../Wrapper";
+import PlatformWrapper from "@cards/platform/variants/Wrapper";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import UpdateButton from "@/browser/components/misc/UpdateButton";
-import { SnackbarContext } from "@/browser/common/context/Snackbar";
-import ManageStreamersModal from "@/browser/components/modals/ManageStreamers";
+import UpdateButton from "@misc/UpdateButton";
+import { SnackbarContext } from "@context/Snackbar";
+import ManageStreamersModal from "@modals/ManageStreamers";
 
 const styles = {
   left: {

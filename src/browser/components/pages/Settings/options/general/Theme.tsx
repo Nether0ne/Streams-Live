@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
-import { t } from "@/common/helpers";
-import useSettings from "@/browser/common/hooks/settings";
+import { t } from "@common/helpers";
+import useSettings from "@hooks/settings";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness6Icon from "@mui/icons-material/Brightness6";
-import SettingWrapper from "../Wrapper";
-import { Theme } from "@/common/types/settings";
-import SettingLoading from "../SettingLoading";
+import { Theme } from "@customTypes/settings";
+import SettingWrapper from "@pages/Settings/options/Wrapper";
+import SettingLoading from "@pages/Settings/options/SettingLoading";
 
 const styles = {
   display: "flex",

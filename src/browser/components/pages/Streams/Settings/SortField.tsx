@@ -1,6 +1,6 @@
-import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
-import { t } from "@/common/helpers";
-import { SortField as SortFieldEnum } from "@/common/types/settings";
+import { StreamSettingsContext } from "@context/StreamsSettings";
+import { t } from "@common/helpers";
+import { SortField as SortFieldEnum } from "@customTypes/settings";
 import { MenuItem, Skeleton, StandardTextFieldProps, TextField } from "@mui/material";
 import { ChangeEvent, FC, useContext } from "react";
 

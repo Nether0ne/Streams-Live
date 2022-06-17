@@ -16,9 +16,9 @@ export async function reset(): Promise<void> {
   await setup(true);
   browser.runtime.reload();
 }
-import { Store, stores, StoreState } from "@/common/store";
-import { Dictionary } from "@/common/types/general";
-import { Settings } from "@/common/types/settings";
+import { Store, stores, StoreState } from "@common/store";
+import { Dictionary } from "@customTypes/general";
+import { Settings } from "@customTypes/settings";
 import { get } from "lodash-es";
 
 export async function restore(data: StoreState<Settings>): Promise<void> {

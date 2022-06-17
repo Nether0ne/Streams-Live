@@ -1,4 +1,4 @@
-import { digitWithSpaces, t } from "@/common/helpers";
+import { digitWithSpaces, t } from "@common/helpers";
 import { Box, Tooltip, Typography } from "@mui/material";
 import { FC } from "react";
 import PeopleIcon from "@mui/icons-material/People";

@@ -1,6 +1,6 @@
-import { stores } from "@/common/store";
-import { GroupBy } from "@/common/types/settings";
-import { useStore } from "../store";
+import { stores } from "@common/store";
+import { GroupBy } from "@customTypes/settings";
+import { useStore } from "@hooks/store";
 
 export function useGroupBy() {
   const [settings, store] = useStore(stores.settings);

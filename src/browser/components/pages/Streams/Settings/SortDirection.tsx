@@ -1,8 +1,8 @@
 import { FC, useContext } from "react";
 import { IconButton, Skeleton } from "@mui/material";
 import SortIcon from "@mui/icons-material/Sort";
-import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
-import { SortDirection as SortDirectionEnum } from "@/common/types/settings";
+import { StreamSettingsContext } from "@context/StreamsSettings";
+import { SortDirection as SortDirectionEnum } from "@customTypes/settings";
 
 const loadingStyle = {
   width: "0.75rem",

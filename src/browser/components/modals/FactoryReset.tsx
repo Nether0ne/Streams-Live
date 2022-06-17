@@ -1,6 +1,6 @@
-import { SnackbarContext } from "@/browser/common/context/Snackbar";
-import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
-import { defaultPlatformState, t } from "@/common/helpers";
+import { SnackbarContext } from "@context/Snackbar";
+import { useAllSetPlatforms } from "@hooks/platform";
+import { defaultPlatformState, t } from "@common/helpers";
 import {
   Fade,
   Typography,
