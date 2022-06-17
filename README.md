@@ -1,4 +1,4 @@
-# <img src="/public/icon/icon-48.png" width="38" align="left" /> Streams Live
+# <img src="/public/icon/icon-48.png" width="45" align="left" /> Streams Live
 
 > Helps tracking your favorite streamers across different platforms!
 
