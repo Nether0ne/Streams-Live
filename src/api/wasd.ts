@@ -12,13 +12,11 @@ const apiClient = ky.extend({
   prefixUrl: "https://wasd.tv/",
   timeout: 700,
   cache: "no-cache",
-  headers: {
-    Application: "json",
-  },
 });
 
 // TODO: Add more platforms
 export async function findStreamer(name: string): Promise<FollowedStreamer | null> {
+  await apiClient(``);
   let foundStreamer: FollowedStreamer | null = null;
 
   const streamerParams = objectToUrlParams({
@@ -47,16 +45,17 @@ export async function findStreamer(name: string): Promise<FollowedStreamer | nul
 }
 
 export async function search(name: string): Promise<FollowedStreamer[]> {
+  console.log(await apiClient(``));
   const streamerParams = objectToUrlParams({
     search_phrase: name,
-    limit: 5,
+    limit: 15,
     offset: 0,
   });
 
   const searchResults: FollowedStreamer[] = [];
   const response = (await apiClient(searchApi, { searchParams: streamerParams }).json<WasdSearch>())
     .result;
-  console.log(response);
+
   const { count, rows } = response.profiles;
 
   if (count > 0) {
@@ -73,8 +72,13 @@ export async function search(name: string): Promise<FollowedStreamer[]> {
 }
 
 export async function getFollowedStreamers(): Promise<FollowedStreamer[]> {
+  await apiClient(``);
   const wasdStore = await stores[PlatformName.WASD].get();
   const wasdFollowedStreamers = wasdStore.followedStreamers;
+
+  if (wasdFollowedStreamers.length === 0) {
+    return [];
+  }
 
   const followedStreamersParams = objectToUrlParams({
     channel_id: wasdFollowedStreamers.map((streamer) => streamer.id),
@@ -83,7 +87,7 @@ export async function getFollowedStreamers(): Promise<FollowedStreamer[]> {
   const followedStreamers = (
     await apiClient(containerApi, { searchParams: followedStreamersParams }).json<WasdMedia>()
   ).result;
-
+  console.log(await apiClient(containerApi, { searchParams: followedStreamersParams }));
   const streamers: FollowedStreamer[] = [];
 
   for (const channel of followedStreamers) {
@@ -100,8 +104,13 @@ export async function getFollowedStreamers(): Promise<FollowedStreamer[]> {
 }
 
 export async function getStreams(): Promise<Stream[]> {
+  await apiClient(``);
   const wasdStore = await stores[PlatformName.WASD].get();
   const wasdFollowedStreamers = wasdStore.followedStreamers;
+
+  if (wasdFollowedStreamers.length === 0) {
+    return [];
+  }
 
   const followedStreamersParams = objectToUrlParams({
     channel_id: wasdFollowedStreamers.map((streamer) => streamer.id),

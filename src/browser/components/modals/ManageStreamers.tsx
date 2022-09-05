@@ -3,6 +3,7 @@ import { FollowedStreamer, PlatformName } from "@customTypes/platform";
 import {
   Autocomplete,
   Box,
+  Button,
   CircularProgress,
   Fade,
   IconButton,
@@ -13,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { ChangeEvent, FC, SyntheticEvent, useEffect, useState } from "react";
+import { ChangeEvent, FC, ReactEventHandler, SyntheticEvent, useEffect, useState } from "react";
 import { sendRuntimeMessage, t } from "@common/helpers";
 
 const styles = {
@@ -88,21 +89,32 @@ const ManageStreamersModal: FC<ManageStreamersModalProps> = ({ platformName, ope
   const [fetching, setFetching] = useState(false);
   const [autocompleteOpen, setAutocompleteOpen] = useState(false);
   const [selectOptions, setSelectOptions] = useState<FollowedStreamer[]>([]);
-  const handleInput = (event: SyntheticEvent, streamerToAdd: FollowedStreamer) => {
-    console.log(event);
-  };
-  const addStreamer = (streamerToAdd: FollowedStreamer) => {
-    const alreadyAddedStreamer =
-      followedStreamers.find((streamer) => streamer.name === streamerToAdd.name) || false;
 
-    if (!alreadyAddedStreamer) {
-      store.set({
+  const addStreamer = (event: ReactEventHandler<HTMLDivElement>) => {
+    console.log(event);
+    // if (value) {
+    //   const alreadyAddedStreamer =
+    //     followedStreamers.find((streamer) => streamer.name === value.name) || false;
+
+    //   if (!alreadyAddedStreamer) {
+    //     store.set({
+    //       ...platform,
+    //       followedStreamers: [...followedStreamers, value],
+    //     });
+    //     setStreamer("");
+    //     setAutocompleteOpen(false);
+    //   }
+    // }
+  };
+
+  const removeStreamer = (streamer: FollowedStreamer) => {
+    (async () =>
+      await store.set({
         ...platform,
-        followedStreamers: [...followedStreamers, streamerToAdd],
-      });
-      setStreamer("");
-      setAutocompleteOpen(false);
-    }
+        followedStreamers: followedStreamers.filter(
+          (followedStreamer) => followedStreamer.name !== streamer.name
+        ),
+      }))();
   };
 
   useEffect(() => {
@@ -116,7 +128,9 @@ const ManageStreamersModal: FC<ManageStreamersModalProps> = ({ platformName, ope
             streamer
           );
           setSelectOptions(searchResults);
-        } catch (e: unknown) {}
+        } catch (e: unknown) {
+          console.log(e);
+        }
         setFetching(false);
       })();
     }
@@ -159,19 +173,19 @@ const ManageStreamersModal: FC<ManageStreamersModalProps> = ({ platformName, ope
                   onClose={() => {
                     setAutocompleteOpen(false);
                   }}
+                  noOptionsText={"Your Customized No Options Text"}
                   isOptionEqualToValue={(option, value) => option.name === value.name}
                   getOptionLabel={(option) => option.name}
                   options={selectOptions}
                   loading={fetching}
-                  // TODO: on select, add to followed streamers
-                  // onSelect={handleInput}
                   renderInput={(params) => (
                     <TextField
                       {...params}
                       label="Search streamer"
-                      onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        setStreamer(event.target.value)
-                      }
+                      onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                        console.log(event.target.value);
+                        setStreamer(event.target.value);
+                      }}
                       InputProps={{
                         ...params.InputProps,
                         endAdornment: (
@@ -186,7 +200,12 @@ const ManageStreamersModal: FC<ManageStreamersModalProps> = ({ platformName, ope
                 />
                 <Box sx={styles.info}>
                   {followedStreamers.length > 0 ? (
-                    followedStreamers.map((streamer) => <Typography>{streamer.name}</Typography>)
+                    followedStreamers.map((streamer) => (
+                      <>
+                        <Typography>{streamer.name}</Typography>{" "}
+                        <Button onClick={() => removeStreamer(streamer)}>x</Button>
+                      </>
+                    ))
                   ) : (
                     <Typography>No followed streamers</Typography>
                   )}
