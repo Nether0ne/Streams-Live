@@ -2,7 +2,7 @@ export type Dictionary<T> = Record<string, T>;
 
 export enum LinkType {
   STREAM = "stream",
-  CHANNEL = "channel",
+  POPOUT = "popout",
   CHAT = "chat",
   VIDEOS = "videos",
 }
