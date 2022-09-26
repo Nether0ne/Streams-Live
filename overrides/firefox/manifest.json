@@ -10,8 +10,7 @@
     "storage",
     "unlimitedStorage",
     "*://*.nether0ne.github.io/#/streams-live/auth",
-    "*://*.goodgame.ru/",
-    "*://*.wasd.tv/"
+    "*://*.goodgame.ru/"
   ],
   "background": {
     "scripts": ["background.js"]
