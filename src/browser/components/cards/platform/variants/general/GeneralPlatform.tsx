@@ -100,7 +100,7 @@ const GeneralPlatform: FC<GeneralPlatformProps> = ({ platformName }) => {
               </>
             )}
 
-            <Tooltip title={<Typography>{t("disable", t("platform"))}</Typography>} placement="top">
+            <Tooltip title={<Typography>{t("disable", t(platform.name))}</Typography>} placement="top">
               <IconButton onClick={disablePlatform}>
                 <CloseIcon />
               </IconButton>
@@ -116,7 +116,7 @@ const GeneralPlatform: FC<GeneralPlatformProps> = ({ platformName }) => {
               </Tooltip>
             )}
 
-            <Tooltip title={<Typography>{t("enable", t("platform"))}</Typography>} placement="top">
+            <Tooltip title={<Typography>{t("enable", t(platform.name))}</Typography>} placement="top">
               <IconButton onClick={enablePlatform}>
                 <AddIcon />
               </IconButton>
