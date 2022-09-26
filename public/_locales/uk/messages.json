@@ -220,7 +220,7 @@
     "message": "Вимкнено"
   },
   "disable": {
-    "message": "Включити $thing$",
+    "message": "Виключити $thing$",
     "placeholders": {
       "thing": {
         "content": "$1"
