@@ -1,12 +1,12 @@
 import { t, getLinkForPlatform } from "@/common/helpers";
 import { Link, Menu, MenuItem, Typography } from "@mui/material";
 import { FC } from "react";
-import { PlatformName } from "@/common/types/platform";
 import useContextMenu from "@/browser/common/hooks/contextMenu";
+import { LinkType } from "@/common/types/general";
+import { Stream } from "@/common/types/stream";
 
 interface StreamContextMenuProps {
-  id: string;
-  platformName: PlatformName;
+  stream: Stream;
 }
 
 const styles = {
@@ -30,25 +30,26 @@ const contextMenuProps = {
 
 const contextMenuItems = [
   {
-    path: "/",
+    type: LinkType.STREAM,
     label: t("openStream"),
   },
   {
-    path: "/popout",
+    type: LinkType.POPOUT,
     label: t("openOnlyStream"),
   },
   {
-    path: "/chat",
+    type: LinkType.CHAT,
     label: t("openOnlyChat"),
   },
   {
-    path: "/videos",
+    type: LinkType.VIDEOS,
     label: t("openVideos"),
   },
 ];
 
-const StreamContextMenu: FC<StreamContextMenuProps> = ({ id, platformName }) => {
-  const { x, y, showMenu } = useContextMenu(id);
+const StreamContextMenu: FC<StreamContextMenuProps> = ({ stream }) => {
+  const { id, user } = stream;
+  const { x, y, showMenu } = useContextMenu(user);
 
   return (
     <Menu
@@ -59,16 +60,16 @@ const StreamContextMenu: FC<StreamContextMenuProps> = ({ id, platformName }) => 
       MenuListProps={contextMenuProps}
       sx={styles}
     >
-      {contextMenuItems.map(({ path, label }) => {
-        const href = getLinkForPlatform(platformName, `${id}${path}`);
+      {contextMenuItems.map(({ type, label }) => {
+        const href = getLinkForPlatform(stream, type);
 
-        return (
+        return href !== "" ? (
           <Link className="link" href={href} target="_blank">
             <MenuItem className="menuItem">
               <Typography>{label}</Typography>
             </MenuItem>
           </Link>
-        );
+        ) : null;
       })}
     </Menu>
   );

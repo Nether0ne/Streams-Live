@@ -1,6 +1,6 @@
 import { getLinkForPlatform } from "@/common/helpers";
 import { stores } from "@/common/store";
-import { Dictionary, NotificationType } from "@/common/types/general";
+import { Dictionary, LinkType, NotificationType } from "@/common/types/general";
 import { PlatformName } from "@/common/types/platform";
 import browser from "webextension-polyfill";
 import { updateBadge, ping } from "./actions/misc";
@@ -58,12 +58,15 @@ browser.alarms.onAlarm.addListener((alarm) => {
 });
 
 browser.notifications.onClicked.addListener((notificationId: string) => {
-  const [, type, user, platform] = notificationId.split(":");
+  const split = notificationId.split(":");
+  const type = split[1];
+  const streamJSON = split.slice(2).join(":");
+  const stream = JSON.parse(streamJSON);
 
   switch (type) {
     case NotificationType.STREAM: {
       browser.tabs.create({
-        url: getLinkForPlatform(platform as PlatformName, user),
+        url: getLinkForPlatform(stream, LinkType.STREAM),
       });
     }
   }

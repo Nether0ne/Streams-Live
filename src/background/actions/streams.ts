@@ -106,7 +106,7 @@ const newStreamNotification = async (
   const icon =
     followedStreamer && followedStreamer.avatar ? followedStreamer.avatar : await getIconPath(128);
 
-  createNotification([NotificationType.STREAM, user, platform], {
+  createNotification([NotificationType.STREAM, JSON.stringify(stream)], {
     title: t("streamerOnline", [user, platform]),
     message: game ?? "",
     contextMessage: title,
@@ -120,12 +120,12 @@ const newCategoryNotification = async (
   newStream: Stream,
   followedStreamer?: FollowedStreamer
 ): Promise<void> => {
-  const { user, game, title, platform } = newStream;
+  const { user, game, title } = newStream;
   const icon =
     followedStreamer && followedStreamer.avatar ? followedStreamer.avatar : await getIconPath(128);
 
   if (oldStream.game !== game) {
-    createNotification([NotificationType.STREAM, user, platform], {
+    createNotification([NotificationType.STREAM, JSON.stringify(newStream)], {
       title: t("streamerNewCategory", user),
       message: t("streamerNewCategoryMessage", [oldStream.game, game]),
       contextMessage: title,

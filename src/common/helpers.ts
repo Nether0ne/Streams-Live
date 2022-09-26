@@ -2,6 +2,7 @@ import { castArray } from "lodash-es";
 import browser from "webextension-polyfill";
 import { Dictionary, LinkType } from "./types/general";
 import { Platform, PlatformName, PlatformType } from "./types/platform";
+import { Stream } from "./types/stream";
 
 export const t = browser.i18n.getMessage;
 
@@ -19,16 +20,32 @@ export function defaultPlatformState(name: PlatformName, type: PlatformType): Pl
   };
 }
 
-export function getLinkForPlatform(
-  platform: PlatformName,
-  route?: string,
-  type?: LinkType
-): string {
+export function getLinkForPlatform(stream: Stream, type: LinkType): string {
+  const { id, user, platform } = stream;
   switch (platform) {
     case PlatformName.TWITCH:
-      return `https://www.twitch.tv/${route}`;
+      switch (type) {
+        case LinkType.STREAM:
+          return `https://www.twitch.tv/${id}`;
+        case LinkType.POPOUT:
+          return `https://www.twitch.tv/${id}/popout`;
+        case LinkType.CHAT:
+          return `https://www.twitch.tv/${id}/chat`;
+        case LinkType.VIDEOS:
+          return `https://www.twitch.tv/${id}/videos`;
+      }
+
     case PlatformName.GOODGAME:
-      return `https://goodgame.ru/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
+      switch (type) {
+        case LinkType.STREAM:
+          return `https://www.goodgame.ru/${user}`;
+        case LinkType.POPOUT:
+          return `https://www.goodgame.ru/player?${id}`;
+        case LinkType.CHAT:
+          return `https://www.goodgame.ru/chat/${id}`;
+        case LinkType.VIDEOS:
+          return "";
+      }
     // TODO: Add more platforms
     // case PlatformName.WASD:
     //   return `https://wasd.tv/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
