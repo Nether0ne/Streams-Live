@@ -209,7 +209,7 @@
     "message": "Включено"
   },
   "enable": {
-    "message": "$thing$ теперь включено",
+    "message": "Выключить $thing$",
     "placeholders": {
       "thing": {
         "content": "$1"
@@ -220,7 +220,7 @@
     "message": "Выключено"
   },
   "disable": {
-    "message": "$thing$ теперь выключено",
+    "message": "Выключить $thing$",
     "placeholders": {
       "thing": {
         "content": "$1"
