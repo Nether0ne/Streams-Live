@@ -302,6 +302,9 @@
   "rerun": {
     "message": "Повтор"
   },
+  "noCategory": {
+    "message": "Без категорії"
+  },
   "openStream": {
     "message": "Відкрити стрим"
   },

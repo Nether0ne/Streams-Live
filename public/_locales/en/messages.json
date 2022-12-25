@@ -302,6 +302,9 @@
   "rerun": {
     "message": "Rerun"
   },
+  "noCategory": {
+    "message": "No category"
+  },
   "openStream": {
     "message": "Open stream"
   },

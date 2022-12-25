@@ -6,7 +6,7 @@ import Image from "../../misc/Image";
 import Viewers from "./details/Viewers";
 import StreamContextMenu from "../../pages/Streams/ContextMenu";
 import PlatformIcon from "../../misc/PlatformIcon";
-import { getLinkForPlatform } from "@/common/helpers";
+import { getLinkForPlatform, t } from "@/common/helpers";
 import { LinkType } from "@/common/types/general";
 
 interface StreamCardProps {
@@ -122,22 +122,15 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
             arrow
           >
             <Typography noWrap color="text.secondary">
-              {title}
+              {title}&nbsp;
             </Typography>
           </Tooltip>
 
-          {game && (
-            <Tooltip
-              title={<Typography>{game}</Typography>}
-              enterNextDelay={1000}
-              followCursor
-              arrow
-            >
-              <Typography className="game" noWrap>
-                {game}
-              </Typography>
-            </Tooltip>
-          )}
+          <Tooltip title={<Typography>{game}</Typography>} enterNextDelay={1000} followCursor arrow>
+            <Typography className="game" noWrap>
+              {game || t("noCategory")}&nbsp;
+            </Typography>
+          </Tooltip>
         </Box>
       </Link>
     </Box>

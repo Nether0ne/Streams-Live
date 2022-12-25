@@ -43,7 +43,7 @@ const StreamsGroup: FC<StreamsGroupProps> = ({ key, group }) => {
         <Box className="header" onClick={toggleOpen}>
           <Typography>
             <ArrowDropDownIcon className={open ? "open" : ""} />
-            {groupBy === GroupBy.PLATFORM ? t(key) : key}
+            {groupBy === GroupBy.PLATFORM ? t(key) : key || t("noCategory")}
           </Typography>
         </Box>
       )}
