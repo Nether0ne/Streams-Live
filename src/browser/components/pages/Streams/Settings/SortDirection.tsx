@@ -37,6 +37,7 @@ const SortDirection: FC = () => {
     <Skeleton variant="circular" sx={loadingStyle} />
   ) : (
     <Tooltip
+      enterNextDelay={1000}
       title={<Typography>{t(sortDirection, [t(`${sortField}SortField`)])}</Typography>}
       placement="top"
     >

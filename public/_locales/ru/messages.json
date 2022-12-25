@@ -324,6 +324,14 @@
   "userSortField": {
     "message": "Имя"
   },
+  "groupedBy": {
+    "message": "Стримы сгрупированны как $group$",
+    "placeholders": {
+      "group": {
+        "content": "$1"
+      }
+    }
+  },
   "noneGroupBy": {
     "message": "Отсутствует"
   },

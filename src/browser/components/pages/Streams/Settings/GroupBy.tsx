@@ -1,7 +1,14 @@
 import { ChangeEvent, FC, useContext } from "react";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 import { GroupBy as GroupByEnum } from "@/common/types/settings";
-import { MenuItem, Skeleton, StandardTextFieldProps, TextField } from "@mui/material";
+import {
+  MenuItem,
+  Skeleton,
+  StandardTextFieldProps,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { t } from "@/common/helpers";
 
 const loadingStyle = {
@@ -54,13 +61,19 @@ const GroupBy: FC = () => {
   return settingsIsLoading ? (
     <Skeleton sx={loadingStyle} />
   ) : (
-    <TextField id="groupBy" {...selectProps} value={groupBy} onChange={changeGroupBy}>
-      {groupByOptions.map((option) => (
-        <MenuItem key={option} value={option}>
-          {t(`${option}GroupBy`)}
-        </MenuItem>
-      ))}
-    </TextField>
+    <Tooltip
+      enterNextDelay={1000}
+      title={<Typography>{t("groupedBy", [t(`${groupBy}GroupBy`)])}</Typography>}
+      placement="top"
+    >
+      <TextField id="groupBy" {...selectProps} value={groupBy} onChange={changeGroupBy}>
+        {groupByOptions.map((option) => (
+          <MenuItem key={option} value={option}>
+            {t(`${option}GroupBy`)}
+          </MenuItem>
+        ))}
+      </TextField>
+    </Tooltip>
   );
 };
 

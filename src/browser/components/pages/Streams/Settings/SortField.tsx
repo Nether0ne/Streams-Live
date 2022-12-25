@@ -1,7 +1,14 @@
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 import { t } from "@/common/helpers";
 import { SortField as SortFieldEnum } from "@/common/types/settings";
-import { MenuItem, Skeleton, StandardTextFieldProps, TextField } from "@mui/material";
+import {
+  MenuItem,
+  Skeleton,
+  StandardTextFieldProps,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { ChangeEvent, FC, useContext } from "react";
 
 const loadingStyle = {
@@ -41,7 +48,7 @@ const sortFieldOptions: SortFieldEnum[] = Object.values(SortFieldEnum);
 const SortField: FC = () => {
   const { streamSettings, setStreamsSettings, settingsIsLoading } =
     useContext(StreamSettingsContext);
-  const { sortField } = streamSettings;
+  const { sortField, sortDirection } = streamSettings;
 
   const changeSortField = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setStreamsSettings({ sortField: e.target.value as SortFieldEnum });
@@ -49,13 +56,19 @@ const SortField: FC = () => {
   return settingsIsLoading ? (
     <Skeleton sx={loadingStyle} />
   ) : (
-    <TextField id="sortField" {...selectProps} value={sortField} onChange={changeSortField}>
-      {sortFieldOptions.map((option) => (
-        <MenuItem key={option} value={option}>
-          {t(`${option}SortField`)}
-        </MenuItem>
-      ))}
-    </TextField>
+    <Tooltip
+      enterNextDelay={1000}
+      title={<Typography>{t(sortDirection, [t(`${sortField}SortField`)])}</Typography>}
+      placement="top"
+    >
+      <TextField id="sortField" {...selectProps} value={sortField} onChange={changeSortField}>
+        {sortFieldOptions.map((option) => (
+          <MenuItem key={option} value={option}>
+            {t(`${option}SortField`)}
+          </MenuItem>
+        ))}
+      </TextField>
+    </Tooltip>
   );
 };
 

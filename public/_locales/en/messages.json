@@ -324,6 +324,14 @@
   "userSortField": {
     "message": "Name"
   },
+  "groupedBy": {
+    "message": "Streams are grouped by $group$",
+    "placeholders": {
+      "group": {
+        "content": "$1"
+      }
+    }
+  },
   "noneGroupBy": {
     "message": "None"
   },

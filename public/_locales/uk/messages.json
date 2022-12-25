@@ -324,6 +324,14 @@
   "userSortField": {
     "message": "Ім'я"
   },
+  "groupedBy": {
+    "message": "Трансляції згруповані як $group$",
+    "placeholders": {
+      "group": {
+        "content": "$1"
+      }
+    }
+  },
   "noneGroupBy": {
     "message": "Немає"
   },

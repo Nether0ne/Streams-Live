@@ -28,7 +28,11 @@ const Viewers: FC<ViewersProps> = ({ count, type }) => {
   const rerun = type === "rerun";
 
   return (
-    <Tooltip title={<Typography>{!rerun ? t("live") : t("rerun")}</Typography>} placement="left">
+    <Tooltip
+      enterNextDelay={1000}
+      title={<Typography>{!rerun ? t("live") : t("rerun")}</Typography>}
+      placement="left"
+    >
       <Box className="viewers" sx={styles}>
         <Typography className={!rerun ? "online" : ""} variant={"body2"}>
           {digitWithSpaces(count)}
