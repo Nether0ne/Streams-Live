@@ -22,3 +22,11 @@ export interface StreamError {
   message: string;
   platform: PlatformName;
 }
+
+export interface StreamCardSettings {
+  thumbnail: boolean;
+  platformIcon: boolean;
+  viewers: boolean;
+  title: boolean;
+  category: boolean;
+}

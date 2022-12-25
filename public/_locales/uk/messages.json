@@ -57,6 +57,9 @@
   "coinbase": {
     "message": "Coinbase"
   },
+  "paypal": {
+    "message": "Paypal"
+  },
   "generalSettings": {
     "message": "Основні налаштування"
   },
@@ -89,6 +92,27 @@
   },
   "badge": {
     "message": "Відображати значок з кількістю активних каналів"
+  },
+  "customStreamCard": {
+    "message": "Власні налаштування картки трансляції"
+  },
+  "useCustomStreamCard": {
+    "message": "Використовувати власні налаштування картки трансляції"
+  },
+  "useCustomThumbnail": {
+    "message": "Мініатюра трансляції"
+  },
+  "useCustomPlatformIcon": {
+    "message": "Іконка платформи трансляції"
+  },
+  "useCustomViewers": {
+    "message": "Кількість глядачів трансляції"
+  },
+  "useCustomTitle": {
+    "message": "Назва трансляції"
+  },
+  "useCustomCategory": {
+    "message": "Категорія трансляції"
   },
   "twitch": {
     "message": "Twitch"

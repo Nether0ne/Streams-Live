@@ -57,6 +57,9 @@
   "coinbase": {
     "message": "Coinbase"
   },
+  "paypal": {
+    "message": "Paypal"
+  },
   "generalSettings": {
     "message": "Главные настройки"
   },
@@ -89,6 +92,27 @@
   },
   "badge": {
     "message": "Показывать значок с количеством активных стримов"
+  },
+  "customStreamCard": {
+    "message": "Собственные настройки карточки стрима"
+  },
+  "useCustomStreamCard": {
+    "message": "Использовать собственные настройки карточки стрима"
+  },
+  "useCustomThumbnail": {
+    "message": "Миниатюра стрима"
+  },
+  "useCustomPlatformIcon": {
+    "message": "Иконка платформы стрима"
+  },
+  "useCustomViewers": {
+    "message": "Количество зрителей стрима"
+  },
+  "useCustomTitle": {
+    "message": "Название стрима"
+  },
+  "useCustomCategory": {
+    "message": "Категория стрима"
   },
   "twitch": {
     "message": "Twitch"

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Box, Skeleton, Switch } from "@mui/material";
+import { Box, Skeleton, Switch, SxProps } from "@mui/material";
 
 const styles = {
   display: "flex",
@@ -27,15 +27,17 @@ interface SettingLoadingProps {
   readonly icon?: JSX.Element;
   readonly secondaryText?: boolean;
   readonly withSwitch?: boolean;
+  readonly sx?: SxProps;
 }
 
 const SettingLoading: FC<SettingLoadingProps> = ({
   secondaryText = true,
   withSwitch = false,
   icon,
+  sx = {},
 }) => {
-  return withSwitch ? (
-    <Box sx={styles}>
+  return (
+    <Box sx={{ ...styles, ...sx }}>
       {icon}
 
       <Box className="text">
@@ -43,14 +45,11 @@ const SettingLoading: FC<SettingLoadingProps> = ({
         {secondaryText && <Skeleton className="secondary" />}
       </Box>
 
-      <Skeleton className="right">
-        <Switch />
-      </Skeleton>
-    </Box>
-  ) : (
-    <Box sx={styles} className="text">
-      <Skeleton className="main" />
-      {secondaryText && <Skeleton className="secondary" />}
+      {withSwitch && (
+        <Skeleton className="right">
+          <Switch />
+        </Skeleton>
+      )}
     </Box>
   );
 };

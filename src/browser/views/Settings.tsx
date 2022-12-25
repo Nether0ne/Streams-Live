@@ -5,6 +5,7 @@ import GeneralSettings from "../components/pages/Settings/General";
 import NotificationsSettings from "../components/pages/Settings/Notifications";
 import ExtraSettings from "../components/pages/Settings/Extra";
 import PlatformsSettings from "../components/pages/Settings/Platforms";
+import StreamCardSettings from "../components/pages/Settings/StreamCardSettings";
 
 const styles = {
   display: "flex",
@@ -23,32 +24,40 @@ const styles = {
   },
 };
 
+const settings = [
+  {
+    label: t("generalSettings"),
+    component: <GeneralSettings />,
+  },
+  {
+    label: t("profileSettings"),
+    component: <PlatformsSettings />,
+  },
+  {
+    label: t("customStreamCard"),
+    component: <StreamCardSettings />,
+  },
+  {
+    label: t("notificationsSettings"),
+    component: <NotificationsSettings />,
+  },
+  {
+    label: t("exportAndImportSettings"),
+    component: <ExtraSettings />,
+  },
+];
+
 const Settings: FC = () => {
   return (
     <Box id="settings" sx={styles}>
-      <Divider className="divider">
-        <Typography>{t("generalSettings")}</Typography>
-      </Divider>
-
-      <GeneralSettings />
-
-      <Divider className="divider">
-        <Typography>{t("profileSettings")}</Typography>
-      </Divider>
-
-      <PlatformsSettings />
-
-      <Divider className="divider">
-        <Typography>{t("notificationsSettings")}</Typography>
-      </Divider>
-
-      <NotificationsSettings />
-
-      <Divider className="divider">
-        <Typography>{t("exportAndImportSettings")}</Typography>
-      </Divider>
-
-      <ExtraSettings />
+      {settings.map(({ label, component }) => (
+        <>
+          <Divider className="divider">
+            <Typography>{label}</Typography>
+          </Divider>
+          {component}
+        </>
+      ))}
     </Box>
   );
 };

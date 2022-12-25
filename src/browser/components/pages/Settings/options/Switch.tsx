@@ -49,7 +49,7 @@ const SwitchSettings: FC<SwitchProps> = ({
   const [settings, store] = useSettings();
   const state = get(settings, setting);
 
-  const handleThemeDivClick = () => {
+  const handleSwitchChange = () => {
     set(settings, setting, !state);
 
     store.set({
@@ -60,7 +60,7 @@ const SwitchSettings: FC<SwitchProps> = ({
   };
 
   return (
-    <SettingWrapper id={id} customStyles={styles} onClick={handleThemeDivClick}>
+    <SettingWrapper id={id} customStyles={styles} onClick={handleSwitchChange}>
       {store.isLoading ? (
         <SettingLoading withSwitch {...{ secondaryText, icon }} />
       ) : (

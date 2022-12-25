@@ -7,18 +7,28 @@ import SwitchLeftIcon from "@mui/icons-material/SwitchLeft";
 import useSettings from "@/browser/common/hooks/settings";
 import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
 import PlatformIcon from "../../misc/PlatformIcon";
+import SettingLoading from "./options/SettingLoading";
 
 const styles = {
   display: "flex",
   flexDirection: "column",
+  loading: {
+    px: 1,
+    py: 2,
+  },
 };
 
 const NotificationsSettings: FC = () => {
-  const [{ notifications }] = useSettings();
+  const [settings, store] = useSettings();
+  const { notifications } = settings;
   const setPlatforms = useAllSetPlatforms();
 
+  if (store.isLoading) {
+    return <SettingLoading withSwitch icon={<NotificationsIcon />} sx={styles.loading} />;
+  }
+
   return (
-    <Box id="notifications" sx={styles}>
+    <Box sx={styles}>
       <SwitchSettings
         {...{
           id: "notificationsEnabled",
