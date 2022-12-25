@@ -299,6 +299,22 @@
   "search": {
     "message": "Поиск"
   },
+  "asc": {
+    "message": "Отсортировано за {type} по возростанию",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
+  "desc": {
+    "message": "Отсортировано за {type} по убыванию",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
   "viewersSortField": {
     "message": "Зрители"
   },

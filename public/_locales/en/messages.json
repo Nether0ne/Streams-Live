@@ -299,6 +299,22 @@
   "search": {
     "message": "Search"
   },
+  "asc": {
+    "message": "Sorted by $type$ ascending",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
+  "desc": {
+    "message": "Sorted by $type$ descending",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
   "viewersSortField": {
     "message": "Viewers"
   },
