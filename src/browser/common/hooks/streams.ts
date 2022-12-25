@@ -35,19 +35,47 @@ export function useStreamsWithSettings() {
       sort = sortDirection === SortDirection.ASC ? SortDirection.DESC : SortDirection.ASC;
     }
 
-    setFilteredStreams(
-      groupItemsBy(
-        orderBy(data, [sortField], [sort]).filter((stream) => {
-          if (search !== undefined) {
-            return (stream.title.toLowerCase().includes(search.toLowerCase()) ||
-              stream.user.toLowerCase().includes(search.toLowerCase()) ||
-              stream.game?.toLowerCase().includes(search.toLowerCase())) as boolean;
-          }
-          return true;
-        }),
-        groupBy
-      )
+    const groupedStreams = groupItemsBy(
+      orderBy(data, [sortField], [sort]).filter((stream) => {
+        if (search !== undefined) {
+          return (stream.title.toLowerCase().includes(search.toLowerCase()) ||
+            stream.user.toLowerCase().includes(search.toLowerCase()) ||
+            stream.game?.toLowerCase().includes(search.toLowerCase())) as boolean;
+        }
+        return true;
+      }),
+      groupBy
     );
+
+    const sortedGroupStreams = Object.entries(groupedStreams)
+      .sort(([a, aStreams], [b, bStreams]) => {
+        switch (sortField) {
+          case SortField.NAME:
+            return sort === SortDirection.ASC ? (a >= b ? -1 : 1) : a >= b ? 1 : 1;
+          case SortField.STARTED_AT:
+            const uptimeReducer = (total: number, stream: Stream) =>
+              total + (new Date().getTime() - new Date(stream.startedAt || 0).getTime());
+            return sort === SortDirection.ASC
+              ? aStreams.reduce(uptimeReducer, 0) >= bStreams.reduce(uptimeReducer, 0)
+                ? -1
+                : 1
+              : aStreams.reduce(uptimeReducer, 0) >= bStreams.reduce(uptimeReducer, 0)
+              ? 1
+              : -1;
+          default:
+            const viewersReducer = (total: number, stream: Stream) => total + stream.viewers;
+            return sort === SortDirection.ASC
+              ? aStreams.reduce(viewersReducer, 0) >= bStreams.reduce(viewersReducer, 0)
+                ? 1
+                : -1
+              : aStreams.reduce(viewersReducer, 0) >= bStreams.reduce(viewersReducer, 0)
+              ? -1
+              : 1;
+        }
+      })
+      .reduce((o: Dictionary<Stream[]>, [name, streams]) => ({ ...o, [name]: streams }), {});
+
+    setFilteredStreams(sortedGroupStreams);
   }, [data, search, groupBy, sortField, sortDirection]);
 
   const setStreamsSettings = (params: {
