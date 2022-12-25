@@ -126,11 +126,9 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
             </Typography>
           </Tooltip>
 
-          <Tooltip title={<Typography>{game}</Typography>} enterNextDelay={1000} followCursor arrow>
-            <Typography className="game" noWrap>
-              {game || t("noCategory")}&nbsp;
-            </Typography>
-          </Tooltip>
+          <Typography className="game" noWrap>
+            {game || t("noCategory")}&nbsp;
+          </Typography>
         </Box>
       </Link>
     </Box>
