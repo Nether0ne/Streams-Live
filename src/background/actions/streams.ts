@@ -108,7 +108,7 @@ const newStreamNotification = async (
 
   createNotification([NotificationType.STREAM, JSON.stringify(stream)], {
     title: t("streamerOnline", [user, platform]),
-    message: game ?? "",
+    message: game ?? t("noCategory"),
     contextMessage: title,
     type: "basic",
     iconUrl: icon,
@@ -127,7 +127,7 @@ const newCategoryNotification = async (
   if (oldStream.game !== game) {
     createNotification([NotificationType.STREAM, JSON.stringify(newStream)], {
       title: t("streamerNewCategory", user),
-      message: t("streamerNewCategoryMessage", [oldStream.game, game]),
+      message: t("streamerNewCategoryMessage", [oldStream.game, game || t("noCategory")]),
       contextMessage: title,
       type: "basic",
       iconUrl: icon,

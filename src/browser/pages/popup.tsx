@@ -10,6 +10,8 @@ import { usePingError } from "../common/hooks/pingError";
 import BackgroundReset from "../components/modals/BackgroundReset";
 import useSettings from "../common/hooks/settings";
 import Loading from "../components/layout/Loading/Loading";
+import { useAllExpiredPlatforms } from "../common/hooks/platform";
+import PlatformExpiredModal from "../components/modals/PlatformExpired";
 
 const styles = {
   height: "550px",
@@ -20,6 +22,7 @@ const styles = {
 const Popup: FC = () => {
   const [, { isLoading }] = useSettings();
   const [error] = usePingError();
+  const expiredPlatform = useAllExpiredPlatforms();
 
   return (
     <Box id="root" sx={styles}>
@@ -43,7 +46,10 @@ const Popup: FC = () => {
               <Snackbar />
             </MainLayout>
           </SnackbarProvider>
-          <BackgroundReset isOpen={!!error} />
+          <BackgroundReset open={!!error} />
+          {expiredPlatform && (
+            <PlatformExpiredModal open={!!expiredPlatform} platformName={expiredPlatform.name} />
+          )}
         </>
       )}
     </Box>

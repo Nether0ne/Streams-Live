@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 import Loading from "../../layout/Loading/Loading";
 import { StreamSettingsContext } from "@/browser/common/context/StreamsSettings";
 import StreamsGroup from "./StreamsGroup";
+import useSettings from "@/browser/common/hooks/settings";
 
 const styles = {
   display: "flex",
@@ -25,10 +26,11 @@ const StreamsList: FC = () => {
   const { streamGroups, isLoading, settingsIsLoading, streamSettings } =
     useContext(StreamSettingsContext);
   const { search } = streamSettings;
+  const [, store] = useSettings();
 
   return (
     <Box id="streamsList" sx={styles}>
-      {isLoading || settingsIsLoading ? (
+      {isLoading || settingsIsLoading || store.isLoading ? (
         <Loading sx={loadingStyle} />
       ) : Object.keys(streamGroups).length ? (
         Object.keys(streamGroups)
@@ -39,7 +41,7 @@ const StreamsList: FC = () => {
       ) : (
         <Box className="empty">
           <Typography variant="body2">
-            {search === undefined ? t("noStreams") : t("noFilteredStreams")}
+            {search === "" ? t("noStreams") : t("noFilteredStreams")}
           </Typography>
         </Box>
       )}

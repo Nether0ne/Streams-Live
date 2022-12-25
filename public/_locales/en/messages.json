@@ -57,6 +57,9 @@
   "coinbase": {
     "message": "Coinbase"
   },
+  "paypal": {
+    "message": "Paypal"
+  },
   "generalSettings": {
     "message": "General settings"
   },
@@ -89,6 +92,27 @@
   },
   "badge": {
     "message": "Display badge on browser icon"
+  },
+  "customStreamCard": {
+    "message": "Custom stream card settings"
+  },
+  "useCustomStreamCard": {
+    "message": "Use custom stream card settings"
+  },
+  "useCustomThumbnail": {
+    "message": "Stream thumbnail"
+  },
+  "useCustomPlatformIcon": {
+    "message": "Stream platform icon"
+  },
+  "useCustomViewers": {
+    "message": "Stream current viewers"
+  },
+  "useCustomTitle": {
+    "message": "Stream title"
+  },
+  "useCustomCategory": {
+    "message": "Stream category"
   },
   "twitch": {
     "message": "Twitch"
@@ -275,6 +299,22 @@
   "search": {
     "message": "Search"
   },
+  "asc": {
+    "message": "Sorted by $type$ ascending",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
+  "desc": {
+    "message": "Sorted by $type$ descending",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
   "viewersSortField": {
     "message": "Viewers"
   },
@@ -283,6 +323,14 @@
   },
   "userSortField": {
     "message": "Name"
+  },
+  "groupedBy": {
+    "message": "Streams are grouped by $group$",
+    "placeholders": {
+      "group": {
+        "content": "$1"
+      }
+    }
   },
   "noneGroupBy": {
     "message": "None"
@@ -301,6 +349,9 @@
   },
   "rerun": {
     "message": "Rerun"
+  },
+  "noCategory": {
+    "message": "No category"
   },
   "openStream": {
     "message": "Open stream"
@@ -387,5 +438,24 @@
   },
   "backgroundResetButton": {
     "message": "Reset application"
+  },
+  "accessTokenExpired": {
+    "message": "$platform$ access token has expired",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "renewAcessToken": {
+    "message": "Renew $platform$ access token",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "forbidPlatform": {
+    "message": "Remove platform"
   }
 }

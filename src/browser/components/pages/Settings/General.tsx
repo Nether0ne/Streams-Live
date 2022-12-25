@@ -16,7 +16,7 @@ const GeneralSettings: FC = () => {
   const onBadgeChange = async () => await sendRuntimeMessage("updateBadge");
 
   return (
-    <Box id="general" sx={styles}>
+    <Box sx={styles}>
       <FontSizeSetting />
       <ThemeSettings />
       <SwitchSettings

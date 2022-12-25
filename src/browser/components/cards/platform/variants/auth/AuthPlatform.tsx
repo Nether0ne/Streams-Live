@@ -10,16 +10,18 @@ interface AuthPlatformProps {
 }
 
 const AuthPlatform: FC<AuthPlatformProps> = ({ platformName }) => {
-  const [platform, { isLoading }] = usePlatform(platformName);
+  const [platform, store] = usePlatform(platformName);
   const { data } = platform;
 
-  return isLoading ? (
-    <PlatformLoading />
-  ) : platform.enabled && data ? (
-    <SetAuthProfile {...{ platformName }} />
-  ) : (
-    <UnsetAuthProfile {...{ platformName }} />
-  );
+  if (store.isLoading) {
+    return <PlatformLoading />;
+  }
+
+  if (platform.enabled && data) {
+    return <SetAuthProfile {...{ platformName }} />;
+  }
+
+  return <UnsetAuthProfile {...{ platformName }} />;
 };
 
 export default AuthPlatform;

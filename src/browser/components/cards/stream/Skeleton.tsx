@@ -1,19 +1,8 @@
-import { Stream } from "@/common/types/stream";
-import { Box, Link, Tooltip, Typography } from "@mui/material";
+import { Box, Link, Skeleton, Tooltip, Typography } from "@mui/material";
 import { FC } from "react";
-import Uptime from "./details/Uptime";
-import Image from "../../misc/Image";
-import Viewers from "./details/Viewers";
-import StreamContextMenu from "../../pages/Streams/ContextMenu";
-import PlatformIcon from "../../misc/PlatformIcon";
 import { getLinkForPlatform, t } from "@/common/helpers";
 import { LinkType } from "@/common/types/general";
 import useSettings from "@/browser/common/hooks/settings";
-import StreamCardSkeleton from "./Skeleton";
-
-interface StreamCardProps {
-  readonly stream: Stream;
-}
 
 const styles = {
   "& .stream": {
@@ -60,6 +49,7 @@ const styles = {
       justifyContent: "center",
       overflow: "hidden",
       width: "100%",
+      gap: 0.5,
       "& .mainWrapper": {
         display: "flex",
         justifyContent: "space-between",
@@ -67,6 +57,7 @@ const styles = {
           display: "flex",
           alignItems: "center",
           flexDirection: "row",
+          gap: 0.5,
           "& svg": {
             mr: ".5rem",
             fontSize: "1rem",
@@ -84,8 +75,7 @@ const styles = {
   },
 };
 
-const StreamCard: FC<StreamCardProps> = ({ stream }) => {
-  const { user, viewers, title, game, thumbnail, startedAt, type, platform } = stream;
+const StreamCardSkeleton: FC = () => {
   const [
     {
       general: { useCustomStreamCard, customStreamCard },
@@ -94,24 +84,16 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
   ] = useSettings();
 
   if (store.isLoading) {
-    return <StreamCardSkeleton />;
+    return null;
   }
 
   return (
     <Box sx={styles}>
-      <StreamContextMenu stream={stream} />
-      <Link
-        id={user}
-        href={getLinkForPlatform(stream, LinkType.STREAM)}
-        target="_blank"
-        className="stream"
-      >
+      <Box className={"stream"}>
         {(!useCustomStreamCard || (useCustomStreamCard && customStreamCard.thumbnail)) && (
           <Box className="thumbnail">
             <Box className="thumbnailWrapper">
-              <Image src={thumbnail} alt={user} className="image" />
-
-              {startedAt && <Uptime startedAt={startedAt} className="uptime" />}
+              <Skeleton variant="rectangular" width={"100%"} height={"100%"} />
             </Box>
           </Box>
         )}
@@ -119,41 +101,28 @@ const StreamCard: FC<StreamCardProps> = ({ stream }) => {
           <Box className="mainWrapper">
             <Box className="main">
               {(!useCustomStreamCard || (useCustomStreamCard && customStreamCard.platformIcon)) && (
-                <PlatformIcon platformName={platform} />
+                <Skeleton variant="circular" width={"20px"} height={"20px"} />
               )}
 
-              <Typography noWrap variant={"body2"}>
-                {user}
-              </Typography>
+              <Skeleton variant="rectangular" width={"80px"} height={"14px"} />
             </Box>
 
             {(!useCustomStreamCard || (useCustomStreamCard && customStreamCard.viewers)) && (
-              <Viewers type={type} count={viewers} />
+              <Skeleton variant="rectangular" width={"60px"} height={"14px"} />
             )}
           </Box>
 
           {(!useCustomStreamCard || (useCustomStreamCard && customStreamCard.title)) && (
-            <Tooltip
-              title={<Typography>{title}</Typography>}
-              enterNextDelay={1000}
-              followCursor
-              arrow
-            >
-              <Typography noWrap color="text.secondary">
-                {title}&nbsp;
-              </Typography>
-            </Tooltip>
+            <Skeleton variant="rectangular" width={"100"} height={"12px"} />
           )}
 
           {(!useCustomStreamCard || (useCustomStreamCard && customStreamCard.category)) && (
-            <Typography className="game" noWrap>
-              {game || t("noCategory")}&nbsp;
-            </Typography>
+            <Skeleton variant="rectangular" width={"100"} height={"12px"} />
           )}
         </Box>
-      </Link>
+      </Box>
     </Box>
   );
 };
 
-export default StreamCard;
+export default StreamCardSkeleton;

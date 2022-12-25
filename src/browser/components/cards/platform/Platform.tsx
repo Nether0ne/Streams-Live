@@ -9,11 +9,10 @@ interface PlatformProps {
 }
 
 const PlatformCard: FC<PlatformProps> = ({ platformName, platformType }) => {
-  return platformType === PlatformType.AUTH ? (
-    <AuthPlatform {...{ platformName }} />
-  ) : (
-    <GeneralPlatform {...{ platformName }} />
-  );
+  if (platformType === PlatformType.AUTH) {
+    return <AuthPlatform {...{ platformName }} />;
+  }
+  return <GeneralPlatform {...{ platformName }} />;
 };
 
 export default PlatformCard;

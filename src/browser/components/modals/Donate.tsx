@@ -66,6 +66,7 @@ const styles = {
 
 const links = [
   { href: "https://nether0ne.github.io/#/r/streams-live-coinbase", label: t("coinbase") },
+  { href: "https://nether0ne.github.io/#/r/streams-live-paypal", label: t("paypal") },
 ];
 
 const DonateModal: FC<DonateModalProps> = ({ open, hide }) => {

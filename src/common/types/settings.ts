@@ -1,3 +1,5 @@
+import { StreamCardSettings } from "./stream";
+
 export enum FontSize {
   SMALLEST = "smallest",
   SMALL = "small",
@@ -31,6 +33,8 @@ export interface GeneralSettings {
   fontSize: FontSize;
   theme: Theme;
   badge: boolean;
+  useCustomStreamCard: boolean;
+  customStreamCard: StreamCardSettings;
 }
 
 export interface NotificationSettings {
@@ -59,6 +63,14 @@ export const defaultSettings: Settings = {
     fontSize: FontSize.MEDIUM,
     theme: Theme.DARK,
     badge: true,
+    useCustomStreamCard: false,
+    customStreamCard: {
+      thumbnail: true,
+      platformIcon: true,
+      viewers: true,
+      title: true,
+      category: true,
+    },
   },
   notifications: {
     enabled: true,

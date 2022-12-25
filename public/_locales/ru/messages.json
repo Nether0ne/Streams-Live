@@ -57,6 +57,9 @@
   "coinbase": {
     "message": "Coinbase"
   },
+  "paypal": {
+    "message": "Paypal"
+  },
   "generalSettings": {
     "message": "Главные настройки"
   },
@@ -89,6 +92,27 @@
   },
   "badge": {
     "message": "Показывать значок с количеством активных стримов"
+  },
+  "customStreamCard": {
+    "message": "Собственные настройки карточки стрима"
+  },
+  "useCustomStreamCard": {
+    "message": "Использовать собственные настройки карточки стрима"
+  },
+  "useCustomThumbnail": {
+    "message": "Миниатюра стрима"
+  },
+  "useCustomPlatformIcon": {
+    "message": "Иконка платформы стрима"
+  },
+  "useCustomViewers": {
+    "message": "Количество зрителей стрима"
+  },
+  "useCustomTitle": {
+    "message": "Название стрима"
+  },
+  "useCustomCategory": {
+    "message": "Категория стрима"
   },
   "twitch": {
     "message": "Twitch"
@@ -275,6 +299,22 @@
   "search": {
     "message": "Поиск"
   },
+  "asc": {
+    "message": "Отсортировано за {type} по возростанию",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
+  "desc": {
+    "message": "Отсортировано за {type} по убыванию",
+    "placeholders": {
+      "type": {
+        "content": "$1"
+      }
+    }
+  },
   "viewersSortField": {
     "message": "Зрители"
   },
@@ -283,6 +323,14 @@
   },
   "userSortField": {
     "message": "Имя"
+  },
+  "groupedBy": {
+    "message": "Стримы сгрупированны как $group$",
+    "placeholders": {
+      "group": {
+        "content": "$1"
+      }
+    }
   },
   "noneGroupBy": {
     "message": "Отсутствует"
@@ -301,6 +349,9 @@
   },
   "rerun": {
     "message": "Повтор"
+  },
+  "noCategory": {
+    "message": "Без категории"
   },
   "openStream": {
     "message": "Открыть стрим"
@@ -387,5 +438,24 @@
   },
   "backgroundResetButton": {
     "message": "Перезапустить приложение"
+  },
+  "accessTokenExpired": {
+    "message": "Токен доступа $platform$ истек",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "renewAcessToken": {
+    "message": "Обновить токен доступа $platform$",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "forbidPlatform": {
+    "message": "Убрать платформу"
   }
 }
