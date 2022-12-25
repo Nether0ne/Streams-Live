@@ -19,7 +19,7 @@ TWITCH_CLIENT_ID="wirakoeisjyhdsihztjfam956l6nkf"
 AUTH_REDIRECT_URI="https://nether0ne.github.io/#/streams-live/auth"
 ```
 
-3. Install project dependencies (`yarn install`) and build for desired platform:
+3. Install project dependencies (`yarn install` or `yarn --legacy-peer-deps` if you encounter errors with a default install) and build for desired platform:
 
 - `yarn build:chrome` for Google Chrome build
 - `yarn build:ff` for Mozilla Firefox build
