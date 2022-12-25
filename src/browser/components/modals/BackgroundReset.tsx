@@ -32,20 +32,20 @@ const styles = {
 };
 
 interface BackgroundResetProps {
-  readonly isOpen: boolean;
+  readonly open: boolean;
 }
 
-const BackgroundReset: FC<BackgroundResetProps> = ({ isOpen }) => {
+const BackgroundReset: FC<BackgroundResetProps> = ({ open }) => {
   return (
     <Portal>
       <Modal
         id="backgroundResetModal"
-        open={isOpen}
+        open={open}
         sx={styles}
         // TODO: fix backdrop behavior
         // BackdropComponent={Backdrop}
       >
-        <Fade in={isOpen}>
+        <Fade in={open}>
           <Box className="wrapper">
             <Box className="background">
               <Box className="content">

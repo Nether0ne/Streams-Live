@@ -67,7 +67,6 @@ export async function setupPlatform(
     platform.enabled = true;
     platform.accessToken = accessToken;
     await stores[`${platform.name}`].set(platform);
-    console.log(platform);
     return await updatePlatform(platform);
   }
 

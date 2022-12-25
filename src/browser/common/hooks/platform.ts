@@ -1,6 +1,7 @@
 import { stores } from "@/common/store";
 import { PlatformName } from "@/common/types/platform";
 import { get } from "lodash-es";
+import { useMemo } from "react";
 import { useStore } from "./store";
 
 export function usePlatform(name: PlatformName) {
@@ -17,4 +18,12 @@ export function useAllSetPlatforms() {
   if (goodgame.enabled) allSetProfiles.push({ platform: goodgame, store: goodgameStore });
 
   return allSetProfiles;
+}
+
+export function useAllExpiredPlatforms() {
+  const [twitch] = usePlatform(PlatformName.TWITCH);
+
+  return useMemo(() => {
+    return twitch.accessToken === undefined && twitch.enabled ? twitch : null;
+  }, [twitch]);
 }

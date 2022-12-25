@@ -438,5 +438,24 @@
   },
   "backgroundResetButton": {
     "message": "Reset application"
+  },
+  "accessTokenExpired": {
+    "message": "$platform$ access token has expired",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "renewAcessToken": {
+    "message": "Renew $platform$ access token",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "forbidPlatform": {
+    "message": "Remove platform"
   }
 }

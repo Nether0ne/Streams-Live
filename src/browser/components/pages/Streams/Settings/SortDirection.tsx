@@ -32,7 +32,7 @@ const SortDirection: FC = () => {
       sortDirection:
         sortDirection === SortDirectionEnum.ASC ? SortDirectionEnum.DESC : SortDirectionEnum.ASC,
     });
-  console.log(sortDirection);
+
   return settingsIsLoading ? (
     <Skeleton variant="circular" sx={loadingStyle} />
   ) : (

@@ -438,5 +438,24 @@
   },
   "backgroundResetButton": {
     "message": "Перезапустити застосунок"
+  },
+  "accessTokenExpired": {
+    "message": "Токен доступу $platform$ застарів",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "renewAcessToken": {
+    "message": "Оновити токен $platform$",
+    "placeholders": {
+      "platform": {
+        "content": "$1"
+      }
+    }
+  },
+  "forbidPlatform": {
+    "message": "Видалити платформу"
   }
 }
