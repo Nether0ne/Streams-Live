@@ -1,6 +1,6 @@
 import { objectToUrlParams } from "@/common/helpers";
 import { stores } from "@/common/store";
-import { TwitchProfile } from "@/common/types/api/twitch";
+import { FollowedTwitchChannel, TwitchPagination, TwitchProfile } from "@/common/types/api/twitch";
 import { TwitchStream } from "@/common/types/api/twitch";
 import { FollowedStreamer, PlatformName, UserData } from "@/common/types/platform";
 import { Stream } from "@/common/types/stream";
@@ -29,7 +29,7 @@ const apiClient = ky.extend({
       },
     ],
     afterResponse: [
-      async (input, options, response) => {
+      async (_input, _options, response) => {
         if (response.status === 401) {
           const twitch = await stores.twitch.get();
           twitch.accessToken = undefined;
@@ -108,26 +108,25 @@ export async function getFollowedStreamers(after?: string): Promise<FollowedStre
   }
 
   const followsParams = objectToUrlParams({
-    from_id: userId,
+    user_id: userId,
     first: 100,
     after,
   });
 
-  const { data: follows } = await apiClient("users/follows", {
+  const { data: follows, pagination: followedPagination } = await apiClient("channels/followed", {
     searchParams: followsParams,
   }).json<{
-    data: TwitchProfile[];
+    data: FollowedTwitchChannel[];
+    pagination: TwitchPagination;
   }>();
 
   const usersParams = objectToUrlParams({
-    id: map(follows, "to_id"),
+    id: map(follows, "broadcaster_id"),
     first: 100,
     after,
   });
 
-  const { data: followedStreamers } = await apiClient("users", {
-    searchParams: usersParams,
-  }).json<{
+  const { data: followedStreamers } = await apiClient("users", { searchParams: usersParams }).json<{
     data: TwitchProfile[];
   }>();
 
@@ -143,10 +142,9 @@ export async function getFollowedStreamers(after?: string): Promise<FollowedStre
     });
   }
 
-  if (streamers.length === 100) {
-    streamers.push(
-      ...(await getFollowedStreamers(followedStreamers[followedStreamers.length - 1].id))
-    );
+  if (streamers.length === 100 && followedPagination?.cursor) {
+    const nextStreamers = await getFollowedStreamers(followedPagination?.cursor);
+    streamers.push(...nextStreamers);
   }
 
   return streamers;
@@ -170,14 +168,16 @@ async function getFollowedStreams(after?: string): Promise<TwitchStream[]> {
     after,
   });
 
-  const { data: streams } = await apiClient("streams/followed", {
+  const { data: streams, pagination: streamsPagination } = await apiClient("streams/followed", {
     searchParams: streamsParams,
   }).json<{
     data: TwitchStream[];
+    pagination: TwitchPagination;
   }>();
 
-  if (streams.length === 100) {
-    streams.push(...(await getFollowedStreams(streams[streams.length - 1].id)));
+  if (streams.length === 100 && streamsPagination?.cursor) {
+    const nextFollowedStreams = await getFollowedStreams(streamsPagination?.cursor);
+    streams.push(...nextFollowedStreams);
   }
 
   return streams;
@@ -201,12 +201,16 @@ async function getGeneralStreams(streamers: string[], after?: string): Promise<T
     after,
   });
 
-  const { data: streams } = await apiClient("streams", { searchParams: streamsParams }).json<{
+  const { data: streams, pagination: streamsPagination } = await apiClient("streams", {
+    searchParams: streamsParams,
+  }).json<{
     data: TwitchStream[];
+    pagination: TwitchPagination;
   }>();
 
-  if (streams.length === 100) {
-    streams.push(...(await getGeneralStreams(streamers, streams[streams.length - 1].id)));
+  if (streams.length === 100 && streamsPagination?.cursor) {
+    const nextStreams = await getGeneralStreams(streamers, streamsPagination?.cursor);
+    streams.push(...nextStreams);
   }
 
   return streams;

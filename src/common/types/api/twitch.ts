@@ -1,3 +1,10 @@
+export interface FollowedTwitchChannel {
+  broadcaster_id: string;
+  broadcaster_login: string;
+  broadcaster_name: string;
+  followed_at: string;
+}
+
 export interface TwitchProfile {
   id: string;
   login: string;
@@ -6,9 +13,7 @@ export interface TwitchProfile {
 }
 
 export interface TwitchPagination {
-  cursor: string | null;
-  user_id: string;
-  first: number;
+  cursor?: string;
 }
 
 export interface TwitchStream {
