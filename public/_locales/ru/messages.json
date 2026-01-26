@@ -120,6 +120,9 @@
   "goodgame": {
     "message": "GoodGame"
   },
+  "kick": {
+    "message": "Kick"
+  },
   "goodgameHint": {
     "message": "Вы будете получать информацию и уведомления о стримах если залогинены на goodgame.ru"
   },
