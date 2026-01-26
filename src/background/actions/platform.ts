@@ -1,12 +1,14 @@
 import * as Goodgame from "@/api/goodgame";
 import * as Twitch from "@/api/twitch";
-import * as Wasd from "@/api/wasd";
+import * as Kick from "@/api/kick";
 import { t } from "@/common/helpers";
 import { stores } from "@/common/store";
-import { FollowedStreamer, Platform, PlatformName } from "@/common/types/platform";
+import { FollowedStreamer, Platform, PlatformName, UserData } from "@/common/types/platform";
 import { createNotification, getIconPath } from "./misc";
 import { updateStreams } from "./streams";
 import browser from "webextension-polyfill";
+import { generateCodeVerifier, generateCodeChallenge } from "@/common/utils/kickAuth";
+import { codeVerifierKey } from "@/constants/kick";
 
 export async function getPlatform(name: PlatformName): Promise<Platform> {
   switch (name) {
@@ -14,104 +16,53 @@ export async function getPlatform(name: PlatformName): Promise<Platform> {
       return await stores.twitch.get();
     case PlatformName.GOODGAME:
       return await stores.goodgame.get();
-    // TODO: Add more platforms
-    // case PlatformName.TROVO:
-    //   return await stores.trovo.get();
-    // case PlatformName.WASD:
-    //   return await stores.wasd.get();
+    case PlatformName.KICK:
+      return await stores.kick.get();
   }
 }
 
-export async function getAllSetPlatforms(): Promise<Platform[]> {
+export async function getEnabledPlatforms(): Promise<Platform[]> {
   const twitch = await stores.twitch.get();
   const goodgame = await stores.goodgame.get();
-  // TODO: Add more platforms
-  // const trovo = await stores.trovo.get();
-  // const wasd = await stores.wasd.get();
+  const kick = await stores.kick.get();
 
   const setProfiles = [];
 
   if (twitch.enabled) setProfiles.push(twitch);
   if (goodgame.enabled) setProfiles.push(goodgame);
-  // TODO: Add more platforms
-  // if (trovo.enabled) setProfiles.push(trovo);
-  // if (wasd.enabled) setProfiles.push(wasd);
+  if (kick.enabled) setProfiles.push(kick);
 
   return setProfiles;
 }
 
 export function getPlatformClient(
   platform: Platform
-): typeof Twitch | typeof Goodgame | typeof Wasd | null {
+): typeof Twitch | typeof Goodgame | typeof Kick | null {
   const { name } = platform;
   switch (name) {
     case PlatformName.TWITCH:
       return Twitch;
     case PlatformName.GOODGAME:
       return Goodgame;
-    // TODO: Add more platforms
-    // case PlatformName.TROVO:
-    //   return Trovo;
-    // case PlatformName.WASD:
-    //   return Wasd;
+    case PlatformName.KICK:
+      return Kick;
     default:
       return null;
   }
 }
 
-export async function setupPlatform(
-  platform: Platform,
-  accessToken?: string
-): Promise<Platform | null> {
-  if (accessToken) {
-    platform.enabled = true;
-    platform.accessToken = accessToken;
-    await stores[`${platform.name}`].set(platform);
-    return await updatePlatform(platform);
-  }
-
-  return platform;
-}
-
-export async function updatePlatform(platform: Platform): Promise<Platform | null> {
+export async function updatePlatform(platform: Platform): Promise<UserData | null> {
   const client = getPlatformClient(platform);
 
-  if (client && "getCurrentUser" in client) {
-    const profile = await client.getCurrentUser();
+  if (!client || !("getCurrentUser" in client)) return null;
 
-    if (profile) {
-      platform.data = profile;
-      await stores[platform.name].set(platform);
-    }
-  }
+  const profile = await client.getCurrentUser();
+  if (!profile) return null;
+  platform.data = profile;
+  await stores[platform.name].set(platform);
 
-  return platform;
+  return profile;
 }
-
-// TODO: Add more platforms
-// export async function search(platform: Platform, name: string): Promise<FollowedStreamer[]> {
-//   const client = getPlatformClient(platform);
-
-//   if (client && "search" in client) {
-//     return await client.search(name);
-//   }
-
-//   return [];
-// }
-
-// export async function findStreamer(
-//   platform: Platform,
-//   streamer: string
-// ): Promise<FollowedStreamer | null> {
-//   const client = getPlatformClient(platform);
-
-//   if (client && "findStreamer" in client) {
-//     const foundStreamer = await client.findStreamer(streamer);
-//     return foundStreamer;
-//   }
-
-//   return null;
-// }
 
 export async function updateFollowedStreamers(
   platform: Platform
@@ -132,42 +83,72 @@ export async function updateFollowedStreamers(
   return null;
 }
 
-export async function platformAuth(accessToken: string, platformName: PlatformName) {
+type PlatformAuthParameters = {
+  accessToken: string;
+  platformName: PlatformName;
+  refreshToken?: string;
+  expiresIn?: number;
+};
+
+export async function platformAuth({
+  accessToken,
+  platformName,
+  refreshToken,
+  expiresIn,
+}: PlatformAuthParameters) {
   const platform = await getPlatform(platformName);
   platform.accessToken = accessToken;
+  platform.refreshToken = refreshToken;
+  platform.expiresIn = expiresIn;
   platform.enabled = true;
+  console.log(platform);
   await stores[platformName].set(platform);
+  await updatePlatform(platform);
 
-  const updatedPlatform = await updatePlatform(platform);
+  createNotification(["profileSet", platform.name, platform.name], {
+    title: t("profileSet"),
+    message: t("profileSetMessage", platform.name),
+    contextMessage: t("profileSetContext", platform.name),
+    type: "basic",
+    iconUrl: platform.data && platform.data.avatar ? platform.data.avatar : await getIconPath(128),
+  });
 
-  if (updatedPlatform) {
-    createNotification(["profileSet", updatedPlatform.name!, platform.name], {
-      title: t("profileSet"),
-      message: t("profileSetMessage", platform.name),
-      contextMessage: t("profileSetContext", platform.name),
-      type: "basic",
-      iconUrl:
-        updatedPlatform.data && updatedPlatform.data.avatar
-          ? updatedPlatform.data.avatar
-          : await getIconPath(128),
-    });
-
-    await updateStreams();
-  }
+  await updateStreams();
 }
 
-export async function authInit(platformName: PlatformName) {
-  if (platformName === PlatformName.TWITCH) {
-    const url = new URL("https://id.twitch.tv/oauth2/authorize");
+export async function authInit(platform: PlatformName) {
+  switch (platform) {
+    case PlatformName.TWITCH: {
+      const url = new URL("https://id.twitch.tv/oauth2/authorize");
 
-    url.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
-    url.searchParams.set("redirect_uri", process.env.AUTH_REDIRECT_URI as string);
-    url.searchParams.set("response_type", "token");
-    url.searchParams.set("scope", "user:read:follows");
+      url.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
+      url.searchParams.set("redirect_uri", process.env.AUTH_REDIRECT_URI as string);
+      url.searchParams.set("response_type", "token");
+      url.searchParams.set("scope", "user:read:follows");
 
-    browser.tabs.create({
-      active: true,
-      url: url.href,
-    });
+      browser.tabs.create({
+        active: true,
+        url: url.href,
+      });
+    }
+    case PlatformName.KICK: {
+      const codeVerifier = generateCodeVerifier();
+      const codeChallenge = await generateCodeChallenge(codeVerifier);
+      const url = new URL("https://id.kick.com/oauth/authorize");
+
+      url.searchParams.set("client_id", process.env.KICK_CLIENT_ID as string);
+      url.searchParams.set("response_type", "code");
+      url.searchParams.set("redirect_uri", process.env.AUTH_REDIRECT_URI as string);
+      url.searchParams.set("state", `streamslive-${new Date().getTime()}`);
+      url.searchParams.set("scope", "user:read channel:read");
+      url.searchParams.set("code_challenge", codeChallenge);
+      url.searchParams.set("code_challenge_method", "S256");
+      browser.storage.local.set({ [codeVerifierKey]: codeVerifier });
+
+      browser.tabs.create({
+        active: true,
+        url: url.href,
+      });
+    }
   }
 }

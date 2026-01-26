@@ -9,20 +9,16 @@ import {
   updatePlatform,
   updateFollowedStreamers,
   platformAuth,
-  // TODO: Add more platforms
-  // findStreamer,
-  // search,
 } from "./actions/platform";
 import { setup, backup, restore, reset } from "./actions/settings";
 import { updateStreams } from "./actions/streams";
+import { codeVerifierKey } from "@/constants/kick";
+import { getAuth } from "@/api/kick";
 
 const updateInterval = 1;
 const updateStreamsAlarm = "updateStreams";
 
 const messageHandlers: Dictionary<(...args: any[]) => Promise<any>> = {
-  // TODO: Add more platforms
-  // findStreamer,
-  // search,
   authInit,
   updateFollowedStreamers,
   updatePlatform,
@@ -79,25 +75,33 @@ stores.streams.onChange(async () => {
 });
 
 // TODO: refactor for multiple callbacks
-browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+browser.tabs.onUpdated.addListener(async (_tabId, changeInfo, tab) => {
   // If tab has no relation to exstension, ignore
-  if (tab.url === "undefined") {
-    return;
-  }
+  if (tab.url === "undefined") return;
 
-  if (changeInfo.status === "complete" && tab.url) {
-    if (tab.url.startsWith(process.env.AUTH_REDIRECT_URI as string)) {
-      const url = new URL(tab.url);
-      const urlHash = url.hash.substring(1);
-      const hashParams = new URLSearchParams(urlHash.substring(urlHash.indexOf("#") + 1));
+  if (changeInfo.status !== "complete" || !tab.url) return;
+  if (!tab.url.startsWith(process.env.AUTH_REDIRECT_URI as string)) return;
 
-      const accessToken = hashParams.get("access_token");
+  const url = new URL(tab.url);
+  const kickCode = url.searchParams.get("code");
 
-      if (accessToken) {
-        const platformName = PlatformName.TWITCH;
-        await platformAuth(accessToken, platformName);
-      }
+  if (kickCode) {
+    const codeVerifierStore = await browser.storage.local.get(codeVerifierKey);
+    const codeVerifier = codeVerifierStore[codeVerifierKey];
+    try {
+      const authData = await getAuth(kickCode, codeVerifier);
+      await platformAuth({ ...authData, platformName: PlatformName.KICK });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      await browser.storage.local.remove(codeVerifierKey);
     }
+  } else {
+    const accessToken = url.searchParams.get("access_token");
+
+    if (!accessToken) return;
+
+    await platformAuth({ accessToken, platformName: PlatformName.TWITCH });
   }
 });
 
