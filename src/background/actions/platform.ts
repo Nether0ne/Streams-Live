@@ -130,6 +130,7 @@ export async function authInit(platform: PlatformName) {
         active: true,
         url: url.href,
       });
+      break;
     }
     case PlatformName.KICK: {
       const codeVerifier = generateCodeVerifier();
@@ -149,6 +150,7 @@ export async function authInit(platform: PlatformName) {
         active: true,
         url: url.href,
       });
+      break;
     }
   }
 }
