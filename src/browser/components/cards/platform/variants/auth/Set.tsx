@@ -15,25 +15,26 @@ interface SetAuthProfileProps {
 const SetAuthProfile: FC<SetAuthProfileProps> = ({ platformName }) => {
   const { setSnackbar } = useContext(SnackbarContext);
   const [platform, store] = usePlatform(platformName);
-  const { accessToken, data } = platform;
+  const { data } = platform;
   const { name, avatar } = data || {};
 
   const updateProfile = async () => {
     const updatedPlatform: Platform = await sendRuntimeMessage(`updatePlatform`, platform);
 
-    if (updatedPlatform && updatedPlatform.data && updatedPlatform.data.name) {
-      setSnackbar({
-        open: true,
-        message: t("platformProfileUpdated", [updatedPlatform.data.name, t(platform.name)]),
-        variant: "success",
-      });
-    } else {
+    if (!updatedPlatform) {
       setSnackbar({
         open: true,
         message: t("platformProfileUpdateFailed", t(platform.name)),
         variant: "error",
       });
+
+      return;
     }
+    setSnackbar({
+      open: true,
+      message: t("platformProfileUpdated", [updatedPlatform.name, t(platform.name)]),
+      variant: "success",
+    });
   };
 
   const logout = async () => {
