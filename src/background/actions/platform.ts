@@ -101,7 +101,7 @@ export async function platformAuth({
   platform.refreshToken = refreshToken;
   platform.expiresIn = expiresIn;
   platform.enabled = true;
-  console.log(platform);
+
   await stores[platformName].set(platform);
   await updatePlatform(platform);
 

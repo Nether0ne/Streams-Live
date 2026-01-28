@@ -51,12 +51,10 @@ const apiClient = ky.extend({
         // If 401 received - try to update the access token
         const kick = await stores.kick.get();
         const { accessToken, expiresIn } = kick;
-        let shouldRequestToken = !accessToken;
 
         if (expiresIn && expiresIn > new Date().getTime()) {
           kick.accessToken = undefined;
           await stores.kick.set(kick);
-          shouldRequestToken = true;
         }
 
         const { refreshToken } = kick;
@@ -124,25 +122,15 @@ type ChannelDataResponse = {
 };
 
 type ChannelData = {
-  broadcaster_user_id: number;
   slug: string;
-  channel_description: string;
-  banner_picture: string;
   stream: {
-    url: string;
-    key: string;
-    is_live: boolean;
-    is_mature: boolean;
-    language: string;
     start_time: string;
     viewer_count: number;
     thumbnail: string;
   };
   stream_title: string;
   category: {
-    id: number;
     name: string;
-    thumbnail: string;
   };
 };
 
@@ -207,7 +195,7 @@ export async function getAuth(code: string, codeVerifier: string) {
   return {
     accessToken: authData.access_token,
     refreshToken: authData.refresh_token,
-    expiresIn: authData.expires_in * 1000 + new Date().getTime(),
+    expiresIn: getAdjustedTokenExpireTime(authData.expires_in),
   };
 }
 
@@ -230,6 +218,10 @@ async function getUpdatedAuth(refreshToken: string) {
   return {
     accessToken: authData.access_token,
     refreshToken: authData.refresh_token,
-    expiresIn: authData.expires_in * 1000 + new Date().getTime(),
+    expiresIn: getAdjustedTokenExpireTime(authData.expires_in),
   };
+}
+
+function getAdjustedTokenExpireTime(expiresIn: number) {
+  return expiresIn * 1000 + new Date().getTime();
 }

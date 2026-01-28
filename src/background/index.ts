@@ -97,7 +97,8 @@ browser.tabs.onUpdated.addListener(async (_tabId, changeInfo, tab) => {
       await browser.storage.local.remove(codeVerifierKey);
     }
   } else {
-    const accessToken = url.searchParams.get("access_token");
+    const urlParams = new URLSearchParams(url.toString().split("#").at(-1));
+    const accessToken = urlParams.get("access_token");
 
     if (!accessToken) return;
 

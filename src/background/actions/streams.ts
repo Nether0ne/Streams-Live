@@ -59,9 +59,9 @@ const updateFollowedStreamers = async (): Promise<void> => {
     if (client && "getFollowedStreamers" in client) {
       try {
         const followedStreamers = await client.getFollowedStreamers();
-        const store = await stores[`${platform.name}`].get();
+        const store = await stores[platform.name].get();
         store.followedStreamers = followedStreamers;
-        await stores[`${platform.name}`].set(store);
+        await stores[platform.name].set(store);
       } catch (e: unknown) {
         console.log(e);
       }
