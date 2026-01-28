@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
-import SortField from "./settings/SortField";
-import SortDirection from "./settings/SortDirection";
-import GroupBy from "./settings/GroupBy";
+import GroupBy from "./Settings/GroupBy";
+import SortDirection from "./Settings/SortDirection";
+import SortField from "./Settings/SortField";
 
 const styles = {
   display: "flex",

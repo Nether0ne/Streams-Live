@@ -41,9 +41,8 @@ export interface NotificationSettings {
   enabled: boolean;
   category: boolean;
   twitch: boolean;
-  trovo: boolean;
-  wasd: boolean;
   goodgame: boolean;
+  kick: boolean;
 }
 
 export interface StreamSettings {
@@ -76,9 +75,8 @@ export const defaultSettings: Settings = {
     enabled: true,
     category: false,
     twitch: true,
-    trovo: true,
-    wasd: true,
     goodgame: true,
+    kick: true,
   },
   stream: {
     sortDirection: SortDirection.DESC,

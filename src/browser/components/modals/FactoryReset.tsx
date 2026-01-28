@@ -1,5 +1,5 @@
 import { SnackbarContext } from "@/browser/common/context/Snackbar";
-import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
+import { useEnabledPlatforms } from "@/browser/common/hooks/platform";
 import { defaultPlatformState, t } from "@/common/helpers";
 import {
   Fade,
@@ -36,7 +36,7 @@ interface FactoryResetModalProps {
 
 const FactoryResetModal: FC<FactoryResetModalProps> = ({ open, hide }) => {
   const { setSnackbar } = useContext(SnackbarContext);
-  const platforms = useAllSetPlatforms();
+  const platforms = useEnabledPlatforms();
 
   const handleConfirm = () => {
     for (const p of platforms) {

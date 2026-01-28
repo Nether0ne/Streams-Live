@@ -1,9 +1,7 @@
 export enum PlatformName {
   TWITCH = "twitch",
   GOODGAME = "goodgame",
-  // TODO: Add more platforms
-  // TROVO = "trovo",
-  // WASD = "wasd",
+  KICK = "kick",
 }
 
 export interface Platform {
@@ -11,6 +9,8 @@ export interface Platform {
   name: PlatformName;
   type: PlatformType;
   accessToken?: string;
+  refreshToken?: string;
+  expiresIn?: number;
   data: UserData | null;
   followedStreamers: FollowedStreamer[];
 }
@@ -36,7 +36,5 @@ export enum PlatformType {
 export const PlatformsTypeMap = {
   [PlatformName.TWITCH]: PlatformType.AUTH,
   [PlatformName.GOODGAME]: PlatformType.NONE,
-  // TODO: Add more platforms
-  // [PlatformName.TROVO]: PlatformType.LIST,
-  // [PlatformName.WASD]: PlatformType.LIST,
+  [PlatformName.KICK]: PlatformType.AUTH,
 };

@@ -1,6 +1,6 @@
 import browser from "webextension-polyfill";
 import { stores } from "@/common/store";
-import { getAllSetPlatforms } from "./platform";
+import { getEnabledPlatforms } from "./platform";
 
 const badgeColor = "#666666";
 
@@ -50,9 +50,10 @@ export async function createNotification(
 }
 
 export async function getIconPath(size: number): Promise<string> {
-  const authorized = (await getAllSetPlatforms()).length > 0;
+  const enabledPlatforms = await getEnabledPlatforms();
+  const hasEnabledPlatforms = enabledPlatforms.length > 0;
   return browser.runtime.getURL(
-    `icon/${authorized ? `icon-${size}.png` : `icon-gray-${size}.png`}`
+    `icon/${hasEnabledPlatforms ? `icon-${size}.png` : `icon-gray-${size}.png`}`
   );
 }
 

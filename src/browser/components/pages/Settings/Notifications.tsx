@@ -5,7 +5,7 @@ import SwitchSettings from "./options/Switch";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SwitchLeftIcon from "@mui/icons-material/SwitchLeft";
 import useSettings from "@/browser/common/hooks/settings";
-import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
+import { useEnabledPlatforms } from "@/browser/common/hooks/platform";
 import PlatformIcon from "../../misc/PlatformIcon";
 import SettingLoading from "./options/SettingLoading";
 
@@ -21,7 +21,7 @@ const styles = {
 const NotificationsSettings: FC = () => {
   const [settings, store] = useSettings();
   const { notifications } = settings;
-  const setPlatforms = useAllSetPlatforms();
+  const setPlatforms = useEnabledPlatforms();
 
   if (store.isLoading) {
     return <SettingLoading withSwitch icon={<NotificationsIcon />} sx={styles.loading} />;

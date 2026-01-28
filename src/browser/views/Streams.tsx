@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
 import StreamsHeader from "../components/pages/Streams/Header";
-import { useAllSetPlatforms } from "../common/hooks/platform";
+import { useEnabledPlatforms } from "../common/hooks/platform";
 import { StreamSettingsProvider } from "../common/context/StreamsSettings";
 import StreamsList from "../components/pages/Streams/StreamsList";
 import Welcome from "../components/pages/Streams/Welcome";
@@ -15,7 +15,7 @@ const styles = {
 
 const Streams: FC = () => {
   const [, { isLoading }] = useSettings();
-  const profiles = useAllSetPlatforms();
+  const profiles = useEnabledPlatforms();
 
   return (
     <StreamSettingsProvider>

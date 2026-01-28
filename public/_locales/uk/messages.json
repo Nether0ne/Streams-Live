@@ -117,6 +117,9 @@
   "twitch": {
     "message": "Twitch"
   },
+  "kick": {
+    "message": "Kick"
+  },
   "goodgame": {
     "message": "GoodGame"
   },

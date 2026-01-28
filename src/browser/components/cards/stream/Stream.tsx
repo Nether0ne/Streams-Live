@@ -1,15 +1,15 @@
 import { Stream } from "@/common/types/stream";
 import { Box, Link, Tooltip, Typography } from "@mui/material";
 import { FC } from "react";
-import Uptime from "./details/Uptime";
 import Image from "../../misc/Image";
-import Viewers from "./details/Viewers";
 import StreamContextMenu from "../../pages/Streams/ContextMenu";
 import PlatformIcon from "../../misc/PlatformIcon";
 import { getLinkForPlatform, t } from "@/common/helpers";
 import { LinkType } from "@/common/types/general";
 import useSettings from "@/browser/common/hooks/settings";
 import StreamCardSkeleton from "./Skeleton";
+import Uptime from "./Details/Uptime";
+import Viewers from "./Details/Viewers";
 
 interface StreamCardProps {
   readonly stream: Stream;
@@ -42,6 +42,10 @@ const styles = {
       "& .image": {
         position: "absolute",
         backgroundColor: "background.paper",
+        "& img": {
+          width: "96px",
+          height: "54px",
+        },
       },
     },
     "& .uptime": {

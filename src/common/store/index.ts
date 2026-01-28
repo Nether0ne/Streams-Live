@@ -175,31 +175,18 @@ export const stores = {
       },
     ],
   }),
-  // TODO: Add more platforms
-  // trovo: new Store<Platform>("local", "trovo", {
-  //   defaultValue: defaultPlatformState(PlatformName.TROVO, PlatformType.LIST),
-  //   migrations: [
-  //     (value) => {
-  //       const store = new Store("sync", "profiles", {
-  //         defaultValue: value,
-  //       });
+  kick: new Store<Platform>("local", "kick", {
+    defaultValue: defaultPlatformState(PlatformName.KICK, PlatformType.AUTH),
+    migrations: [
+      (value) => {
+        const store = new Store("sync", "profiles", {
+          defaultValue: value,
+        });
 
-  //       return store.get();
-  //     },
-  //   ],
-  // }),
-  // wasd: new Store<Platform>("local", "wasd", {
-  //   defaultValue: defaultPlatformState(PlatformName.WASD, PlatformType.LIST),
-  //   migrations: [
-  //     (value) => {
-  //       const store = new Store("sync", "profiles", {
-  //         defaultValue: value,
-  //       });
-
-  //       return store.get();
-  //     },
-  //   ],
-  // }),
+        return store.get();
+      },
+    ],
+  }),
   streams: new Store<Streams>("local", "streams", {
     defaultValue: {
       data: [],
