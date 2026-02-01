@@ -46,9 +46,17 @@ export function getLinkForPlatform(stream: Stream, type: LinkType): string {
         case LinkType.VIDEOS:
           return "";
       }
-    // TODO: Add more platforms
-    // case PlatformName.WASD:
-    //   return `https://wasd.tv/${type === LinkType.STREAM ? "channel/" : ""}${route}`;
+    case PlatformName.KICK:
+      switch (type) {
+        case LinkType.STREAM:
+          return `https://www.kick.com/${id}`;
+        case LinkType.POPOUT:
+          return `https://player.kick.com/${id}`;
+        case LinkType.CHAT:
+          return `https://kick.com/popout/${id}/chat`;
+        case LinkType.VIDEOS:
+          return `https://kick.com/${id}/videos`;
+      }
     default:
       throw new RangeError();
   }

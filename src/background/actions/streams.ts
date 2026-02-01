@@ -4,7 +4,7 @@ import { Stream } from "@/common/types/stream";
 import { find } from "lodash";
 import { createNotification, getIconPath } from "./misc";
 import { t } from "@/common/helpers";
-import { getPlatformClient, getAllSetPlatforms } from "./platform";
+import { getPlatformClient, getEnabledPlatforms } from "./platform";
 import { NotificationType } from "@/common/types/general";
 import { FollowedStreamer } from "@/common/types/platform";
 
@@ -51,17 +51,17 @@ export async function updateStreams(forceUpdate: boolean = false) {
 }
 
 const updateFollowedStreamers = async (): Promise<void> => {
-  const setProfiles = await getAllSetPlatforms();
+  const enabledPlatforms = await getEnabledPlatforms();
 
-  for (const profile of setProfiles) {
-    const client = getPlatformClient(profile);
+  for (const platform of enabledPlatforms) {
+    const client = getPlatformClient(platform);
 
     if (client && "getFollowedStreamers" in client) {
       try {
         const followedStreamers = await client.getFollowedStreamers();
-        const store = await stores[`${profile.name}`].get();
+        const store = await stores[platform.name].get();
         store.followedStreamers = followedStreamers;
-        await stores[`${profile.name}`].set(store);
+        await stores[platform.name].set(store);
       } catch (e: unknown) {
         console.log(e);
       }
@@ -70,10 +70,10 @@ const updateFollowedStreamers = async (): Promise<void> => {
 };
 
 const getAllStreams = async (): Promise<[Stream[], string[]]> => {
-  const setProfiles = await getAllSetPlatforms();
+  const enabledProfiles = await getEnabledPlatforms();
   const updateStreamsQueries = [];
 
-  for (const profile of setProfiles) {
+  for (const profile of enabledProfiles) {
     const client = getPlatformClient(profile);
 
     if (client && "getStreams" in client) {

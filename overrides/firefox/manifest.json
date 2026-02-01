@@ -9,8 +9,10 @@
     "notifications",
     "storage",
     "unlimitedStorage",
+    "cookies",
     "*://*.nether0ne.github.io/#/streams-live/auth",
-    "*://*.goodgame.ru/"
+    "*://*.goodgame.ru/",
+    "*://*.kick.com/"
   ],
   "background": {
     "scripts": ["background.js"]

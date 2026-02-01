@@ -3,8 +3,19 @@
   "description": "__MSG_extensionDescription__",
   "version": "1.0.2",
   "manifest_version": 3,
-  "permissions": ["alarms", "background", "notifications", "storage", "unlimitedStorage"],
-  "host_permissions": ["*://nether0ne.github.io/#/streams-live/auth", "*://*.goodgame.ru/"],
+  "permissions": [
+    "alarms",
+    "background",
+    "notifications",
+    "storage",
+    "unlimitedStorage",
+    "cookies"
+  ],
+  "host_permissions": [
+    "*://nether0ne.github.io/#/streams-live/auth",
+    "*://*.goodgame.ru/",
+    "*://*.kick.com/"
+  ],
   "default_locale": "en",
   "action": {
     "default_popup": "popup.html",

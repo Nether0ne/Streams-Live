@@ -41,6 +41,8 @@ module.exports = (env, argv) => {
       new webpack.EnvironmentPlugin({
         AUTH_REDIRECT_URI: undefined,
         TWITCH_CLIENT_ID: undefined,
+        KICK_CLIENT_ID: undefined,
+        KICK_CLIENT_SECRET: undefined,
       }),
       new webpack.ProvidePlugin({
         browser: "webextension-polyfill",

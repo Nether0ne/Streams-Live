@@ -17,7 +17,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import InfoIcon from "@mui/icons-material/Info";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import StreamsLive from "../../icons/StreamsLive";
-import { useAllSetPlatforms } from "@/browser/common/hooks/platform";
+import { useEnabledPlatforms } from "@/browser/common/hooks/platform";
 
 interface SidebarProps {
   readonly aboutModalToggler: () => void;
@@ -75,7 +75,7 @@ const menuProps = {
 
 const Sidebar: FC<SidebarProps> = ({ aboutModalToggler, donateModalToggler }) => {
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
-  const platforms = useAllSetPlatforms();
+  const platforms = useEnabledPlatforms();
 
   const moreItems = [
     {
