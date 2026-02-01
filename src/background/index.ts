@@ -81,7 +81,7 @@ browser.tabs.onUpdated.addListener(async (_tabId, changeInfo, tab) => {
 
   if (changeInfo.status !== "complete" || !tab.url) return;
   if (
-    !tab.url.startsWith(process.env.AUTH_REDIRECT_URI as string) ||
+    !tab.url.startsWith(process.env.AUTH_REDIRECT_URI as string) &&
     !tab.url.startsWith(process.env.TWITCH_REDIRECT_URI as string)
   )
     return;
