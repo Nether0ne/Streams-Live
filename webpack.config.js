@@ -40,6 +40,9 @@ module.exports = (env, argv) => {
     plugins: [
       new webpack.EnvironmentPlugin({
         AUTH_REDIRECT_URI: undefined,
+        // Quick fix for outdated twitch redirect URI due to issues with hash routing & kick auth redirect
+        // ? Kick auth does not redirect correctly to the websites with hash router enabled
+        TWITCH_REDIRECT_URI: undefined,
         TWITCH_CLIENT_ID: undefined,
         KICK_CLIENT_ID: undefined,
         KICK_CLIENT_SECRET: undefined,
