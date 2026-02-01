@@ -122,7 +122,7 @@ export async function authInit(platform: PlatformName) {
       const url = new URL("https://id.twitch.tv/oauth2/authorize");
 
       url.searchParams.set("client_id", process.env.TWITCH_CLIENT_ID as string);
-      url.searchParams.set("redirect_uri", process.env.AUTH_REDIRECT_URI as string);
+      url.searchParams.set("redirect_uri", process.env.TWITCH_REDIRECT_URI as string);
       url.searchParams.set("response_type", "token");
       url.searchParams.set("scope", "user:read:follows");
 
